@@ -11,7 +11,7 @@ class Consumer implements CSProcess {
   void run() {
     def i = inChannel.read()
     while ( i > 0 ) {
-	  println "Multiplied value is: ${i}"
+      println "Multiplied value is: ${i}"
       i = inChannel.read()
     }
     println "Finished"
