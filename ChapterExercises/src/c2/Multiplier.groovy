@@ -17,5 +17,3 @@ class Multiplier implements CSProcess {
     outChannel.write(i)
   }
 }
-
-    

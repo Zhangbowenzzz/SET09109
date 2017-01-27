@@ -17,4 +17,3 @@ class Consumer implements CSProcess {
     println "Finished"
   }
 }
-
