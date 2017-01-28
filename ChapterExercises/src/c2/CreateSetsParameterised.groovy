@@ -2,19 +2,20 @@ package c2
 
 import org.jcsp.lang.*
 
-class CreateSetsOfEight implements CSProcess{
+class CreateSetsParameterised implements CSProcess{
 
   def ChannelInput inChannel
+  def int groupSize
 
   void run(){
     def outList = []
     def v = inChannel.read()
     while (v != -1){
-      for ( i in 0 .. 7 ) {
+      for ( i in 1 .. groupSize ) {
         outList << v;
         v = inChannel.read();
       }
-      println " Eight Object is ${outList}"
+      println " Object is ${outList}"
       outList = [];
     }
     println "Finished"
