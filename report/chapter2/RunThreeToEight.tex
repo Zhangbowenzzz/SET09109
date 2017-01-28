@@ -27,3 +27,11 @@ To parameterise the solution to any group size we can add a groupSize parameter 
 
 
 \includegraphics[width=\textwidth]{img/screenshots/2-2-q2.png}
+
+\paragraph{3. What happens if the number of integers required in the output stream is not a factor of the total number of integers in the input stream (e.g. 5 or 7) ?}
+
+If the output groupSize is not a factor of the total number of input integers the system will print out as many full groups as it can make and then freeze without completing or printing the semi created group.
+
+This is because, in {\em CreateSetsParameterised }, the while loop \mintinline{groovy}{ while( v != -1) } is only checked on completion of the for loop \mintinline{groovy}{ for ( i in 1 .. groupSize ) }.  If the groupSize parameter is not a factor of the total input number then this for loop never completes, as the program gets stuck trying to read from \mintinline{groovy}{ inChannel }.  If this for loop never finishes, the program can never complete.
+
+\includegraphics[width=\textwidth]{img/screenshots/2-2-q3.png}
