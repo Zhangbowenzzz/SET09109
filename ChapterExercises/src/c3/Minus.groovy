@@ -1,15 +1,15 @@
 package c3
- 
+
+import org.jcsp.groovy.*
 import org.jcsp.lang.*
 import org.jcsp.plugNplay.ProcessRead
-import org.jcsp.groovy.*
 
 class Minus implements CSProcess {
-  
+
   def ChannelInput inChannel0
   def ChannelInput inChannel1
   def ChannelOutput outChannel
-  
+
   void run () {
 
     ProcessRead read0 = new ProcessRead ( inChannel0)
@@ -18,9 +18,7 @@ class Minus implements CSProcess {
 
     while (true) {
       parRead2.run()
-      // output one value subtracted from the other
-      // be certain you know which way round you are doing the subtraction!!
+      outChannel.write(read0.value - read1.value);
     }
   }
 }
-            
