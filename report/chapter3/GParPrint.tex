@@ -1,0 +1,7 @@
+\subsection{3-3 GParPrint}
+
+\subsubsection*{Questions}
+
+\paragraph{Why was it considered easier to build GParPrint as a new process rather than using multiple instances of GPrint to output the table of results?}
+
+This is primarily due to the need for precise ordering of output.  GPrint is designed to print to stdout as soon as it receives input.  Designing a program which only attempts to write to GPrint after other, specific processes have printed would create very messy code with no performance benefits.  Creating a single processes to handle all the printing, which only reads from input when ready, alleviates all timing issues with printing and encapsulates all printing logic into one class.
