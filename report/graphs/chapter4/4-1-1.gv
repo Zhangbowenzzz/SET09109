@@ -1,0 +1,14 @@
+digraph G {
+        node [shape=box];
+        splines=ortho;
+        rankdir=LR;
+
+    out [style=dotted];
+    resetChannel [style=dotted];
+
+    resetChannel -> ResetPrefix;
+    ResetPrefix -> GPCopy;
+    GPCopy -> out;
+    GPCopy -> GSuccessor;
+    GSuccessor -> ResetPrefix;
+}

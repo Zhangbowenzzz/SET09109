@@ -4,16 +4,16 @@ package c04
 // Let's Do It In Parallel
 
 
-import org.jcsp.lang.*
 import org.jcsp.groovy.*
+import org.jcsp.lang.*
 
 class ResetPrefix implements CSProcess {
-  
+
   def int prefixValue = 0
   def ChannelOutput outChannel
   def ChannelInput  inChannel
   def ChannelInput  resetChannel
-  
+
   void run () {
     def guards = [ resetChannel, inChannel  ]
     def alt = new ALT ( guards )
@@ -22,11 +22,11 @@ class ResetPrefix implements CSProcess {
       def index = alt.priSelect()
       if (index == 0 ) {    // resetChannel input
         def resetValue = resetChannel.read()
-		inChannel.read()
+        inChannel.read()
         outChannel.write(resetValue)
       }
-      else {    //inChannel input 
-        outChannel.write(inChannel.read())        
+      else {    //inChannel input
+        outChannel.write(inChannel.read())
       }
     }
   }
