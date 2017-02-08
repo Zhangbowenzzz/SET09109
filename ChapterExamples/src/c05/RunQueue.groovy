@@ -3,9 +3,9 @@ package c05
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 
-import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
+import org.jcsp.lang.*
 
 def QP2Q = Channel.one2one()
 def Q2QC = Channel.one2one()
