@@ -35,7 +35,7 @@ println "Write Process $writerId has created its Net channels "
 def consoleChannel = Channel.one2one()
 
 def pList = [ 
-	new Write ( id:writerId, w2db:toDB, db2w:fromDB, toConsole: consoleChannel.out()  ),
-	new GConsole(toConsole:consoleChannel.in(), frameLabel: "Writer $writerId"  )  
-	]
+    new Write ( id:writerId, w2db:toDB, db2w:fromDB, toConsole: consoleChannel.out()  ),
+    new GConsole(toConsole:consoleChannel.in(), frameLabel: "Writer $writerId"  )  
+    ]
 new PAR (pList).run()

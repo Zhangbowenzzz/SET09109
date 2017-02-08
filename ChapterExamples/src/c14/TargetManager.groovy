@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class TargetManager implements CSProcess {
-	
+    
   def ChannelInput targetIdFromTarget
   def ChannelInput getActiveTargets
   def ChannelOutput activatedTargets

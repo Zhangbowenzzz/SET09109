@@ -15,7 +15,7 @@ class Write implements CSProcess {
   def ChannelOutput toConsole
   
   void run () {
-	def timer = new CSTimer()
+    def timer = new CSTimer()
     toConsole.write ( "Writer $id has started \n" )
     for ( j in 0 ..<10 ) {
       def d = new DataObject(pid:id)

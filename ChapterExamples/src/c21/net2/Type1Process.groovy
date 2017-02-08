@@ -8,7 +8,7 @@ import org.jcsp.net2.*
 
 
 class Type1Process extends DynamicMobileProcess implements Serializable {
-	
+    
   def toGatherer
   def ChannelInput inChannel
   def int nodeId

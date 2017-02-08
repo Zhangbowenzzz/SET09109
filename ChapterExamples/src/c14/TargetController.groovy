@@ -8,7 +8,7 @@ import org.jcsp.awt.*
 import org.jcsp.groovy.*
 
 class TargetController implements CSProcess {
-	
+    
   def ChannelOutput getActiveTargets
   def ChannelInput activatedTargets  
   def ChannelInput receivePoint  

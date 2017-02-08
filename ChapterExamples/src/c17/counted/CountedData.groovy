@@ -8,7 +8,7 @@ package c17.counted
 
 
 class CountedData {
-	
+    
   def counter
   def value  
   

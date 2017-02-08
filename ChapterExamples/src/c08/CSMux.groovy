@@ -8,12 +8,12 @@ import org.jcsp.groovy.*
 import org.jcsp.lang.*
 
 class CSMux implements CSProcess {
-	
+    
   def ChannelInputList inClientChannels
   def ChannelOutputList outClientChannels
   def ChannelInputList fromServers
   def ChannelOutputList toServers
-  def serverAllocation = [ ]	// list of lists of keys contained in each server
+  def serverAllocation = [ ]    // list of lists of keys contained in each server
   
   void run() {
     def servers = toServers.size()

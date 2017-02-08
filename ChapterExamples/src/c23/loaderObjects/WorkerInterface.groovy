@@ -9,5 +9,5 @@ import org.jcsp.lang.*
 
 interface WorkerInterface extends CSProcess, Serializable{
 
-	abstract connect(inChannels, outChannels)  
+    abstract connect(inChannels, outChannels)  
 }

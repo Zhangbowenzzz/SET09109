@@ -12,8 +12,8 @@ def spoolers = Ask.Int ("Number of spoolers ? ", 1, 9)
 def printSpoolerIP = "127.0.0.1"
 def psAddress = new TCPIPNodeAddress(printSpoolerIP, 2000)
 Node.getInstance().init(psAddress)
-def pRequest = NetChannel.net2one()		// cn = 50
-def pRelease = NetChannel.net2one()		// cn = 51
+def pRequest = NetChannel.net2one()        // cn = 50
+def pRelease = NetChannel.net2one()        // cn = 51
 println "pRequest location = ${pRequest.getLocation()}"
 println "pRelease location = ${pRelease.getLocation()}"
 

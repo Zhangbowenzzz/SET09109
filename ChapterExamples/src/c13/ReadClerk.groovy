@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class ReadClerk implements CSProcess {
-	
+    
   def ChannelInput cin
   def ChannelOutput cout
   def CrewMap data

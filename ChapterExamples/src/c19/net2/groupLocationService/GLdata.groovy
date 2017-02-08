@@ -8,9 +8,9 @@ import org.jcsp.net2.*
 
 
 class GLdata implements Serializable{
-	
-	def NetChannelLocation responseLocation
-	def groupName
-	def location
+    
+    def NetChannelLocation responseLocation
+    def groupName
+    def location
 
 }

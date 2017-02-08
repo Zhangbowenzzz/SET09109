@@ -30,7 +30,7 @@ class RestartAgent implements MobileAgent {
     println "RA: running $homeNode, $previousNode"
     toLocal.write(firstHop)
     if (firstHop) { firstHop = false }
-    toLocal.write(homeNode)	// tells node to resume sending to this node
+    toLocal.write(homeNode)    // tells node to resume sending to this node
     toLocal.write(previousNode)
     println "RA: finished"
   } // end run

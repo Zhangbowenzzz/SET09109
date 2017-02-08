@@ -35,7 +35,7 @@ class DataGeneratorPrint implements CSProcess {
             allocationList << nodeData.dgl[2]                                      
             nodesRegistered = nodesRegistered + 1
             nodeAppended = true
-			println "DG: node appended ${nodeData.dgl[2]}"
+            println "DG: node appended ${nodeData.dgl[2]}"
             break
           case 1:
             checkingForNewNodes = false

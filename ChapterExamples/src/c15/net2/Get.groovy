@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Get implements CSProcess { 
-	 
+     
   def ChannelInput inChannel
   def int id = 0  
   

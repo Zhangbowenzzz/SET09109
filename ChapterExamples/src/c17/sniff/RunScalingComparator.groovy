@@ -13,7 +13,7 @@ def Out2Comp = Channel.one2one()
 def network = [ new SnifferComparator ( fromCopy: Copy2Sniff.in(),
                                          fromScaler: Out2Comp.in(),
                                          interval: 15000 ), 
-									 
+                                     
                 new ScalingSystem ( toSniffer: Copy2Sniff.out(),
                                     toComparator: Out2Comp.out() ) 
              ]

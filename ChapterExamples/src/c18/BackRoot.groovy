@@ -34,7 +34,7 @@ class BackRoot implements CSProcess{
     while ( running) {
       def index = rootAlt.select()
       switch (index) {
-        case 0:		// agent has returned
+        case 0:        // agent has returned
           theAgent = inChannel.read()
           theAgent.connect ( [fromAgentOutEnd, toAgentInEnd] )
           def agentManager = new ProcessManager (theAgent)

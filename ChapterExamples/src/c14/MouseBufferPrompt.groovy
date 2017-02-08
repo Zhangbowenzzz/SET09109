@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class MouseBufferPrompt implements CSProcess{
-	
+    
   def ChannelOutput returnPoint
   def ChannelOutput getPoint
   def ChannelInput receivePoint  

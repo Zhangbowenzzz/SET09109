@@ -46,18 +46,18 @@ Mux1FromServers.append(S0ToM[1].in())
 Mux1FromServers.append(S1ToM[1].in())
 
 def server0Map = [1:10, 2:20, 3:30, 4:40, 5:50, 
-				  6:60, 7:70, 8:80, 9:90, 10:100]
+                  6:60, 7:70, 8:80, 9:90, 10:100]
 def server1Map = [11:110,12:120,13:130,14:140,15:150,
-				  16:160,17:170,18:180,19:190,20:200]                  
+                  16:160,17:170,18:180,19:190,20:200]                  
 def serverKeyLists = [ [1,2,3,4,5,6,7,8,9,10], 
-					   [11,12,13,14,15,16,17,18,19,20] ]  
+                       [11,12,13,14,15,16,17,18,19,20] ]  
               
 def client0List = [1,12,3,14,15,16,7,18,9,10]
 def client1List = [11,12,13,14,15,6,17,8,19,20]
 
 def network = [ ]                
 def server0ClientList = (0 ..< clients).collect { i ->
-				return new Client ( requestChannel: C0ToM0[i].out(),
+                return new Client ( requestChannel: C0ToM0[i].out(),
                                     receiveChannel: M0ToC0[i].in(),
                                     clientNumber: i,
                                     selectList: client0List)

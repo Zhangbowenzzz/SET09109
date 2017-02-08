@@ -16,7 +16,7 @@ class Type3 implements Serializable {
   def processedNode
   
   def modify ( nodeId) {
-	processedNode = nodeId
+    processedNode = nodeId
     typeInstance = typeInstance + (nodeId *10000)
   }
   

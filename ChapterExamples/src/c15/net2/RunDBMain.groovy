@@ -31,7 +31,7 @@ for ( readerId in 0 ..< nReaders  ) {
   readerAddresses << new TCPIPNodeAddress(readerIP, 1000)
   toDB.append ( NetChannel.numberedNet2One(readerIndex) )
   println "Reader: $readerId, $readerIndex, $readerIP - " +
-	  "toDB location = ${toDB[readerId].getLocation()}"
+      "toDB location = ${toDB[readerId].getLocation()}"
 }
 println "Creating writer network channels"
 def writeBase = 200
@@ -43,7 +43,7 @@ for ( writerId in 0 ..< nWriters  ) {
   writerAddresses << new TCPIPNodeAddress(writerIP, 2000)
   toDB.append ( NetChannel.numberedNet2One(writerIndex) )
   println "Writer: $writerId, $writerIndex, $writerIP - " +
-	 " toDB location = ${toDB[writerId+nReaders].getLocation()}"
+     " toDB location = ${toDB[writerId+nReaders].getLocation()}"
 }
 
 for ( r in 0 ..< nReaders){
@@ -59,7 +59,7 @@ for ( w in 0..< nWriters){
 }
 
 for ( c in 0 ..< (nReaders + nWriters)){
-	fromDB[c].write(0)
+    fromDB[c].write(0)
 }
 println "DBM: Creating database process list"
 

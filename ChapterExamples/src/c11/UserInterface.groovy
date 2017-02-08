@@ -8,7 +8,7 @@ import org.jcsp.awt.*
 import java.awt.*
 
 class UserInterface implements CSProcess {
-	
+    
   def ActiveCanvas particleCanvas
   def int canvasSize
   def ChannelInput tempValueConfig

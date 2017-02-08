@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class EventHandler implements CSProcess { 
-	 
+     
   def ChannelInput inChannel
   def ChannelOutput outChannel  
   
@@ -16,7 +16,7 @@ class EventHandler implements CSProcess {
     def get = Channel.one2one()
     def transfer = Channel.one2one()
     def toBuffer = Channel.one2one() 
-	   
+       
     def handlerList = [ new EventReceiver ( eventIn: inChannel, 
                                             eventOut: toBuffer.out()),
                         new EventOWBuffer ( inChannel: toBuffer.in(), 

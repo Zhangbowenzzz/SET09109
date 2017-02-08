@@ -8,7 +8,7 @@ import org.jcsp.net2.*
 
 
 class AgentExtraElement implements CSProcess { 
-	
+    
   def ChannelInput fromRing
   def ChannelOutput toRing
   
@@ -24,7 +24,7 @@ class AgentExtraElement implements CSProcess {
     println "Extra Element starting ..."
     def NetChannelLocation originalToRing = toRing.getLocation()
     def emptyPacket = new RingPacket ( source: -1, destination: -1 , value: -1 , full: false)
-    def element = 1 	// by default
+    def element = 1     // by default
 
     while (true) {
       def ringBuffer = fromRing.read()

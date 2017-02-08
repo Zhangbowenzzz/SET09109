@@ -16,12 +16,12 @@ class Type1 implements Serializable {
   def processedNode
   
   def modify ( nodeId) {
-	processedNode = nodeId
+    processedNode = nodeId
     typeInstance = typeInstance + (nodeId *10000)
   }
   
   def String toString(){
-	  return "Processing Node: $processedNode, Type: $typeName, " +
+      return "Processing Node: $processedNode, Type: $typeName, " +
             "TypeInstanceValue: $typeInstance, Sequence: $instanceValue"
   }
 }

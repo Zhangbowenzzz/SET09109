@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
 
 class EventSource implements CSProcess {
-	
+    
   def source 
   def iterations = 99
   def minTime = 100
@@ -26,7 +26,7 @@ class EventSource implements CSProcess {
                        new EventHandler ( inChannel: eg2h.in(),
                                           outChannel: outChannel)
                       ]
-	
+    
     new PAR (sourceList).run()
   }
 }

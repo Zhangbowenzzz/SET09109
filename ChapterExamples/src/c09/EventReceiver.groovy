@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 
 
 class EventReceiver implements CSProcess { 
-	 
+     
   def ChannelInput eventIn
   def ChannelOutput eventOut
   

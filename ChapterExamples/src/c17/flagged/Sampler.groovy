@@ -8,14 +8,14 @@ import org.jcsp.lang.*
 
 
 class Sampler implements CSProcess {  
-	
+    
   def ChannelInput inChannel
   def ChannelOutput outChannel
   def ChannelInput sampleRequest
   
   void run() {
     def sampleAlt = new ALT ([sampleRequest, inChannel])
-	
+    
     while (true){
       def index = sampleAlt.priSelect()
       if (index == 0) {

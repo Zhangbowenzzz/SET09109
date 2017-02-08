@@ -28,9 +28,9 @@ class Sorter implements CSProcess {
     
     def timer = new CSTimer()
     def sbKeys = []
-	  startChannel.read()
+      startChannel.read()
     def startTime = timer.read()
-	  sbl.each{ sb ->
+      sbl.each{ sb ->
       def ewmN = sb.equalWordMapList[Nvalue]
       def mapKeys = ewmN.keySet()
       mapKeys.each { mk ->

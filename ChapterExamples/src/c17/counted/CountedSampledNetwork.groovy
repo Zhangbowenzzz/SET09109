@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 
 
 class CountedSampledNetwork implements CSProcess {
-	
+    
   def ChannelOutput outChannel
   def ChannelInput inChannel  
   

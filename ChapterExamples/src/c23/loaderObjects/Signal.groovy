@@ -8,5 +8,5 @@ package c23.loaderObjects
 
 
 class Signal implements Serializable {
-	def signal = -1
+    def signal = -1
 }

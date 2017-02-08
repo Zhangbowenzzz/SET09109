@@ -8,7 +8,7 @@ import org.jcsp.awt.*
 import java.awt.*
 
 class ParticleManager implements CSProcess {
-	
+    
   def ChannelInput fromParticles
   def ChannelOutput toParticles
   def DisplayList toUI

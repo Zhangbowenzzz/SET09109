@@ -49,9 +49,9 @@ def toCollectorAddr = new TCPIPNodeAddress ( collectorIP, 3000)
 def toCollector = NetChannel.any2net(toCollectorAddr, 50,  new CodeLoadingChannelFilter.FilterTX())
 
 def base = new Worker ( toEmitter: toEmitter,
-		   	  			 fromEmitterLoc: fromEmitterLoc,
-		   	  			 fromEmitter: fromEmitter,
-		   	  			 toCollector: toCollector,
-		   	  			 baseId: w - 3 )
+                              fromEmitterLoc: fromEmitterLoc,
+                              fromEmitter: fromEmitter,
+                              toCollector: toCollector,
+                              baseId: w - 3 )
 new PAR([base]).run()
 

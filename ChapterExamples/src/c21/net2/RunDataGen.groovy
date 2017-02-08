@@ -10,7 +10,7 @@ import phw.util.*
 def nodeIP = "127.0.0.1"
 def nodeAddress = new TCPIPNodeAddress(nodeIP, 3000)
 Node.getInstance().init(nodeAddress)
-def fromNodesToGen = NetChannel.net2one()	//cn 50
+def fromNodesToGen = NetChannel.net2one()    //cn 50
 
 println "Data Generator Starting"
 def processList = new DataGenerator ( fromNodes: fromNodesToGen, interval: 500 )

@@ -8,7 +8,7 @@ import c05.*
 
 
 class CollectNumbers implements CSProcess {  
-	
+    
   def ChannelInput inChannel
   def collectedList = []
   def scaledList = [] 

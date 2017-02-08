@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Queue implements CSProcess {  
-	
+    
   def ChannelInput  put
   def ChannelInput  get
   def ChannelOutput receive
@@ -26,7 +26,7 @@ class Queue implements CSProcess {
     def front = 0       
     def rear = 0     
     def running = true
-	
+    
     while (running) {
       def index = qAlt.priSelect(preCon)
       switch (index) {

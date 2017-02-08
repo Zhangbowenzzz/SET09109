@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Scale implements CSProcess {
-	
+    
   def int scaling = 2
   def int multiplier = 2
   
@@ -33,16 +33,16 @@ class Scale implements CSProcess {
     timer.setAlarm ( timeout )
     while (true) {
       switch ( normalAlt.priSelect() ) {
-		  
+          
         case NORMAL_SUSPEND :
           suspend.read()          // its a signal, no data content
           factor.write(scaling)   //reply with current value of scaling
           def suspended = true
           println "Suspended"
           while ( suspended ) {
-			  
+              
             switch ( suspendedAlt.priSelect() ) {
-				
+                
               case SUSPENDED_INJECT:
                 scaling = injector.read()   //this is the resume signal as well
                 println "Injected scaling is $scaling"
@@ -50,7 +50,7 @@ class Scale implements CSProcess {
                 timeout = timer.read() + DOUBLE_INTERVAL
                 timer.setAlarm ( timeout )
                 break
-				
+                
               case SUSPENDED_IN:
                 def inValue = inChannel.read()
                 def result = new ScaledData()
@@ -61,14 +61,14 @@ class Scale implements CSProcess {
             }  // end-switch
           } //end-while
           break
-		  
+          
         case NORMAL_TIMER:
           timeout = timer.read() + DOUBLE_INTERVAL
           timer.setAlarm ( timeout )
           scaling = scaling * multiplier
           println "Normal Timer: new scaling is $scaling"
           break
-		  
+          
         case NORMAL_IN:
           def inValue = inChannel.read()
           def result = new ScaledData()
@@ -76,7 +76,7 @@ class Scale implements CSProcess {
           result.scaled = inValue * scaling
           outChannel.write ( result )  
           break
-		  
+          
       } //end-switch
     } //end-while
   } //end-run

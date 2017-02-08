@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 
 
 class SamplingTimer implements CSProcess {
-	
+    
   def ChannelOutput sampleRequest
   def sampleInterval 
    

@@ -24,43 +24,43 @@ def hb2mList = new ChannelInputList()
 def m2hbList = new ChannelOutputList()
 
 for ( i in 0 ..< hoppers) {
-	hb2mList.append( h2m[i].in())
-	m2hbList.append( m2h[i].out())
+    hb2mList.append( h2m[i].in())
+    m2hbList.append( m2h[i].out())
 }
 
 hb2mList.append(b2m.in())
 m2hbList.append(m2b.out())
 
 def hopperList = ( 0 ..< hoppers).collect { i ->
-					new Hopper ( fromConsole: c2h[i].in(),
-							     toConsole: h2c[i].out(),
-							     clearConsole: clearHC[i].out(),
-							     toManager: h2m[i].out(),
-							     fromManager: m2h[i].in()
-							    )
+                    new Hopper ( fromConsole: c2h[i].in(),
+                                 toConsole: h2c[i].out(),
+                                 clearConsole: clearHC[i].out(),
+                                 toManager: h2m[i].out(),
+                                 fromManager: m2h[i].in()
+                                )
                  }
 
 def blender = new Blender ( fromConsole: c2b.in(),
-							toConsole: b2c.out(),
-							clearConsole: clearBC.out(),
-							toManager: b2m.out(),
-							fromManager: m2b.in()
-						   )
+                            toConsole: b2c.out(),
+                            clearConsole: clearBC.out(),
+                            toManager: b2m.out(),
+                            fromManager: m2b.in()
+                           )
 
 def manager = new ManagerAll3 ( inputs: hb2mList,
-		      					outputs: m2hbList)
+                                  outputs: m2hbList)
 
 def hopperConsoles = ( 0 ..< hoppers).collect { i ->
-					new GConsole ( toConsole: h2c[i].in(),
-								   fromConsole: c2h[i].out(),
-								   clearInputArea: clearHC[i].in(),
-								   frameLabel: "Hopper-" + i)
-					 }
+                    new GConsole ( toConsole: h2c[i].in(),
+                                   fromConsole: c2h[i].out(),
+                                   clearInputArea: clearHC[i].in(),
+                                   frameLabel: "Hopper-" + i)
+                     }
 
 def blenderConsole = new GConsole ( toConsole: b2c.in(),
-									fromConsole: c2b.out(),
-									clearInputArea: clearBC.in(),
-									frameLabel: "Blender")
+                                    fromConsole: c2b.out(),
+                                    clearInputArea: clearBC.in(),
+                                    frameLabel: "Blender")
 
 def procList = hopperList + blender + manager + hopperConsoles + blenderConsole
 

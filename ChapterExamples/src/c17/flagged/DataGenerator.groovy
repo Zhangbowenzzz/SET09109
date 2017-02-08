@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 
 
 class DataGenerator implements CSProcess {  
-	
+    
   def ChannelOutput outChannel
   def interval = 500
   

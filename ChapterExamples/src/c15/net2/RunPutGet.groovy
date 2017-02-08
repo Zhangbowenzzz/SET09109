@@ -10,6 +10,6 @@ import org.jcsp.groovy.*
 def comms = Channel.one2one()
 
 def network = [new Put (outChannel: comms.out()),
-			   new Get (inChannel: comms.in())]
+               new Get (inChannel: comms.in())]
 
 new PAR(network).run()

@@ -8,7 +8,7 @@ import org.jcsp.groovy.MobileAgent
 
 
 class Agent implements MobileAgent {  
-	
+    
   def ChannelOutput toLocal
   def ChannelInput fromLocal
   

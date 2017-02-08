@@ -8,12 +8,12 @@ import org.jcsp.net2.tcpip.*
 import phw.util.*
 
 class PrintUser implements CSProcess {  
-	
+    
   def ChannelOutput printerRequest
   def ChannelOutput printerRelease
   def int userId  
   
-  void run() {	  
+  void run() {      
     def printList = [ "line 1 for user " + userId, 
                       "line 2 for user " + userId,
                       "last line for user " + userId 

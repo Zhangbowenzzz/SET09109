@@ -8,7 +8,7 @@ package c11
 import org.jcsp.groovy.*
 
 class Position implements JCSPCopy {
-	
+    
   def int id            // particle number
   def int lx            // current x location of particle
   def int ly            // current y location of particle

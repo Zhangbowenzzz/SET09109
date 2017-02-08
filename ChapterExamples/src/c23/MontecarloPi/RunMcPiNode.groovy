@@ -34,7 +34,7 @@ def hostRequest = NetChannel.any2net(hostAddr, 1)
 // send request for worker to host
 println "Sending request to host"
 def requestWorker = new RequestWorker (loadLocation: loadChannelLocation, 
-									   nodeIP: workerIP)
+                                       nodeIP: workerIP)
 hostRequest.write(requestWorker)
 def requestSentTime = timer.read()
 // read worker from host using load channel
@@ -50,7 +50,7 @@ println "Creating in channels $inConnections"
 def inChannels = new ChannelInputList()
 //for ( i in 0 ..< inConnections.size()){
 inConnections.each{ cn ->
-	inChannels.append(NetChannel.numberedNet2One(cn))
+    inChannels.append(NetChannel.numberedNet2One(cn))
 }
 // signal that input channels have been created
 hostRequest.write(new Signal())
@@ -62,8 +62,8 @@ println "Response read from host - Creating out channels $outConnections"
 def outChannels = new ChannelOutputList()
 //for ( i in 0 ..< outConnections.size()){
 outConnections.each{ connection ->
-	def outNodeAddr = new  TCPIPNodeAddress(connection[0], 1000)
-	outChannels.append(NetChannel.any2net(outNodeAddr, connection[1]))
+    def outNodeAddr = new  TCPIPNodeAddress(connection[0], 1000)
+    outChannels.append(NetChannel.any2net(outNodeAddr, connection[1]))
 }
 println "Created out channels"
 // connect the channel lists to the worker process

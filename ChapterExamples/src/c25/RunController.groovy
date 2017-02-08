@@ -11,8 +11,8 @@ import org.jcsp.groovy.*
 //def toPlayersList = new ChannelOutputList(toPlayers)
 /*
 control =new Controller ( enrol: enrol.in(),
-						  fromPlayers: fromPlayers.in(),
-						  toPlayers: toPlayersList )
+                          fromPlayers: fromPlayers.in(),
+                          toPlayers: toPlayersList )
 */
 
 control = new Controller()

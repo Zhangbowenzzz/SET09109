@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 
 
 class Sender implements CSProcess {
-	
+    
   def ChannelOutput toElement
   def int element
   def int nodes

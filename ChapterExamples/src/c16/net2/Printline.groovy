@@ -8,7 +8,7 @@ package c16.net2
 
 
 class Printline implements Serializable {  
-	
+    
   def int printKey
   def String line  
 }

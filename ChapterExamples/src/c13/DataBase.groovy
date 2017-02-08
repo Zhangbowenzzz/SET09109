@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class DataBase implements CSProcess {
-	
+    
   def ChannelInputList inChannels
   def ChannelOutputList outChannels
   def int readers

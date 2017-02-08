@@ -34,7 +34,7 @@ fromDB.read()
 println "Read Process $readerId has created its Net channels "
 def consoleChannel = Channel.one2one()
 def pList = [ 
-	new Read ( id:readerId, r2db: toDB, db2r: fromDB, toConsole: consoleChannel.out() ),
-	new GConsole(toConsole:consoleChannel.in(), frameLabel: "Reader $readerId"  ) 
-	]
+    new Read ( id:readerId, r2db: toDB, db2r: fromDB, toConsole: consoleChannel.out() ),
+    new GConsole(toConsole:consoleChannel.in(), frameLabel: "Reader $readerId"  ) 
+    ]
 new PAR (pList).run()

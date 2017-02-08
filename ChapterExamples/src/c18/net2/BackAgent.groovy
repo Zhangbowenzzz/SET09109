@@ -8,7 +8,7 @@ import org.jcsp.net2.*
 import org.jcsp.net2.tcpip.*
  
 class BackAgent implements MobileAgent {  
-	
+    
   def ChannelOutput toLocal
   def ChannelInput fromLocal
   def NetChannelLocation backChannel

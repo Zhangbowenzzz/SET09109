@@ -29,7 +29,7 @@ class StopAgent implements MobileAgent {
 
   void run() {
     println "SA: running $homeNode, $previousNode, $initialised"
-    toLocal.write(homeNode)	// tells node not to send to this node
+    toLocal.write(homeNode)    // tells node not to send to this node
     toLocal.write(previousNode) // where we want to get to
     toLocal.write(initialised)
     if ( ! initialised) {

@@ -10,9 +10,9 @@ One2OneChannel D2P = Channel.createOne2One()
 
 def testList = [ new GNumbers ( outChannel: N2I.out() ),
                  new GIntegrate ( inChannel: N2I.in(),
-                		          outChannel: I2D.out() ),
+                                  outChannel: I2D.out() ),
                  new Differentiate ( inChannel:I2D.in(),
-                		             outChannel:D2P.out() ),
+                                     outChannel:D2P.out() ),
                  new GPrint ( inChannel: D2P.in(),
                               heading: "Differentiated Numbers" )
                ]

@@ -8,5 +8,5 @@ package c22.universalClasses;
 
 
 class Sentinel implements Serializable{
-	def sentinel = 0
+    def sentinel = 0
 }

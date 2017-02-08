@@ -8,7 +8,7 @@ package c17.flagged
 
 
 class FlaggedSystemData extends SystemData {  
-	
+    
   def boolean testFlag = false
   
   def String toString() {

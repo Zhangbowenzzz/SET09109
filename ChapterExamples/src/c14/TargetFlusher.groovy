@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class TargetFlusher implements CSProcess {
-	
+    
   def buckets
   def ChannelOutput targetsFlushed
   def ChannelInput flushNextBucket

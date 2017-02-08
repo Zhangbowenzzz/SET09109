@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 
 
 class DataObject implements Serializable, JCSPCopy {
-	
+    
   def int pid
   def int location
   def int value

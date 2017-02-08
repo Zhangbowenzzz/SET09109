@@ -8,7 +8,7 @@ import org.jcsp.net2.*
 
 
 class Type2Process extends DynamicMobileProcess implements Serializable {
-	
+    
   def toGatherer
   def ChannelInput inChannel
   def int nodeId
@@ -27,11 +27,11 @@ class Type2Process extends DynamicMobileProcess implements Serializable {
     def toGathererChannel = NetChannel.any2net(toGatherer)
     while (true) {
       def Type2 d = inChannel.read()
-	  //println "T2: $d read data into Type process"
+      //println "T2: $d read data into Type process"
       d.modify(nodeId)
-	  //println "T2: $d sending modified data to Gatherer"
+      //println "T2: $d sending modified data to Gatherer"
       toGathererChannel.write(d)
-	  //println "T2: $d have sent modified data to Gatherer"
+      //println "T2: $d have sent modified data to Gatherer"
     }    
   }
 

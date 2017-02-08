@@ -8,11 +8,11 @@ import org.jcsp.groovy.*;
 
 
 class parSequencer implements CSProcess {
-	def n           // the value of n for this sequence
-	def inList
-	def outList
-	
-	void run(){	
-		defs.sequencer(n, inList, outList)
-	}
+    def n           // the value of n for this sequence
+    def inList
+    def outList
+    
+    void run(){    
+        defs.sequencer(n, inList, outList)
+    }
 }

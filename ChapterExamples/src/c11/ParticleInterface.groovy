@@ -8,7 +8,7 @@ import org.jcsp.util.*
 import org.jcsp.awt.*
 
 class ParticleInterface implements CSProcess {
-	
+    
   def ChannelInput inChannel
   def ChannelOutput outChannel
   def int canvasSize = 100

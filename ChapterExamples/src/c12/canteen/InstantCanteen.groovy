@@ -25,7 +25,7 @@ class InstantCanteen implements CSProcess {
     def chickens = 0
       
     toConsole.write( "Canteen : starting ... \n")
-	
+    
     while (true) {
       switch (canteenAlt.fairSelect ()) {
         case SUPPLY: 

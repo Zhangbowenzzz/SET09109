@@ -8,13 +8,13 @@ import org.jcsp.groovy.*;
 
 
 class parFindEqualKeys implements CSProcess {
-	def words
-	def startIndex
-	def inList
-	def outMap
-	
-	void run(){	
-		defs.extractEqualValues(words, startIndex, inList, outMap)
-	}
+    def words
+    def startIndex
+    def inList
+    def outMap
+    
+    void run(){    
+        defs.extractEqualValues(words, startIndex, inList, outMap)
+    }
 
 }

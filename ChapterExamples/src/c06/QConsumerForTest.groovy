@@ -8,7 +8,7 @@ package c06
 import org.jcsp.lang.*
 
 class QConsumerForTest implements CSProcess {  
-	
+    
   def ChannelOutput get
   def ChannelInput receive
   def long delay = 0  
@@ -17,7 +17,7 @@ class QConsumerForTest implements CSProcess {
   void run () {
     def timer = new CSTimer()
     def running = true
-	
+    
     while (running) {
       get.write(1)  
       def v = receive.read()

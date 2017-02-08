@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 
 
 class CountingGatherer implements CSProcess {  
-	
+    
   def ChannelInput inChannel
   def ChannelOutput outChannel
   def ChannelOutput gatheredData
@@ -18,7 +18,7 @@ class CountingGatherer implements CSProcess {
     def counter = 0
     def required = 0
     def gatherAlt = new ALT([countInput, inChannel])
-	
+    
     while (true){
       def index = gatherAlt.priSelect()
       if (index == 0) {

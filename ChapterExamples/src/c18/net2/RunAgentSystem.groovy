@@ -14,7 +14,7 @@ def String initialValue = Ask.string ( "Initial List Value ? ")
 def ring = Channel.one2oneArray(nodes+1)
 
 def processNodes = (1 ..< nodes).collect { 
-	i -> new ProcessNode ( inChannel: ring[i].in(),
+    i -> new ProcessNode ( inChannel: ring[i].in(),
                            outChannel: ring[i+1].out(),
                            nodeId: i) 
    } 

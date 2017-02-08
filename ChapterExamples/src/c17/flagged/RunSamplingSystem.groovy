@@ -15,7 +15,7 @@ def e = Channel.one2one()
 def f = Channel.one2one()
 
 def dataGen = new DataGenerator ( outChannel: a.out(), 
-								  interval: 250)
+                                  interval: 250)
 
 def sampler = new Sampler ( inChannel: a.in(), outChannel: b.out(), 
                              sampleRequest: e.in() )

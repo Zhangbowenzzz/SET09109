@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 import org.jcsp.net2.*
 
 class PrintJob  implements Serializable{
-	
+    
   def int userId
   def NetChannelLocation useLocation
 }

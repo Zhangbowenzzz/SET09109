@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class EventPrompter implements CSProcess {  
-	
+    
   def ChannelInput inChannel
   def ChannelOutput getChannel
   def ChannelOutput outChannel  

@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 import org.jcsp.lang.*
 
 class CountedEvaluator implements CSProcess {  
-	
+    
   def ChannelInput inChannel
   
   void run() {

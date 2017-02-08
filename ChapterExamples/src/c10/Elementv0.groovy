@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
 
 class Elementv0 implements CSProcess {
-	
+    
   def ChannelInput fromRing
   def ChannelOutput toRing
   def int element

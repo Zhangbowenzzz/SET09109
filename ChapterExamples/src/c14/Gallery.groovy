@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 import java.awt.*
 
 class Gallery implements CSProcess{
-	
+    
   def ActiveCanvas targetCanvas
   def ChannelInput hitsFromGallery
   def ChannelInput possiblesFromGallery  

@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 
 
 class Server implements CSProcess{
-	  
+      
   def ChannelInput clientRequest
   def ChannelOutput clientSend  
   def ChannelOutput thisServerRequest
@@ -22,12 +22,12 @@ class Server implements CSProcess{
     def OTHER_REQUEST = 1
     def THIS_RECEIVE = 2
     def serverAlt = new ALT ([clientRequest, 
-		                      otherServerRequest, 
-							  thisServerReceive])
+                              otherServerRequest, 
+                              thisServerReceive])
     while (true) {
       def index = serverAlt.select()
-	  
-      switch (index) {		  
+      
+      switch (index) {          
         case CLIENT :
           def key = clientRequest.read()
           if ( dataMap.containsKey(key) ) 

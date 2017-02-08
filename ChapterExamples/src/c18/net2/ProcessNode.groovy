@@ -21,7 +21,7 @@ class ProcessNode implements CSProcess{
     def ChannelOutput toAgentOutEnd = N2A.out()
     def ChannelOutput fromAgentOutEnd = A2N.out()
     def int localValue = nodeId 
-	
+    
     while (true) {
       def theAgent = inChannel.read()
       theAgent.connect ( [fromAgentOutEnd, toAgentInEnd] )
@@ -29,7 +29,7 @@ class ProcessNode implements CSProcess{
       agentManager.start()
       def currentList = fromAgentInEnd.read()
       currentList << localValue
-	  println "Node $nodeId: list = $currentList"
+      println "Node $nodeId: list = $currentList"
       toAgentOutEnd.write (currentList)
       agentManager.join()
       theAgent.disconnect()

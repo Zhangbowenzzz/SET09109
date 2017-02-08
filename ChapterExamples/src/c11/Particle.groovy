@@ -8,7 +8,7 @@ package c11
 import org.jcsp.lang.*
 
 class Particle implements CSProcess {
-	
+    
   def ChannelOutput sendPosition
   def ChannelInput getPosition
   def int x = 100         // initial x location

@@ -8,13 +8,13 @@ import org.jcsp.net2.tcpip.*
 import phw.util.*
 
 class PrintSpooler implements CSProcess {  
-	
+    
   def ChannelInput printerRequest
   def ChannelInput printerRelease
   def int spoolers = 2  
   
   void run() {
-	def timer = new CSTimer()
+    def timer = new CSTimer()
     def spooling = 0
     def spoolChannels = []
     def spoolChannelLocations = [:]

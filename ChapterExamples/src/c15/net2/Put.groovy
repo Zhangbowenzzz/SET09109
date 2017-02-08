@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Put implements CSProcess { 
-	 
+     
   def ChannelOutput outChannel  
   
   void run() {

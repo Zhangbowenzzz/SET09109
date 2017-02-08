@@ -8,7 +8,7 @@ import java.awt.Point
 import org.jcsp.groovy.*
  
 class TargetProcess implements CSProcess {
-	
+    
   def ChannelOutput targetRunning
   def ChannelOutput stateToDC
   def ChannelInput mousePoint

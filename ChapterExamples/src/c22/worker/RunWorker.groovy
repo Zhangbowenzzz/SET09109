@@ -27,7 +27,7 @@ def toCollector = NetChannel.any2net(toCollectorAddr, 50,
                                     new CodeLoadingChannelFilter.FilterTX())
 
 def base = new Worker ( toEmitter: toEmitter,
-		   	  			          fromEmitterLoc: fromEmitterLoc,
+                                       fromEmitterLoc: fromEmitterLoc,
                           fromEmitter: fromEmitter,
                           toCollector: toCollector,
                           baseId: w - 3 )

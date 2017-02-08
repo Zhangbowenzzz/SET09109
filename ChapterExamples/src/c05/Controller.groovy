@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
  
 class Controller implements CSProcess {
-	
+    
   def long testInterval = 11000
   def long computeInterval = 2000
   def int addition = 1
@@ -21,7 +21,7 @@ class Controller implements CSProcess {
     def currentFactor = 0
     def timer = new CSTimer()
     def timeout = timer.read()                   // get current time
-	
+    
     while (true) {
       timeout = timeout + testInterval           // set the timeout
       timer.after ( timeout )                    // wait for the timeout

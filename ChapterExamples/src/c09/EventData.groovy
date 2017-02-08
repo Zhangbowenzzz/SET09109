@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class EventData implements Serializable, JCSPCopy {  
-	
+    
   def int source = 0
   def int data = 0
   def int missed = -1 

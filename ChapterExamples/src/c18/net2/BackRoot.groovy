@@ -8,7 +8,7 @@ import org.jcsp.net2.*
 import org.jcsp.net2.tcpip.*
 
 class BackRoot implements CSProcess{  
-	
+    
   def ChannelInput inChannel
   def ChannelOutput outChannel
   def int iterations
@@ -32,11 +32,11 @@ class BackRoot implements CSProcess{
     outChannel.write(theAgent)
     def i = 1
     def running = true
-	
+    
     while ( running) {
       def index = rootAlt.select()
       switch (index) {
-        case 0:		// agent has returned
+        case 0:        // agent has returned
           theAgent = inChannel.read()
           theAgent.connect ( [fromAgentOutEnd, toAgentInEnd] )
           def agentManager = new ProcessManager (theAgent)
@@ -56,7 +56,7 @@ class BackRoot implements CSProcess{
             running = false
           }
           break
-		  
+          
         case 1:
           def backValue = backChannel.read()
           println "Root: Iteration $i: received $backValue"

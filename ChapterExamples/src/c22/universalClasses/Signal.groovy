@@ -8,6 +8,6 @@ package c22.universalClasses
 
 
 class Signal implements Serializable{
-	def signal = -1
+    def signal = -1
 }
 

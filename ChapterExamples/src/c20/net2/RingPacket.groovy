@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 
 
 class RingPacket implements Serializable, JCSPCopy {
-	
+    
   def int source
   def int destination
   def int value

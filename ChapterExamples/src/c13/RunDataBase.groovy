@@ -20,30 +20,30 @@ def fromDB = new ChannelOutputList(fromDatabase)
 
 def readers = ( 0 ..< nReaders).collect { r ->
                        return new Read   (id: r,
-                    		              r2db: toDatabase[r].out(),
-                    		              db2r: fromDatabase[r].in(),
-		               					  toConsole: consoleData[r].out())
+                                          r2db: toDatabase[r].out(),
+                                          db2r: fromDatabase[r].in(),
+                                             toConsole: consoleData[r].out())
                        }
 
 def writers = ( 0 ..<nWriters).collect { w -> 
                        int wNo = w + nReaders
                        return new Write  ( id: w,
-                    		               w2db: toDatabase[wNo].out(),
-                    		               db2w: fromDatabase[wNo].in(),
-                    		               toConsole: consoleData[wNo].out())
+                                           w2db: toDatabase[wNo].out(),
+                                           db2w: fromDatabase[wNo].in(),
+                                           toConsole: consoleData[wNo].out())
                        }
 
 def database = new DataBase ( inChannels:  toDB,
-		                      outChannels: fromDB,
-		                      readers: nReaders,
-		                      writers: nWriters)
+                              outChannels: fromDB,
+                              readers: nReaders,
+                              writers: nWriters)
 
 def consoles = ( 0 ..< connections).collect { c ->
                         def frameString = c < nReaders ? 
-                        		"Reader " + c : 
-                        		"Writer " + (c - nReaders)
-	                    return new GConsole (toConsole: consoleData[c].in(),
-	                    		             frameLabel: frameString )
+                                "Reader " + c : 
+                                "Writer " + (c - nReaders)
+                        return new GConsole (toConsole: consoleData[c].in(),
+                                             frameLabel: frameString )
                         }
 def procList = readers + writers + database + consoles
 

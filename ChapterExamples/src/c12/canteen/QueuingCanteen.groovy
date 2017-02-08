@@ -26,7 +26,7 @@ class QueuingCanteen implements CSProcess {
     def chickens = 0
       
     toConsole.write ("Canteen : starting ... \n")
-	
+    
     while (true) {
       precondition[SERVICE] = (chickens > 0)
       if (chickens == 0 ){

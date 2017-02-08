@@ -14,7 +14,7 @@ def pList = [ ]
 def vList = [ ]
               
 def processList = new NodeProcess ( nodeId: 4,
-									                   nodeIPFinalPart: 6,
+                                                       nodeIPFinalPart: 6,
                                      toGathererIP: gathererIP,
                                      toDataGenIP: dataGenIP,
                                      processList: pList,

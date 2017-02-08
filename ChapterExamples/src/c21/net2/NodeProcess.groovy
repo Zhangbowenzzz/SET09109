@@ -8,7 +8,7 @@ import org.jcsp.net2.tcpip.*
 
 
 class NodeProcess implements CSProcess {
-  def int nodeId		
+  def int nodeId        
   def int nodeIPFinalPart  // forms last part of IP address
   def String toGathererIP
   def String toDataGenIP
@@ -21,17 +21,17 @@ class NodeProcess implements CSProcess {
     Node.getInstance().init(nodeAddress)
     
     def dataGenAddress =  new TCPIPNodeAddress(toDataGenIP, 3000)
-    def toDataGen = NetChannel.any2net(dataGenAddress, 50)	   //50
+    def toDataGen = NetChannel.any2net(dataGenAddress, 50)       //50
     def gathererAddress = new TCPIPNodeAddress(toGathererIP, 3000)
     def toGatherer = NetChannel.any2net(gathererAddress, 50)  //51
-    def fromDataGen = NetChannel.net2one()		                //52
-    def agentVisitChannel= NetChannel.net2one()		            //53
+    def fromDataGen = NetChannel.net2one()                        //52
+    def agentVisitChannel= NetChannel.net2one()                    //53
     def agentVisitChannelLocation = agentVisitChannel.getLocation()
-    def agentReturnChannel= NetChannel.net2one()	            //54
+    def agentReturnChannel= NetChannel.net2one()                //54
     def agentReturnChannelLocation = agentReturnChannel.getLocation()
     println "NP: $nodeId, Visit Channel = $agentVisitChannelLocation"
     println "NP: $nodeId, Return Channel = $agentReturnChannelLocation"
-	
+    
     toDataGen.write( new DataGenList ( dgl: [ fromDataGen.getLocation(), 
                                                agentVisitChannelLocation,
                                                nodeId] ) )

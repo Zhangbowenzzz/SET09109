@@ -8,18 +8,18 @@ import org.jcsp.groovy.*
  
 
 class SnifferComparator implements CSProcess {  
-	
+    
   def ChannelInput fromCopy
   def ChannelInput fromScaler
   def interval = 10000
   
   void run() {
     def connect = Channel.one2one()  
-	  
+      
     def testList = [ new Sniffer ( fromSystemCopy: fromCopy,
                                     toComparator: connect.out(),
                                     sampleInterval: interval), 
-								
+                                
                      new Comparator ( fromSystemOutput: fromScaler,
                                        fromSniffer: connect.in() )
                     ]

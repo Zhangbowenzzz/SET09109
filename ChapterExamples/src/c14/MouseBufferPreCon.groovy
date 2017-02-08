@@ -8,7 +8,7 @@ import java.awt.Point
 import java.awt.event.*
 
 class MouseBufferPreCon implements CSProcess{
-	
+    
   def ChannelInput mouseEvent
   def ChannelInput getClick
   def ChannelOutput sendPoint

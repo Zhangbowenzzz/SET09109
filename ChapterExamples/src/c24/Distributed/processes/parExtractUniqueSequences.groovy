@@ -8,16 +8,16 @@ import org.jcsp.groovy.*;
 
 
 class parExtractUniqueSequences implements CSProcess{
-	def equalMap
-	def n
-	def startIndex
-	def words
+    def equalMap
+    def n
+    def startIndex
+    def words
     def equalWordMap
-	
-	void run(){
-		defs.extractUniqueSequences ( equalMap, n, 
-								      startIndex, words, 
+    
+    void run(){
+        defs.extractUniqueSequences ( equalMap, n, 
+                                      startIndex, words, 
                                       equalWordMap )
-	}
+    }
 
 }

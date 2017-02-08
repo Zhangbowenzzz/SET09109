@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 
 
 class Evaluator implements CSProcess {  
-	
+    
   def ChannelInput inChannel
   
   void run() {

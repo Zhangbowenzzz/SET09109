@@ -15,7 +15,7 @@ Node.getInstance().init (manyGetAddr)
 
 def comms = NetChannel.net2any()
 def pList = (0 ..< numberOfGets).collect{
-	i -> new Get ( inChannel: comms, id: i ) 
-	}
+    i -> new Get ( inChannel: comms, id: i ) 
+    }
 
 new PAR ( pList ).run()

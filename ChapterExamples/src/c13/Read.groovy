@@ -15,7 +15,7 @@ class Read implements CSProcess {
   def ChannelOutput toConsole
   
   void run () {
-	def timer = new CSTimer()
+    def timer = new CSTimer()
     toConsole.write ( "Reader $id has started \n")
     for ( i in 0 ..<10 ) {
       def d = new DataObject(pid:id)

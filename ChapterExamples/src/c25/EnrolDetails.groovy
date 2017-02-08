@@ -3,5 +3,5 @@ package c25
 import java.io.Serializable;
 
 class EnrolDetails implements Serializable {
-	def id = -1
+    def id = -1
 }

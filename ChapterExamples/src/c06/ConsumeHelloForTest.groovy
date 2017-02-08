@@ -8,7 +8,7 @@ package c06
 import org.jcsp.lang.*
 
 class ConsumeHelloForTest implements CSProcess {  
-	
+    
   def ChannelInput inChannel
   def message  
   

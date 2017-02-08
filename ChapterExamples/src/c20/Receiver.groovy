@@ -4,7 +4,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Receiver implements CSProcess {
-	
+    
   def ChannelInput fromElement
   def ChannelOutput outChannel
   def ChannelOutput clear

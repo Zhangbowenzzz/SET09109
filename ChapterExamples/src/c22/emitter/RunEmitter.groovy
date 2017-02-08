@@ -22,12 +22,12 @@ def elements = Ask.Int ("Number of elements in each TestObject? ", 1, 200)
 
 
 def emit = new EmitterNet ( fromWorkers: fromWorkers,
-						                 loops: loops,
+                                         loops: loops,
                              workers: workers,
                              elements: elements )
 new PAR([emit]).run()
 
-	
+    
 
 
 

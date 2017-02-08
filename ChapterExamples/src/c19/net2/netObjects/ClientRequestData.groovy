@@ -8,7 +8,7 @@ package c19.net2.netObjects
 
 
 class ClientRequestData  implements Serializable {
-	
-	def processReceiveLocation
-	def serviceRequired
+    
+    def processReceiveLocation
+    def serviceRequired
 }

@@ -8,7 +8,7 @@ import org.jcsp.groovy.plugAndPlay.*
 import org.jcsp.groovy.util.*
 
 class EventProcessing implements CSProcess{ 
-	 
+     
   def ChannelInputList eventStreams
   def minTime = 500
   def maxTime = 750
@@ -33,8 +33,8 @@ class EventProcessing implements CSProcess{
                                                    minTime: minTime, 
                                                    maxTime: maxTime ), 
                    new GPrint ( inChannel: udd2prn.in(),
-         		                 heading : "Event Output",
-         		                 delay: 0)                    
+                                  heading : "Event Output",
+                                  delay: 0)                    
                  ]
     new PAR (pList).run()
   }

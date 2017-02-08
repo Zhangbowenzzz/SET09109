@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class EventGenerator implements CSProcess { 
-	 
+     
   def ChannelOutput outChannel
   def int source = 0
   def int initialValue = 0
@@ -19,7 +19,7 @@ class EventGenerator implements CSProcess {
   void run () {    
     def es2udd = Channel.one2one()    
     println "Event Generator for source $source has started"  
-	  
+      
     def eventGeneratorList = [ 
             new EventStream ( source: source, 
                               initialValue: initialValue, 
@@ -30,7 +30,7 @@ class EventGenerator implements CSProcess {
                                             inChannel: es2udd.in(), 
                                             outChannel: outChannel )
             ]
-	
+    
     new PAR (eventGeneratorList).run()
   }
 }
