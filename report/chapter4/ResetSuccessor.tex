@@ -7,3 +7,13 @@
 \inputgroovy[label=ResetSuccessor.groovy,firstline=6]{../ChapterExercises/src/c4/ResetSuccessor.groovy}
 
 \inputgroovy[label=RunReset.groovy,firstline=8]{../ChapterExercises/src/c4/RunReset.groovy}
+
+\subsubsection*{Questions}
+
+\paragraph{Does it overcome the problem identified in 4-1?}
+
+No.  If the previous input it not cleared the same issue appears where the output alternates between values and on a third reset the program deadlocks.
+
+\paragraph{If not, why not?}
+
+This is because the underlying issue has not been fixed.  The underlying issue is that the original value needs to be discarded however without the extra read method call this does not happen, even in the new ResetSuccessor class.
