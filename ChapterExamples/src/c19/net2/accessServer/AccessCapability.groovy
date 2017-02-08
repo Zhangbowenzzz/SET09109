@@ -12,7 +12,7 @@ class AccessCapability implements CSProcess {
     def ChannelInput buttonEvents
     def NetChannelLocation processReceiveLocation
     def NetChannelLocation accessRequestLocation
-    
+
     void run (){
         def serviceRequired = buttonEvents.read()
         def clientRequest  = new ClientRequestData(processReceiveLocation: processReceiveLocation,

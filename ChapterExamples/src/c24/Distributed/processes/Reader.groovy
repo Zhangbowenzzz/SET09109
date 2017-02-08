@@ -8,7 +8,7 @@ import c24.SingleMachine.methods.*
 
 
 class Reader implements CSProcess {
-  
+
   def ChannelOutputList outChannels
   def inRoot = "C:\\Concordance\\SourceFiles\\"
   def N = 6
@@ -28,9 +28,9 @@ class Reader implements CSProcess {
     def int blockStride = blockLength - N + 1
     for (source in sourceList){
       def fileName = inRoot + source + ".txt"
-      println "READER - Processing: $fileName, N: $N," + 
+      println "READER - Processing: $fileName, N: $N," +
               "block length: $blockLength, nodes: $nodes, runs: $runs"
-      timeWriter.println "READER - Processing: $fileName, N: $N, " +
+      timeWriter.println "READER - Processing: $fileName, N: $N, "
                          "block length: $blockLength, nodes: $nodes, runs: $runs"
       for (run in 1..runs){
         def startTime = timer.read()
@@ -67,24 +67,24 @@ class Reader implements CSProcess {
                 wordBuffer << ow
                 localIndex = localIndex + 1
               } // end for ow
-            } // end if 
+            } // end if
           } // end for words
-          
+
         } // end eachLine
         def wordBlock = new WordBlock( startSubscript: globalIndex,
                                        last: true,
                                        words: wordBuffer)
-        outChannels[currentNode].write(wordBlock)  
-        for ( n in 0..< nodes) outChannels[n].write(new Sentinel())  
-        def endTime = timer.read()  
+        outChannels[currentNode].write(wordBlock)
+        for ( n in 0..< nodes) outChannels[n].write(new Sentinel())
+        def endTime = timer.read()
         def words = localIndex + globalIndex
-        println "READER, $source, $run, ${endTime - startTime}, " + 
+        println "READER, $source, $run, ${endTime - startTime}, " +
                 "${endTime - beginTime}, $words"
-        timeWriter.println "READER, $source, $run, ${endTime - startTime}, " + 
+        timeWriter.println "READER, $source, $run, ${endTime - startTime}, " +
                            "${endTime - beginTime}, $words"
-      } // end for run        
+      } // end for run
     } // end for source
     timeWriter.flush()
     timeWriter.close()
-  } // end void run      
+  } // end void run
 }

@@ -8,12 +8,12 @@ import c22.universalClasses.*
 
 
 class DoWork implements CSProcess {
-    
-    def workOn    
+
+    def workOn
     def workCompleted
     def workerId
     def sharedData
-    
+
     void run(){
         def index = -1
         def running = true
@@ -26,7 +26,7 @@ class DoWork implements CSProcess {
             else {
                 index = (Integer)o.intValue()
                 sharedData[index].manipulate(workerId)
-                workCompleted.write(index)                                
+                workCompleted.write(index)
             }
         }
     }

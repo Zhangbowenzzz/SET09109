@@ -8,13 +8,13 @@ class Matcher implements CSProcess {
     ChannelOutput validPoint
     ChannelInput receivePoint
     ChannelOutput getPoint
-    
+
     def getXY = { point, side, gap ->
         def int x = (point[0] - gap) / (side + gap)
         def int y = (point[1] - gap) / (side + gap)
         return [x, y]
     }
-    
+
     void run (){
         while (true){
             def getData = (GetValidPoint)getValidPoint.read()
@@ -24,7 +24,7 @@ class Matcher implements CSProcess {
             //println  "Matcher - $side, $gap"
             //pairsMap.each {println"${it}"}
             def gotValidPoint = false
-            def pointXY 
+            def pointXY
             while (!gotValidPoint){
                 getPoint.write(0)
                 def point = ((MousePoint)receivePoint.read()).point
@@ -35,6 +35,6 @@ class Matcher implements CSProcess {
             //println  "Matcher: pointXY = $pointXY"
             validPoint.write(new SquareCoords(location: pointXY))
         } // end while
-        
+
     } // end run
 }

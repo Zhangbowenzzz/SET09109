@@ -1,25 +1,25 @@
 package c20;
- 
+
 import org.jcsp.net.mobile.*
 import org.jcsp.net.*
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class StopAgent implements MobileAgent {
-  
+
   def ChannelOutput toLocal
   def ChannelInput fromLocal
   def int homeNode
   def int previousNode
   def boolean initialised
   def NetChannelLocation nextNodeInputEnd
-                  
+
   def connect (c) {
     this.toLocal = c[0]
     this.fromLocal = c[1]
 
   }
-  
+
   def disconnect () {
     this.toLocal = null
     this.fromLocal = null

@@ -8,9 +8,9 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Clock implements CSProcess {
-  
+
   def ChannelOutput toConsole
-  
+
   void run() {
 
     def tim = new CSTimer()

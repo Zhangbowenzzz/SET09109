@@ -17,7 +17,7 @@ def nodeAddr = new TCPIPNodeAddress(nodeIP, 1000)
 def timer = new CSTimer()
 def startTime = timer.read()
 //def nodeAddr = new TCPIPNodeAddress(1000)  // create nodeAddr for most global IP address
-// create node instance 
+// create node instance
 Node.getInstance().init(nodeAddr)
 def workerIP = nodeAddr.getIpAddress()
 println "Worker is located at $workerIP"
@@ -33,7 +33,7 @@ def hostAddr = new TCPIPNodeAddress(hostIP, 1000)
 def hostRequest = NetChannel.any2net(hostAddr, 1)
 // send request for worker to host
 println "Sending request to host"
-def requestWorker = new RequestWorker (loadLocation: loadChannelLocation, 
+def requestWorker = new RequestWorker (loadLocation: loadChannelLocation,
                                        nodeIP: workerIP)
 hostRequest.write(requestWorker)
 def requestSentTime = timer.read()

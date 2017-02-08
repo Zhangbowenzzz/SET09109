@@ -1,5 +1,5 @@
 package c20.net2
-  
+
 import org.jcsp.lang.*
 import org.jcsp.net2.*
 import org.jcsp.net2.tcpip.*
@@ -8,14 +8,14 @@ import org.jcsp.groovy.plugAndPlay.*
 
 
 class RingAgentElement implements CSProcess {
-  
+
   def ChannelInput fromRing
   def ChannelOutput toRing
   def ChannelInput fromSender
   def ChannelInput fromStateManager
   def ChannelOutput toQueue
   def int element
-  
+
   void run() {
     def  N2A = Channel.one2one()
     def  A2N = Channel.one2one()
@@ -23,18 +23,18 @@ class RingAgentElement implements CSProcess {
     def ChannelInput fromAgentInEnd = A2N.in()
     def ChannelOutput toAgentOutEnd = N2A.out()
     def ChannelOutput fromAgentOutEnd = A2N.out()
-    
-    def stopper = new StopAgent ( homeNode: element, 
-                                   previousNode: element - 1, 
+
+    def stopper = new StopAgent ( homeNode: element,
+                                   previousNode: element - 1,
                                    initialised: false)
-    def restarter = new RestartAgent ( homeNode: element, 
+    def restarter = new RestartAgent ( homeNode: element,
                                         previousNode: element - 1,
                                         firstHop: true)
-    
+
     def NetChannelLocation originalToRing = toRing.getLocation()
-    
+
     def failedList = [ ]
-    
+
     def RING = 0
     def SENDER= 1
     def MANAGER = 2
@@ -56,7 +56,7 @@ class RingAgentElement implements CSProcess {
         case RING:
           def ringBuffer = fromRing.read()
           if ( ringBuffer instanceof RingPacket) {
-            if ( ringBuffer.destination == element ) {  
+            if ( ringBuffer.destination == element ) {
               // packet for this node; full should be true
               toQueue.write(ringBuffer)
               // now write either stopper, restarter, localBuffer or empty packet to ring
@@ -74,12 +74,12 @@ class RingAgentElement implements CSProcess {
                     toRing.write ( localBuffer )
                     preCon[SENDER] = true          // allow another packet from Sender
                     localBufferFull = false
-                  } 
+                  }
                   else {
                     toRing.write ( emptyPacket )
                   }
                 }
-              }              
+              }
             }
             else {
               if ( ringBuffer.full ) {
@@ -103,7 +103,7 @@ class RingAgentElement implements CSProcess {
                       toRing.write ( localBuffer )
                       preCon[SENDER] = true          // allow another packet from Sender
                       localBufferFull = false
-                    } 
+                    }
                     else {
                       toRing.write ( emptyPacket )
                     }
@@ -143,7 +143,7 @@ class RingAgentElement implements CSProcess {
                 theAgent.disconnect()
                 toRing.write(theAgent)
                 println "Node $element: stopping has passed agent on to next node"
-              }         
+              }
             }
             else { // must be instance of RestartAgent
               def theAgent = ringBuffer
@@ -162,7 +162,7 @@ class RingAgentElement implements CSProcess {
                 restarting = true
               }
               else {
-                if (element == targetNode) {                
+                if (element == targetNode) {
                   toRing = NetChannel.any2net (originalToRing)
                   println "Node $element: restarting has redirected toRing"
                   agentManager.join()
@@ -176,13 +176,13 @@ class RingAgentElement implements CSProcess {
                   theAgent.disconnect()
                   toRing.write(theAgent)
                   println "Node $element: restarting has passed agent on to next node"
-                }         
-                
+                }
+
               }
             }
           }
           break
-        case SENDER:  
+        case SENDER:
           localBuffer = fromSender.read()
           // test to see if destination is not in failedList
           if ( ! failedList.contains(localBuffer.destination) ) {
@@ -193,7 +193,7 @@ class RingAgentElement implements CSProcess {
           break
         case MANAGER:
           // receiver has restarted
-          def state = fromStateManager.read() 
+          def state = fromStateManager.read()
           if (state == "STOP") {
             //will write the stopper agent when an empty packet is recieved
             stopping = true
@@ -211,4 +211,3 @@ class RingAgentElement implements CSProcess {
     }
   }
 }
- 

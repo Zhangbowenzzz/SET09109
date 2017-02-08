@@ -20,4 +20,4 @@ def cooked = NetChannel.one2net(canteenAddress, 50)
 println "cooked location = ${cooked.getLocation()}"
 
 def processList = [ new Kitchen ( supply: cooked) ]
-new PAR ( processList ).run()     
+new PAR ( processList ).run()

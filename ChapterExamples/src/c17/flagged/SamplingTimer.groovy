@@ -8,10 +8,10 @@ import org.jcsp.lang.*
 
 
 class SamplingTimer implements CSProcess {
-    
+
   def ChannelOutput sampleRequest
-  def sampleInterval 
-   
+  def sampleInterval
+
   void run() {
     def timer = new CSTimer()
     while (true){

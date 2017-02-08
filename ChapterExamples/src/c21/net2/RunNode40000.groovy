@@ -1,6 +1,6 @@
 package c21.net2
- 
-  
+
+
 import org.jcsp.lang.*
 import org.jcsp.net2.*
 import org.jcsp.net2.tcpip.*
@@ -12,7 +12,7 @@ def gathererIP = "127.0.0.2"
 
 def pList = [ ]
 def vList = [ ]
-              
+
 def processList = new NodeProcess ( nodeId: 4,
                                                        nodeIPFinalPart: 6,
                                      toGathererIP: gathererIP,

@@ -8,12 +8,12 @@ import org.jcsp.lang.*
 
 
 class McPiManager implements CSProcess {
-    
+
     def ChannelInput inChannel
     def ChannelOutput outChannel
     def ChannelOutputList toCores
     def ChannelInputList fromCores
-    
+
     void run() {
         def cores = fromCores.size()
         def iterations = inChannel.read()
@@ -21,5 +21,5 @@ class McPiManager implements CSProcess {
         def quadSum = 0
         for ( c in 0..< cores) quadSum = quadSum + fromCores[c].read()
         outChannel.write(quadSum)
-    }    
+    }
 }

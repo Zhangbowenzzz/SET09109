@@ -13,7 +13,7 @@ class ControllerInterface implements CSProcess{
     ChannelInput pairsConfig
     ChannelInputList playerNames
     ChannelInputList pairsWon
-    
+
     void run(){
         def root = new ActiveClosingFrame("PAIRS (Turn Over Game) - Main Controller")
         def mainFrame = root.getActiveFrame()
@@ -31,7 +31,7 @@ class ControllerInterface implements CSProcess{
         buttonContainer.add(statusLabel)
         buttonContainer.add(new Label("Pairs Unclaimed"))
         buttonContainer.add(pairsLabel)
-        
+
         def outcomeContainer = new Container()
         def maxPlayers = playerNames.size()
         def playerNameSpaces = []
@@ -43,22 +43,22 @@ class ControllerInterface implements CSProcess{
         outcomeContainer.setLayout(new GridLayout(1+maxPlayers,2))
         def nameLabel = new Label("Player Name")
         def wonLabel = new Label ("Pairs Won")
-        
+
         outcomeContainer.add(nameLabel)
         outcomeContainer.add(wonLabel)
-        
+
         for ( i in 0 ..< maxPlayers){
             outcomeContainer.add(playerNameSpaces[i])
             outcomeContainer.add(playerWonSpaces[i])
         }
-        
+
         mainFrame.setLayout(new BorderLayout())
         mainFrame.add(gameCanvas, BorderLayout.CENTER)
         mainFrame.add(buttonContainer, BorderLayout.NORTH)
         mainFrame.add(outcomeContainer, BorderLayout.EAST)
-        
+
         mainFrame.pack()
-        mainFrame.setVisible(true)    
+        mainFrame.setVisible(true)
         def network = [root, gameCanvas, statusLabel, pairsLabel, IPLabel]
         network = network + playerNameSpaces + playerWonSpaces
         new PAR(network).run()

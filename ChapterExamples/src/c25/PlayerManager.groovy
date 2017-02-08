@@ -22,15 +22,15 @@ class PlayerManager implements CSProcess {
     ChannelOutput getValidPoint
     ChannelInput validPoint
     ChannelOutput nextPairConfig
-    
+
     int maxPlayers = 8
     int side = 50
     int minPairs = 3
     int maxPairs = 6
     int boardSize = 6
-    
+
     void run(){
-        
+
         int gap = 5
         def offset = [gap, gap]
         int graphicsPos = (side / 2)
@@ -60,22 +60,22 @@ class PlayerManager implements CSProcess {
                     cg = cg+1
                     display[cg] = new GraphicsCommand.FillRect(xPos, yPos, side, side)
                     cg = cg+1
-                    display[cg] = new GraphicsCommand.SetColor(Color.BLACK)                
+                    display[cg] = new GraphicsCommand.SetColor(Color.BLACK)
                     cg = cg+1
-                    display[cg] = new GraphicsCommand.DrawRect(xPos, yPos, side, side)                
+                    display[cg] = new GraphicsCommand.DrawRect(xPos, yPos, side, side)
                     cg = cg+1
                     xPos = xPos + graphicsPos
                     yPos = yPos + graphicsPos
                     display[cg] = new GraphicsCommand.DrawString("   ",xPos, yPos)
-                    //println "$cg"        
+                    //println "$cg"
                     cg = cg+1
                 }
-            }            
+            }
         } // end createBoard
-        
+
         def pairLocations = []
         def colours = [Color.MAGENTA, Color.CYAN, Color.YELLOW, Color.PINK]
-        
+
         def changePairs = {x, y, colour, p ->
             def int xPos = offset[0]+(gap*x)+ (side*x)
             def int yPos = offset[1]+(gap*y)+ (side*y)
@@ -91,7 +91,7 @@ class PlayerManager implements CSProcess {
                 changeGraphics[4] = new GraphicsCommand.DrawString(" ??", xPos, yPos)
             dList.change(changeGraphics, 4 + (x*5*boardSize) + (y*5))
         }
-    
+
         def pairsMatch = {pairsMap, cp ->
             // cp is a list comprising two elements each of which is a list with the [x,y]
             // location of a square
@@ -108,7 +108,7 @@ class PlayerManager implements CSProcess {
                 else  return 2
             }
         }
-        
+
         def outerAlt = new ALT([validPoint, withdrawButton])
         def innerAlt = new ALT([nextButton, withdrawButton])
         def NEXT = 0
@@ -123,7 +123,7 @@ class PlayerManager implements CSProcess {
         def controllerIP = IPfield.read().trim()
         IPconfig.write(" ")
         IPlabel.write("Connecting to the GameController")
-        
+
         // create Node and Net Channel Addresses
         def nodeAddr = new TCPIPNodeAddress (4000)
         Node.getInstance().init (nodeAddr)
@@ -131,7 +131,7 @@ class PlayerManager implements CSProcess {
         def toController = NetChannel.any2net(toControllerAddr, 50 )
         def fromController = NetChannel.net2one()
         def fromControllerLoc = fromController.getLocation()
-        
+
         // connect to game controller
         IPconfig.write("Now Connected - sending your name to Controller")
         def enrolPlayer = new EnrolPlayer( name: playerName,
@@ -148,8 +148,8 @@ class PlayerManager implements CSProcess {
         }
         else {
             IPlabel.write("Hi " + playerName + ", you are now enroled in the PAIRS game")
-            IPconfig.write(" ")    
-            
+            IPconfig.write(" ")
+
             // main loop
             while (enroled) {
                 def chosenPairs = [null, null]
@@ -158,7 +158,7 @@ class PlayerManager implements CSProcess {
                 toController.write(new GetGameDetails(id: myPlayerId))
                 def gameDetails = (GameDetails)fromController.read()
                 def gameId = gameDetails.gameId
-                IPconfig.write("Playing Game Number - " + gameId)    
+                IPconfig.write("Playing Game Number - " + gameId)
                 def playerMap = gameDetails.playerDetails
                 def pairsMap = gameDetails.pairsSpecification
                 def playerIds = playerMap.keySet()
@@ -167,7 +167,7 @@ class PlayerManager implements CSProcess {
                     playerNames[p].write(pData[0])
                     pairsWon[p].write(" " + pData[1])
                 }
-                
+
                 // now use pairsMap to create the board
                 def pairLocs = pairsMap.keySet()
                 pairLocs.each {loc ->
@@ -178,13 +178,13 @@ class PlayerManager implements CSProcess {
                 while ((chosenPairs[1] == null) && (enroled) && (notMatched)) {
                     getValidPoint.write (new GetValidPoint( side: side,
                                                             gap: gap,
-                                                            pairsMap: pairsMap))                    
+                                                            pairsMap: pairsMap))
                     switch ( outerAlt.select() ) {
-                        case WITHDRAW:    
+                        case WITHDRAW:
                             withdrawButton.read()
                             toController.write(new WithdrawFromGame(id: myPlayerId))
                             enroled = false
-                            break                        
+                            break
                         case VALIDPOINT:
                             def vPoint = ((SquareCoords)validPoint.read()).location
                             chosenPairs[currentPair] = vPoint
@@ -219,10 +219,10 @@ class PlayerManager implements CSProcess {
                                                                    p2: chosenPairs[1]))
                             }
                             break
-                    }// end of outer switch    
+                    }// end of outer switch
                 } // end of while getting two pairs
             } // end of while enrolled loop
             IPlabel.write("Goodbye " + playerName + ", please close game window")
         } //end of enrolling test
     } // end run
-}                
+}

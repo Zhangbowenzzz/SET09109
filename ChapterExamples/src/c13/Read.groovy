@@ -1,5 +1,5 @@
 package c13
- 
+
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 
@@ -8,12 +8,12 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Read implements CSProcess {
-  
+
   def ChannelOutput r2db
   def ChannelInput db2r
   def int id
   def ChannelOutput toConsole
-  
+
   void run () {
     def timer = new CSTimer()
     toConsole.write ( "Reader $id has started \n")

@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 
 
 class Merger implements CSProcess {
-  
+
   def ChannelInputList fromWorkers
   def sourceList
   def runs
@@ -18,9 +18,9 @@ class Merger implements CSProcess {
   def timeRoot = "C:\\Concordance\\OutputFiles\\Distributed\\Times\\"
   def runId = "SM"
   def seqLens = ["ACM":2, "TMM":2, "WAD":2, "bible":2, "2bibles":3, "4bibles":5]
-  
+
   void run(){
-    
+
     def allSentinels = { b ->
       def finished = false
       def ss = 0
@@ -31,7 +31,7 @@ class Merger implements CSProcess {
       }
       return finished
     } // end allSentinels
-    
+
     def minKey = { buffers ->
       def buffIds = []
       def minKey = Integer.MAX_VALUE
@@ -42,10 +42,10 @@ class Merger implements CSProcess {
       buffers.each { b ->
         if ( (b instanceof PartConcordance) && (b.seqVal == minKey) ) buffIds << buffId
         buffId = buffId + 1
-      } 
-      return buffIds     
+      }
+      return buffIds
     } // end minKey
-    
+
     def timer = new CSTimer()
     def concordanceEntry = " "
     def nodes = fromWorkers.size()
@@ -90,7 +90,7 @@ class Merger implements CSProcess {
           } // end each wordMap entry
           minBuffers.each { minId ->
             inputBuffers[minId] = fromWorkers[minId].read()
-          }            
+          }
         } // end while not all sentinels
         fileWriter.flush()
         fileWriter.close()

@@ -9,16 +9,16 @@ import org.jcsp.groovy.plugAndPlay.*
 
 class ClockedQueuingServery implements CSProcess{
 
-  def ChannelInput service    
-  def ChannelOutput deliver    
-  def ChannelInput supply   
-   
+  def ChannelInput service
+  def ChannelOutput deliver
+  def ChannelInput supply
+
   void run() {
-    
+
     def console = Channel.any2one()
-    
+
     def clock = new Clock ( toConsole: console.out() )
-    
+
     def servery = new QueuingCanteen ( service: service,
                                         deliver: deliver,
                                         supply: supply,

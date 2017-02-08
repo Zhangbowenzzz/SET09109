@@ -8,13 +8,13 @@ import org.jcsp.groovy.*
 import java.awt.*
 
 class Gallery implements CSProcess{
-    
+
   def ActiveCanvas targetCanvas
   def ChannelInput hitsFromGallery
-  def ChannelInput possiblesFromGallery  
+  def ChannelInput possiblesFromGallery
   def ChannelOutput mouseEvent
   def canvasSize = 450
-  
+
   void run() {
     def root = new ActiveClosingFrame ("Hand-Eye Co-ordination Test")
     def mainFrame = root.getActiveFrame()
@@ -38,7 +38,7 @@ class Gallery implements CSProcess{
     message.add (possLabel)
     targetCanvas.addMouseEventChannel ( mouseEvent )
     mainFrame.setLayout( new BorderLayout() )
-    targetCanvas.setSize (canvasSize, canvasSize) 
+    targetCanvas.setSize (canvasSize, canvasSize)
     mainFrame.add (targetCanvas, BorderLayout.CENTER)
     mainFrame.add (message, BorderLayout.SOUTH)
     mainFrame.pack()

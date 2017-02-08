@@ -8,7 +8,7 @@ import java.awt.*
 import org.jcsp.awt.*
 
 class Cprocess implements CSProcess, Serializable{
-    
+
     void run(){
         def root = new ActiveClosingFrame ("SERVICE C")
         def main = root.getActiveFrame()

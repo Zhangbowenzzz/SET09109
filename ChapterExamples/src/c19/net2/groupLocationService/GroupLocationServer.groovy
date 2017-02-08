@@ -8,7 +8,7 @@ import netObjects.*
 
 
 def serverIP = "127.0.0.1"
-// each service is located at a different port     
+// each service is located at a different port
 def groupLocationServerAddress = new TCPIPNodeAddress(serverIP, 3456)
 Node.getInstance().init(groupLocationServerAddress)
 def initialChannel = NetChannel.numberedNet2One(1)
@@ -22,7 +22,7 @@ while (true) {
             def request = initialChannel.read()
             def processSendChannel =NetChannel.one2net(request.processReceiveLocation)
             def glProcess = new GLprocess(requestLocation: requestLocation)
-            processSendChannel.write(glProcess)    
+            processSendChannel.write(glProcess)
             break
         case 1: // request from user
             def requestData = requestChannel.read()

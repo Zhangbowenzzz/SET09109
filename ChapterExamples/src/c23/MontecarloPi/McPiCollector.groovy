@@ -8,18 +8,18 @@ import org.jcsp.groovy.ChannelOutputList;
 
 
 class McPiCollector implements WorkerInterface {
-    
+
     def ChannelInputList inChannels
     def ChannelOutputList outChannels
     def workers = 1
     def iterations = 192
     def cores = 1
-    
+
     def connect(inChannels, outChannels){
         this.inChannels = inChannels
         this.outChannels = outChannels
     }
-    
+
     void run(){
         println "running McPiCollector"
         def quadSum = 0

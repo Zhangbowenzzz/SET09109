@@ -9,7 +9,7 @@ import phw.util.*
 
 def int nodeId = Ask.Int ("Node identification (2..9) ? ", 2, 9)
 def Boolean last = Ask.Boolean ("Is this the last node? - ( y or n):")
- 
+
 def ipBase = "127.0.0."
 def nodeIP = ipBase + nodeId
 def nodeAddress = new TCPIPNodeAddress(nodeIP, 3000)
@@ -25,10 +25,10 @@ toRing.write(0)
 
 def processNode = new ProcessNode ( inChannel: fromRing,
                                      outChannel: toRing,
-                                     nodeId: nodeId) 
+                                     nodeId: nodeId)
 
 new PAR ([ processNode]).run()
 
 
 
-  
+

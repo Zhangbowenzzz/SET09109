@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 
 
 class BarrierManager implements CSProcess{
-    
+
   def AltingBarrier timeAndHitBarrier
   def AltingBarrier finalBarrier
   def Barrier goBarrier
@@ -18,7 +18,7 @@ class BarrierManager implements CSProcess{
     def timeHitAlt = new ALT ([timeAndHitBarrier])
     def finalAlt = new ALT ([finalBarrier])
     setUpBarrier.sync()
-    
+
     while (true){
       goBarrier.sync()
       def t = timeHitAlt.select()

@@ -8,12 +8,12 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Sender implements CSProcess {
-    
+
   def ChannelOutput toElement
   def int element
   def int nodes
   def int iterations = 12
-  
+
   void run() {
     for ( i in 1 .. iterations ) {
       def dest = (i % (nodes) ) + 1
@@ -26,4 +26,4 @@ class Sender implements CSProcess {
   }
 }
 
-    
+

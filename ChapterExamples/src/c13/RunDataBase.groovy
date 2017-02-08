@@ -25,7 +25,7 @@ def readers = ( 0 ..< nReaders).collect { r ->
                                              toConsole: consoleData[r].out())
                        }
 
-def writers = ( 0 ..<nWriters).collect { w -> 
+def writers = ( 0 ..<nWriters).collect { w ->
                        int wNo = w + nReaders
                        return new Write  ( id: w,
                                            w2db: toDatabase[wNo].out(),
@@ -39,8 +39,8 @@ def database = new DataBase ( inChannels:  toDB,
                               writers: nWriters)
 
 def consoles = ( 0 ..< connections).collect { c ->
-                        def frameString = c < nReaders ? 
-                                "Reader " + c : 
+                        def frameString = c < nReaders ?
+                                "Reader " + c :
                                 "Writer " + (c - nReaders)
                         return new GConsole (toConsole: consoleData[c].in(),
                                              frameLabel: frameString )

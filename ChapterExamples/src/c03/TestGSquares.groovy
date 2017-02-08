@@ -14,4 +14,4 @@ def testList = [ new GSquares ( outChannel: S2P.out() ),
                               heading : "Squares" )
                ]
 
-new PAR ( testList ).run()                                               
+new PAR ( testList ).run()

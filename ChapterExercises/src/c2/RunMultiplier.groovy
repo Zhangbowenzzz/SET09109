@@ -1,9 +1,9 @@
 package c2
-    
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
-import c02.Producer    
-     
+import c02.Producer
+
 One2OneChannel connect1 = Channel.createOne2One()
 One2OneChannel connect2 = Channel.createOne2One()
 

@@ -1,5 +1,5 @@
 package c20.net2
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
@@ -8,7 +8,7 @@ import org.jcsp.groovy.*
 
 
 class Prompter implements CSProcess{
-  
+
   def ChannelOutput toQueue
   def ChannelInput fromQueue
   def ChannelOutput toReceiver
@@ -17,6 +17,6 @@ class Prompter implements CSProcess{
     while (true) {
       toQueue.write(1)
       toReceiver.write ( fromQueue.read() )
-    }    
+    }
   }
 }

@@ -1,15 +1,15 @@
 package c20
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Receiver implements CSProcess {
-    
+
   def ChannelInput fromElement
   def ChannelOutput outChannel
   def ChannelOutput clear
   def ChannelInput fromConsole
-  
+
   def void run() {
     def recAlt = new ALT ([ fromConsole, fromElement])
     def CONSOLE = 0
@@ -21,7 +21,7 @@ class Receiver implements CSProcess {
           def state = fromConsole.read()
           outChannel.write("\n go to restart")
           clear.write("\n")
-          while (state != "go") { 
+          while (state != "go") {
             state = fromConsole.read()
             outChannel.write("\n go to restart")
             clear.write("\n")

@@ -5,14 +5,14 @@ import org.jcsp.groovy.*
 import c24.Distributed.processes.*
 
 class LoadedReader implements WorkerInterface {
-  
+
   def ChannelInputList inChannels
   def ChannelOutputList outChannels
 
-  def inRoot 
-  def N 
-  def blockLength 
-  def runs 
+  def inRoot
+  def N
+  def blockLength
+  def runs
   def sourceList
   def timeRoot
   def runId
@@ -20,8 +20,8 @@ class LoadedReader implements WorkerInterface {
   def connect(inChannels, outChannels){
     this.inChannels = inChannels
     this.outChannels = outChannels
-  }  
-  
+  }
+
   void run(){
     def reader = new Reader( N: N,
                              blockLength: blockLength,

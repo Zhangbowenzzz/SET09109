@@ -7,13 +7,13 @@ import org.jcsp.lang.*
 import c05.*
 
 
-class CollectNumbers implements CSProcess {  
-    
+class CollectNumbers implements CSProcess {
+
   def ChannelInput inChannel
   def collectedList = []
-  def scaledList = [] 
+  def scaledList = []
   def iterations = 20
-  
+
   void run() {
     println "Collector Started"
     for ( i in 1 .. iterations) {

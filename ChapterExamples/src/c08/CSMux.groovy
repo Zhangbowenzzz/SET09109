@@ -8,13 +8,13 @@ import org.jcsp.groovy.*
 import org.jcsp.lang.*
 
 class CSMux implements CSProcess {
-    
+
   def ChannelInputList inClientChannels
   def ChannelOutputList outClientChannels
   def ChannelInputList fromServers
   def ChannelOutputList toServers
   def serverAllocation = [ ]    // list of lists of keys contained in each server
-  
+
   void run() {
     def servers = toServers.size()
     def muxAlt = new ALT (inClientChannels)
@@ -26,11 +26,11 @@ class CSMux implements CSProcess {
         if (serverAllocation[i].contains(key)) {
           server = i
           break
-        }        
+        }
       }
-      toServers[server].write(key) 
+      toServers[server].write(key)
       def value = fromServers[server].read()
-      outClientChannels[index].write(value)        
+      outClientChannels[index].write(value)
     }
   }
 }

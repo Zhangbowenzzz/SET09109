@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 
 
 class Node implements CSProcess {
-  
+
   def ChannelInput nodeInChannel
   def ChannelOutputList toMergers // N of these
   def N = 0
@@ -17,16 +17,16 @@ class Node implements CSProcess {
   def node
   def timeWriter
 
-  void run(){  
+  void run(){
     def timer = new CSTimer()
     def startSortPhase = Channel.one2any()
     for ( s in sourceList){
       for ( r in 1 .. runs){
         def startTime = timer.read()
         def sequenceBlockList = [] // holds each of the sequence blocks
-        def worker = new Worker( N: N, inChannel: nodeInChannel, 
+        def worker = new Worker( N: N, inChannel: nodeInChannel,
                                   ssp: startSortPhase.out(),
-                                  sbl: sequenceBlockList, source: s, 
+                                  sbl: sequenceBlockList, source: s,
                                   run: r, node:node,
                                   timeWriter: timeWriter )
         def sorters = (1..N).collect{sn ->

@@ -1,5 +1,5 @@
-package c17.counted 
-  
+package c17.counted
+
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 import org.jcsp.lang.*
@@ -18,12 +18,12 @@ def h = Channel.one2one()
 
 def dataGen = new GNumbers ( outChannel: a.out() )
 
-def sampler = new CountingSampler ( inChannel: a.in(), 
-                                     outChannel: b.out(), 
+def sampler = new CountingSampler ( inChannel: a.in(),
+                                     outChannel: b.out(),
                                      sampleRequest: e.in(),
                                      countReturn: g.out() )
 
-def samplingTimer = new CountedSamplingTimer ( sampleRequest: e.out(), 
+def samplingTimer = new CountedSamplingTimer ( sampleRequest: e.out(),
                                                 sampleInterval: 2500,
                                                 countReturn: g.in(),
                                                 countToGatherer: h.out() )
@@ -37,13 +37,13 @@ def gatherer = new CountingGatherer ( inChannel: c.in(),
                                        countInput: h.in() )
 
 def evaluator = new CountedEvaluator (inChannel: f.in())
- 
+
 def printResults = new GPrint ( inChannel: d.in(),
                                  heading: "output Values",
                                  delay: 0)
 
-def network = [dataGen, sampler, samplingTimer, sampledNetwork, 
-               gatherer, evaluator, printResults ]    
-                       
-new PAR(network).run()               
+def network = [dataGen, sampler, samplingTimer, sampledNetwork,
+               gatherer, evaluator, printResults ]
+
+new PAR(network).run()
 

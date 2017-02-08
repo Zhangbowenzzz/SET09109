@@ -8,16 +8,16 @@ import org.jcsp.groovy.*
 
 
 class WProcess implements WorkerInterface {
-    
+
     def ChannelInputList inChannels
     def ChannelOutputList outChannels
     def modifier = 100
-    
+
     def connect(inChannels, outChannels){
         this.inChannels = inChannels
         this.outChannels = outChannels
     }
-        
+
     void run(){
         def boolean running = true
         while (running){
@@ -31,7 +31,7 @@ class WProcess implements WorkerInterface {
                 outChannels[1].write(new Sentinel())
                 running = false
             } // end if
-        } // end while 
+        } // end while
         println "Worker $modifier terminated"
     } // end run
 

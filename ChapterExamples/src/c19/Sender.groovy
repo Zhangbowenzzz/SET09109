@@ -1,5 +1,5 @@
 package c19;
-  
+
 import org.jcsp.lang.*
 import org.jcsp.net.*
 import org.jcsp.groovy.*
@@ -25,7 +25,7 @@ class Sender implements CSProcess {
       clientsAvailable.add(clients[i])
       println " Sender: added client ${i} to available list"
     }
-    
+
     //println "Sender: Clients added to available list"
     // create the alternative over fromServer and reuse
     def alt = new ALT ( [reuse, fromServer])
@@ -47,7 +47,7 @@ class Sender implements CSProcess {
           println "Sender: Service Unavailable Client sent to Server"
         }
       }
-      
+
     }
   }
 }

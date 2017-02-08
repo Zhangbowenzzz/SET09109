@@ -7,11 +7,11 @@ import org.jcsp.groovy.*
 
 class Controller implements CSProcess {
     int maxPlayers = 5
-    
+
     void run(){
         def dList = new DisplayList()
-        def gameCanvas = new ActiveCanvas()    
-        gameCanvas.setPaintable(dList)    
+        def gameCanvas = new ActiveCanvas()
+        gameCanvas.setPaintable(dList)
         def statusConfig = Channel.createOne2One()
         def IPlabelConfig = Channel.createOne2One()
         def pairsConfig = Channel.createOne2One()
@@ -21,7 +21,7 @@ class Controller implements CSProcess {
         def playerNamesOut = new ChannelOutputList(playerNames)
         def pairsWonIn = new ChannelInputList(pairsWon)
         def pairsWonOut = new ChannelOutputList(pairsWon)
-        
+
         def network = [ new ControllerManager ( dList: dList,
                                                 statusConfig: statusConfig.out(),
                                                 IPlabelConfig: IPlabelConfig.out(),

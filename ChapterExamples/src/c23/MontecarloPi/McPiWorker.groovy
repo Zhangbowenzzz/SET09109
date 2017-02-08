@@ -8,16 +8,16 @@ import org.jcsp.lang.*
 
 
 class McPiWorker implements WorkerInterface {
-    
+
     def ChannelInputList inChannels
     def ChannelOutputList outChannels
     def cores = 1
-    
+
     def connect(inChannels, outChannels){
         this.inChannels = inChannels
         this.outChannels = outChannels
     }
-    
+
     void run(){
         println "running McPiWorker"
         def M2C = Channel.one2oneArray(cores)
@@ -25,8 +25,8 @@ class McPiWorker implements WorkerInterface {
         def toCores = new ChannelOutputList(M2C)
         def fromCores = new ChannelInputList(C2M)
         def coreNetwork = (0 ..< cores).collect{ c ->
-                return new McPiCore( inChannel: M2C[c].in(), 
-                                               outChannel: C2M[c].out() ) 
+                return new McPiCore( inChannel: M2C[c].in(),
+                                               outChannel: C2M[c].out() )
           }
         def manager = new McPiManager ( inChannel: inChannels[0],
                                                         outChannel: outChannels[0],

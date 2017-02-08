@@ -1,5 +1,5 @@
 package c11
- 
+
 
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
@@ -8,7 +8,7 @@ package c11
 import org.jcsp.lang.*
 
 class Particle implements CSProcess {
-    
+
   def ChannelOutput sendPosition
   def ChannelInput getPosition
   def int x = 100         // initial x location
@@ -16,7 +16,7 @@ class Particle implements CSProcess {
   def long delay = 200    // delay between movements
   def int id
   def int temperature = 25 // in range 10 to 50
-  
+
   void run() {
     def timer = new CSTimer()
     def rng = new Random()

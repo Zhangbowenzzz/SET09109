@@ -8,9 +8,9 @@ package c02
 import org.jcsp.lang.*
 
 class ConsumeHello implements CSProcess {
-  
+
   def ChannelInput inChannel
-  
+
   void run() {
     def first = inChannel.read()
     def second = inChannel.read()

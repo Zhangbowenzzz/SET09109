@@ -1,5 +1,5 @@
 package c11
-  
+
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 
@@ -17,16 +17,16 @@ def INIT_TEMP = 20
 
 def network = []
 for ( i in 0..< PARTICLES ) {
-  network << new Particle ( id: i, 
+  network << new Particle ( id: i,
                             sendPosition: connect.out(),
-                            getPosition: update.in(), 
-                            x: CENTRE, 
-                            y: CENTRE, 
+                            getPosition: update.in(),
+                            x: CENTRE,
+                            y: CENTRE,
                             temperature: INIT_TEMP )
 }
- 
-network << ( new ParticleInterface ( inChannel: connect.in(), 
-                                     outChannel: update.out(), 
+
+network << ( new ParticleInterface ( inChannel: connect.in(),
+                                     outChannel: update.out(),
                                      canvasSize: CSIZE,
                                      particles: PARTICLES,
                                      centre: CENTRE,

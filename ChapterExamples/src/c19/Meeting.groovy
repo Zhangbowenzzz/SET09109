@@ -1,5 +1,5 @@
 package c19;
- 
+
 import org.jcsp.lang.*
 import org.jcsp.net.*
 import org.jcsp.net.tcpip.*
@@ -11,10 +11,10 @@ class Meeting implements CSProcess {
   def requestChannels // a list of channels used to make client requests
   def ChannelOutput nReuse
   def int newClients
-  
+
   def ChannelOutput fReuse
   def int findClients
-  
+
   void run() {
     println "Meeting: Started"
     def meetingMap = [ : ]
@@ -45,7 +45,7 @@ class Meeting implements CSProcess {
           meetingMap.each{println "Meeting: ${it.key}" }
           reply.write(replyData)
           // now enable the NewMeetingClient to be reused
-          nReuse.write(replyData.clientId ) 
+          nReuse.write(replyData.clientId )
           break
         case newClients ..< (findClients + newClients) :
           def findMeeting = requestChannels[index].read()
@@ -55,7 +55,7 @@ class Meeting implements CSProcess {
           if ( meetingMap.containsKey(findMeeting.meetingName ) ) {
             // meeting already exists
             replyData = meetingMap.get(findMeeting.meetingName )
-            replyData.attendees = replyData.attendees + 1 
+            replyData.attendees = replyData.attendees + 1
             meetingMap.put ( replyData.meetingName, replyData)
             println " Meeting: meeting does exist"
           }
@@ -69,13 +69,12 @@ class Meeting implements CSProcess {
           meetingMap.each{println "Meeting: ${it.key}"}
           reply.write(replyData)
           // now enable the NewMeetingClient to be reused
-          fReuse.write(replyData.clientId ) 
+          fReuse.write(replyData.clientId )
           break
       } // end of switch
     } // end of while
   } // end of run()
 }
 
-    
-      
-  
+
+

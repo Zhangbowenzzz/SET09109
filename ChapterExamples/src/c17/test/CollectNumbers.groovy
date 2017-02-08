@@ -5,10 +5,10 @@ import c05.*
 
 
 class CollectNumbers implements CSProcess {
-  
+
   def ChannelInput inChannel
   def collectedList = []
-  def scaledList = [] 
+  def scaledList = []
   def iterations = 20
 
   void run() {

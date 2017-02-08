@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class TargetManager implements CSProcess {
-    
+
   def ChannelInput targetIdFromTarget
   def ChannelInput getActiveTargets
   def ChannelOutput activatedTargets
@@ -23,7 +23,7 @@ class TargetManager implements CSProcess {
       def targetList = [ ]
       getActiveTargets.read()
       flushNextBucket.write(1)
-      def targetsRunning = targetsFlushed.read()  
+      def targetsRunning = targetsFlushed.read()
       while (targetsRunning > 0) {
          targetList << targetIdFromTarget.read()
          targetsRunning = targetsRunning - 1
@@ -31,5 +31,5 @@ class TargetManager implements CSProcess {
       activatedTargets.write(targetList)
       activatedTargetsToDC.write(targetList)
     } // end of while true
-  } 
+  }
 }

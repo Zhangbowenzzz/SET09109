@@ -19,7 +19,7 @@ println "Collector: from Workers channel Location - ${fromWorkersLoc.toString()}
 def workers = Ask.Int ("Number of workers? ", 1, 20)
 
 
-def collector = new Collector ( fromWorkers: fromWorkers, 
+def collector = new Collector ( fromWorkers: fromWorkers,
                                                  workers: workers)
 
 new PAR([collector]).run()

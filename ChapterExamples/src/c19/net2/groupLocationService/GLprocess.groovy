@@ -8,9 +8,9 @@ import org.jcsp.net2.*
 
 
 class GLprocess implements CSProcess, Serializable{
-    
+
     def NetChannelLocation requestLocation
-        
+
     void run() {
         def nameChannel = Channel.one2one()
         def locationChannel = Channel.one2one()

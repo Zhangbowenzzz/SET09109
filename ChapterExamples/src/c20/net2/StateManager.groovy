@@ -1,5 +1,5 @@
 package c20.net2;
- 
+
 import org.jcsp.lang.*
 
 
@@ -8,14 +8,14 @@ import org.jcsp.lang.*
 
 
 class StateManager implements CSProcess{
-  
+
   def ChannelInput fromQueue
   def ChannelOutput toElement
   def int queueSlots
 
   void run() {
     def limit = queueSlots / 2
-    def state = "NORMAL" 
+    def state = "NORMAL"
     while (true) {
       def usedSlots = fromQueue.read()
       def aboveLimit = ( usedSlots >= limit)
@@ -28,7 +28,7 @@ class StateManager implements CSProcess{
         state = "NORMAL"
         toElement.write("RESTART")
         println "SM: restarting"
-      }      
+      }
     } // end while
   } // end run
 }

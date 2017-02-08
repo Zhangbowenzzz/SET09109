@@ -16,4 +16,4 @@ def getOne = CNS.createAny2Net ("GETONE")
     def philList = ( 0 .. 4 ).collect{
       i -> return new Philosopher(philosopherId:i, service:getOne, deliver:gotOne)}
 
-new PAR ( philList ).run()     
+new PAR ( philList ).run()

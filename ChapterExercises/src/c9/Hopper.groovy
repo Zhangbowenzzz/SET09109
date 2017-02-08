@@ -5,14 +5,14 @@ import org.jcsp.lang.ChannelInput
 import org.jcsp.lang.ChannelOutput
 
 class Hopper implements CSProcess {
-    
+
     def ChannelInput fromConsole
     def ChannelOutput toConsole
     def ChannelOutput clearConsole
     def ChannelOutput toManager
-    def ChannelInput fromManager    
+    def ChannelInput fromManager
     def int hopper
-    
+
     void run () {
         while (true) {
             toConsole.write("Input an r when Hopper ready\n")

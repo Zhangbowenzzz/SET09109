@@ -8,14 +8,14 @@ import org.jcsp.util.*
 import org.jcsp.awt.*
 
 class ParticleInterface implements CSProcess {
-    
+
   def ChannelInput inChannel
   def ChannelOutput outChannel
   def int canvasSize = 100
   def int particles
   def int centre
   def int initialTemp
-  
+
   void run() {
     def dList = new DisplayList()
     def particleCanvas = new ActiveCanvas()
@@ -23,7 +23,7 @@ class ParticleInterface implements CSProcess {
     def tempConfig = Channel.one2one()
     def pauseConfig = Channel.one2one()
     def uiEvents = Channel.any2one( new OverWriteOldestBuffer(5) )
-    def network = [ new ParticleManager ( fromParticles: inChannel, 
+    def network = [ new ParticleManager ( fromParticles: inChannel,
                                           toParticles: outChannel,
                                           toUI: dList,
                                           fromUIButtons: uiEvents.in(),
@@ -33,7 +33,7 @@ class ParticleInterface implements CSProcess {
                                           PARTICLES: particles,
                                           CENTRE: centre,
                                           START_TEMP: initialTemp ),
-                    new UserInterface   ( particleCanvas: particleCanvas, 
+                    new UserInterface   ( particleCanvas: particleCanvas,
                                           canvasSize: canvasSize,
                                           tempValueConfig: tempConfig.in(),
                                           pauseButtonConfig: pauseConfig.in(),
@@ -42,4 +42,3 @@ class ParticleInterface implements CSProcess {
     new PAR ( network ).run()
   }
 }
-   

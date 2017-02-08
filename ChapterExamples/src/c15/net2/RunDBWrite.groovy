@@ -17,10 +17,10 @@ def writerIndex = writeBase + writerId
 def writerIP = writerBaseIP + writerIndex
 def writerAddress = new TCPIPNodeAddress(writerIP, 2000)
 Node.getInstance().init(writerAddress)
-    
+
 println "Write Process $writerId, $writerIP is creating its Net channels "
 
-//NetChannelInput 
+//NetChannelInput
 def fromDB = NetChannel.numberedNet2One(150)  // the net channel from the database
 println "fromDB location = ${fromDB.getLocation()}"
 
@@ -34,8 +34,8 @@ fromDB.read()
 println "Write Process $writerId has created its Net channels "
 def consoleChannel = Channel.one2one()
 
-def pList = [ 
+def pList = [
     new Write ( id:writerId, w2db:toDB, db2w:fromDB, toConsole: consoleChannel.out()  ),
-    new GConsole(toConsole:consoleChannel.in(), frameLabel: "Writer $writerId"  )  
+    new GConsole(toConsole:consoleChannel.in(), frameLabel: "Writer $writerId"  )
     ]
 new PAR (pList).run()

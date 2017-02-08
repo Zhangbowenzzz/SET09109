@@ -22,8 +22,8 @@ def pRelease = NetChannel.any2net  (printSpoolerAddr, 51)
 println "pRequest location = ${pRequest.getLocation()}"
 println "pRelease location = ${pRelease.getLocation()}"
 
-new PAR ( [ new PrintUser ( printerRequest: pRequest, 
-                            printerRelease: pRelease, 
+new PAR ( [ new PrintUser ( printerRequest: pRequest,
+                            printerRelease: pRelease,
                             userId : user
                           )
           ] ).run()

@@ -1,15 +1,15 @@
 package c20
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Sender implements CSProcess {
-    
+
   def ChannelOutput toElement
   def int element
   def int nodes
   def int iterations
-  
+
   def void run() {
     def timer = new CSTimer()
     def start = element
@@ -26,4 +26,4 @@ class Sender implements CSProcess {
   }
 }
 
-    
+

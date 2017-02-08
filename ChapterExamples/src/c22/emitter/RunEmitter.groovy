@@ -27,7 +27,7 @@ def emit = new EmitterNet ( fromWorkers: fromWorkers,
                              elements: elements )
 new PAR([emit]).run()
 
-    
+
 
 
 

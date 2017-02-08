@@ -7,17 +7,17 @@ import org.jcsp.groovy.*
 import org.jcsp.lang.*
 
 
-class CountingSampler implements CSProcess {  
-    
+class CountingSampler implements CSProcess {
+
   def ChannelInput inChannel
   def ChannelOutput outChannel
   def ChannelInput sampleRequest
   def ChannelOutput countReturn
-  
+
   void run() {
     def sampleAlt = new ALT ([sampleRequest, inChannel])
     def counter = 0
-    
+
     while (true){
       counter = counter + 1
       def index = sampleAlt.priSelect()

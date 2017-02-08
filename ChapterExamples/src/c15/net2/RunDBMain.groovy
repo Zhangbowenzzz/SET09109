@@ -30,7 +30,7 @@ for ( readerId in 0 ..< nReaders  ) {
   def readerIP = readerBaseIP + readerIndex
   readerAddresses << new TCPIPNodeAddress(readerIP, 1000)
   toDB.append ( NetChannel.numberedNet2One(readerIndex) )
-  println "Reader: $readerId, $readerIndex, $readerIP - " +
+  println "Reader: $readerId, $readerIndex, $readerIP - "
       "toDB location = ${toDB[readerId].getLocation()}"
 }
 println "Creating writer network channels"
@@ -42,7 +42,7 @@ for ( writerId in 0 ..< nWriters  ) {
   def writerIP = writerBaseIP + writerIndex
   writerAddresses << new TCPIPNodeAddress(writerIP, 2000)
   toDB.append ( NetChannel.numberedNet2One(writerIndex) )
-  println "Writer: $writerId, $writerIndex, $writerIP - " +
+  println "Writer: $writerId, $writerIndex, $writerIP - "
      " toDB location = ${toDB[writerId+nReaders].getLocation()}"
 }
 
@@ -69,5 +69,4 @@ def pList = [ new DataBase ( inChannels: toDB,
                              writers: nWriters ) ]
 println "DBM: Running Database"
 
-new PAR (pList).run()   
-                           
+new PAR (pList).run()

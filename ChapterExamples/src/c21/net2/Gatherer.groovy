@@ -1,5 +1,5 @@
 package c21.net2
- 
+
 import org.jcsp.lang.*
 
 
@@ -13,7 +13,7 @@ class Gatherer implements CSProcess{
   void run() {
     while (true) {
       def d = fromNodes.read()
-      println "Gathered from ${d.toString()}"      
-    }    
+      println "Gathered from ${d.toString()}"
+    }
   }
 }

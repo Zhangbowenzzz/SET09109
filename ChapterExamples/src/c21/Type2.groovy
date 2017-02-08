@@ -4,13 +4,13 @@ package c21
 class Type2 implements Serializable {
 
   def typeName = "Type2"
-    def int typeInstance 
+    def int typeInstance
     def int instanceValue
-    
+
     def modify ( value) {
       typeInstance = typeInstance + value
-    }    
-    
+    }
+
     def String toString(){
         def int nodeId = typeInstance / 100000
       def int typeNumber = (typeInstance - (nodeId*100000)) / 1000

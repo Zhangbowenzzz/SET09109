@@ -25,7 +25,7 @@ def toRing = NetChannel.one2net(nextNodeAddress, 50)
 toRing.write(0)
 fromRing.read()
 
-def rootNode = new BackRoot ( inChannel: fromRing, 
+def rootNode = new BackRoot ( inChannel: fromRing,
                                outChannel: toRing,
                                iterations: iterations,
                                initialValue: initialValue,

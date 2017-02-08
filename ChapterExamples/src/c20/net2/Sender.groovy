@@ -1,5 +1,5 @@
 package c20.net2
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
@@ -8,12 +8,12 @@ import org.jcsp.groovy.*
 
 
 class Sender implements CSProcess {
-    
+
   def ChannelOutput toElement
   def int element
   def int nodes
   def int iterations
-  
+
   def void run() {
     def timer = new CSTimer()
     for ( i in 1 .. iterations ) {
@@ -28,4 +28,4 @@ class Sender implements CSProcess {
   }
 }
 
-    
+

@@ -15,7 +15,7 @@ def philosopherNodeIP = "127.0.0.3"
 
 def canteenNodeAddr = new TCPIPNodeAddress(canteenNodeIP, 3000)
 Node.getInstance().init (canteenNodeAddr)
-def cooked = NetChannel.net2one() 
+def cooked = NetChannel.net2one()
 println "cooked location = ${cooked.getLocation()}"
 
 def getOne = NetChannel.net2one()
@@ -28,4 +28,4 @@ def gotOne = NetChannel.one2net(philosopherAddr, 50)
 def processList = [
   new ClockedQueuingServery(service:getOne, deliver:gotOne, supply:cooked)
   ]
-new PAR ( processList ).run()     
+new PAR ( processList ).run()

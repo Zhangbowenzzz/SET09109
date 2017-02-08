@@ -10,23 +10,23 @@ import c22.universalClasses.*
  */
 
 class CopyOfWorker implements CSProcess {
-    
+
     /*
-     * The Worker process reads the index of the sharedData upon 
-     * which it is to operate.  Unless the input is the terminating 
-     * Sentinel it undertakes the manipulation of the data object 
-     * using the manipulate method defined in the TestObject 
-     * that is an abstract method of the ManipulateInterface.  
-     * Once the work is complete it writes the index of the now 
-     * processed data object in the sharedData list to the 
-     * SendOuput process using the internal channel workCompleted. 
+     * The Worker process reads the index of the sharedData upon
+     * which it is to operate.  Unless the input is the terminating
+     * Sentinel it undertakes the manipulation of the data object
+     * using the manipulate method defined in the TestObject
+     * that is an abstract method of the ManipulateInterface.
+     * Once the work is complete it writes the index of the now
+     * processed data object in the sharedData list to the
+     * SendOuput process using the internal channel workCompleted.
      */
-    
-    def workOn    
+
+    def workOn
     def workCompleted
     def workerId
     def sharedData
-    
+
     void run(){
         def index = -1
         def running = true
@@ -39,7 +39,7 @@ class CopyOfWorker implements CSProcess {
             else {
                 index = (Integer)o.intValue()
                 sharedData[index].manipulate(workerId)
-                workCompleted.write(index)                                
+                workCompleted.write(index)
             }
         }
     }

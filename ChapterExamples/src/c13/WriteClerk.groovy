@@ -8,11 +8,11 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class WriteClerk implements CSProcess {
-    
+
   def ChannelInput cin
   def ChannelOutput cout
   def CrewMap data
-  
+
   void run () {
     println "WriteClerk has started "
     while (true) {
@@ -25,4 +25,3 @@ class WriteClerk implements CSProcess {
   }
 }
 
-  

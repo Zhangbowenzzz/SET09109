@@ -1,5 +1,5 @@
 package c21
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.net.*
@@ -19,24 +19,24 @@ class NodeProcess implements CSProcess {
     def agentVisitChannelLocation = agentVisitChannel.getChannelLocation()
     def agentReturnChannel= NetChannelEnd.createNet2One()
     def agentReturnChannelLocation = agentReturnChannel.getChannelLocation()
-    
-    toDataGen.write( new DataGenList ( dgl: [ fromDataGen.getChannelLocation(), 
+
+    toDataGen.write( new DataGenList ( dgl: [ fromDataGen.getChannelLocation(),
                                                agentVisitChannelLocation,
                                                nodeId] ) )
-                                               
+
     def connectChannels = [ ]
     def typeOrder = [ ]
     def vanillaOrder = [ ]
     def currentSearches = [ ]
     def cp = 0
-    
-    if (processList != null) {                 
+
+    if (processList != null) {
       for ( i in 0 ..< processList.size) {
         def processType = processList[cp].getClass().getName()
         def typeName = processType.substring(0, processType.indexOf("Process"))
         //println "NP-$nodeId: constructed with a process for $typeName as $cp"
-        typeOrder << typeName 
-        vanillaOrder << typeName 
+        typeOrder << typeName
+        vanillaOrder << typeName
         connectChannels[cp] = Channel.createOne2One()
         def pList = [connectChannels[cp].in(), nodeId, toGathererName]
         processList[cp].connect(pList)
@@ -47,25 +47,25 @@ class NodeProcess implements CSProcess {
     }
     //println "NP-$nodeId: initial typeOrder is $typeOrder"
     //println "NP-$nodeId: vanilla Order is $vanillaOrder"
-    
+
     def NodeToInitialAgent = Channel.createOne2One()
     def NodeToVisitingAgent = Channel.createOne2One()
     def NodeFromVisitingAgent = Channel.createOne2One()
     def NodeFromReturningAgent = Channel.createOne2One()
-    
+
     def NodeToInitialAgentInEnd = NodeToInitialAgent.in()
     def NodeToVisitingAgentInEnd = NodeToVisitingAgent.in()
     def NodeFromVisitingAgentOutEnd = NodeFromVisitingAgent.out()
     def NodeFromReturningAgentOutEnd = NodeFromReturningAgent.out()
-    
+
     def myAgent = new AdaptiveAgent()
     myAgent.connect([NodeToInitialAgentInEnd, agentReturnChannelLocation, nodeId])
     def initialPM = new ProcessManager(myAgent)
     initialPM.start()
-    
+
     def nodeAlt = new ALT([fromDataGen, agentVisitChannel, agentReturnChannel])
-    def currentVisitList = [ ] 
-                             
+    def currentVisitList = [ ]
+
     while (true) {
       switch ( nodeAlt.select() ) {
         case 0:
@@ -77,8 +77,8 @@ class NodeProcess implements CSProcess {
             NodeToInitialAgent.out().write(currentVisitList)
             //println "NP-$nodeId: received visit list from DataGen with ${currentVisitList.size} elements"
           }
-//        must be a data type name 
-          else { 
+//        must be a data type name
+          else {
             def dType = d.getClass().getName()
             //println "NP-$nodeId: data of type $dType being processed"
             if ( typeOrder.contains(dType) ) {
@@ -96,7 +96,7 @@ class NodeProcess implements CSProcess {
               connectChannels[i].out().write(d)
               //println "NP-$nodeId: data of type $dType sent to Gatherer from $i'th process"
              }
-            else {  
+            else {
               // do not have process for this data type
               if ( ! currentSearches.contains(dType)) {
                 currentSearches << dType
@@ -112,15 +112,15 @@ class NodeProcess implements CSProcess {
                 //println "NP-$nodeId: myAgent re created"
               }
               else {
-                //println "NP-$nodeId: data of type $dType already being searched for"                
+                //println "NP-$nodeId: data of type $dType already being searched for"
               }
-            }            
+            }
           }
           break
         case 1:
           //println "NP-$nodeId: visiting agent has arrived"
           def visitingAgent = agentVisitChannel.read()
-          visitingAgent.connect([NodeToVisitingAgentInEnd, 
+          visitingAgent.connect([NodeToVisitingAgentInEnd,
                                  NodeFromVisitingAgentOutEnd ])
           def visitPM = new ProcessManager(visitingAgent)
           visitPM.start()
@@ -135,7 +135,7 @@ class NodeProcess implements CSProcess {
               }
               else {
                 i = i + 1
-              }            
+              }
             }
             NodeToVisitingAgent.out().write(vanillaList[i])
             def agentHome = NodeFromVisitingAgent.in().read()
@@ -145,7 +145,7 @@ class NodeProcess implements CSProcess {
           }
           else {  // do not have process for this data type
             //println "NP-$nodeId: process for $typeRequired not available here"
-            NodeToVisitingAgent.out().write(null)              
+            NodeToVisitingAgent.out().write(null)
           }
           visitPM.join()
           break
@@ -160,19 +160,19 @@ class NodeProcess implements CSProcess {
           def returnedType = returnList[1]
           //println "NP-$nodeId: returned agent has brought process for $returnedType"
           currentSearches.remove([returnedType])
-          typeOrder << returnList[1] 
+          typeOrder << returnList[1]
           connectChannels[cp] = Channel.createOne2One()
-          processList << returnList[0]               
+          processList << returnList[0]
           def pList = [connectChannels[cp].in(), nodeId, toGathererName]
           processList[cp].connect(pList)
           def pm = new ProcessManager(processList[cp])
           //println "NP-$nodeId: revised typeOrder is $typeOrder"
           println "NP-$nodeId: has started $returnedType Process"
           cp = cp + 1
-          pm.start()          
+          pm.start()
           break
-      }    
-    }    
+      }
+    }
   }
 
 }

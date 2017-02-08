@@ -1,11 +1,11 @@
 package c5
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
-import org.jcsp.groovy.plugAndPlay.* 
-import c05.Controller   
-import c05.ScaledData   
-  
+import org.jcsp.groovy.plugAndPlay.*
+import c05.Controller
+import c05.ScaledData
+
 def data = Channel.createOne2One()
 def timedData = Channel.createOne2One()
 def scaledData = Channel.createOne2One()
@@ -14,8 +14,8 @@ def newScale = Channel.createOne2One()
 def pause = Channel.createOne2One()
 
 def network = [ new GNumbers ( outChannel: data.out() ),
-                new GFixedDelay ( delay: 1000, 
-                                  inChannel: data.in(), 
+                new GFixedDelay ( delay: 1000,
+                                  inChannel: data.in(),
                                   outChannel: timedData.out() ),
                 new Scale ( inChannel: timedData.in(),
                             outChannel: scaledData.out(),
@@ -32,4 +32,4 @@ def network = [ new GNumbers ( outChannel: data.out() ),
                              heading: "Original      Scaled",
                              delay: 0)
               ]
-new PAR ( network ).run()                                                            
+new PAR ( network ).run()

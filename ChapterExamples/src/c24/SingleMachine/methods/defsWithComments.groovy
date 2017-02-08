@@ -3,9 +3,9 @@ package c24.SingleMachine.methods
 class defsWithComments {
 
     /**
-     * processLine takes a line of text 
+     * processLine takes a line of text
      * which is split into words using tokenize(' ')
-     * 
+     *
      * @param line a line that has been read from a file
      * @return list of words containing each word in the line
      */
@@ -14,31 +14,31 @@ class defsWithComments {
         words = line.tokenize(' ')
         return words
     }
-    
+
     /**
-     * endPunctuationList the list of punctuation symbols 
+     * endPunctuationList the list of punctuation symbols
      * that can be removed from the ends of words
      */
     def static endPunctuationList =[',','.',';',':','?','!', '\'', '"', '_', '}']
-    
+
     /**
-     * startPunctuationList the list of punctuation symbols 
+     * startPunctuationList the list of punctuation symbols
      * that can be removed from the start of words
      */
     def static startPunctuationList = ['\'' ,'"', '_', '\t', '{']
     /**
-     * 
-     * removePunctuation removes any punctuation characters 
+     *
+     * removePunctuation removes any punctuation characters
      * from the start and end of a word
      * @param w String containing the word to be processed
      * @return String rw containing the input word less any punctuation symbols
-     * 
+     *
      */
     def static removePunctuation(w) {
         def ew = w
         def rw
         def len = w.size()
-        if ( len == 1 ) 
+        if ( len == 1 )
             rw = w
         else {
             def lastCh = w.substring(len-1, len)
@@ -71,12 +71,12 @@ class defsWithComments {
         }
         return rw
     }
-    
-    
+
+
     /**
      * charSum transforms a word into a single integer based upon the
-     * sum of the ASCII characters that make up the word 
-     * 
+     * sum of the ASCII characters that make up the word
+     *
      * @param w String containing word to be transformed into an integer
      * @return int containing the integer equivalent of word
      */
@@ -92,14 +92,14 @@ class defsWithComments {
         //println "$w is $sum"
         return sum
     }
-    
-     
+
+
     /**
      * sequencer takes a list of numeric word values and returns
      * a list containing the sum of sequences of N numbers
      * *removed in forming the sequence sum each word is multiplied by a prime number
      * *removed in an attempt to ensure that each sequence is unique
-     * 
+     *
      * @param n the sequence length being generated
      * @param baseList list of numbers to be sequenced into groups of N
      * @param outList list of numbers to be generated
@@ -110,24 +110,24 @@ class defsWithComments {
             def int partSum = 0
             for ( i in 0..< n) partSum = partSum + baseList[gl + i]
             outList << partSum
-        }        
+        }
     }
-    
+
     /**
-     * extractEqualValues searches the list of sequenceValues for equal valued entries 
+     * extractEqualValues searches the list of sequenceValues for equal valued entries
      * and constructs a map comprising the sequence Value and a list of the indexes
-     * where the value was found.  Every sequenceValue will have an entry which 
+     * where the value was found.  Every sequenceValue will have an entry which
      * contains at least one index where the value was found.
-     * 
+     *
      * NOTE:
-     * 
-     * the sequenceValue may correspond to different word sequences 
+     *
+     * the sequenceValue may correspond to different word sequences
      * because different sequences of words may give rise to the same value
-     * 
+     *
      * see extractUniqueSequences which determines the different word sequences
-     * corresponding to each sequenceValues and then associates these with the 
+     * corresponding to each sequenceValues and then associates these with the
      * indexes where they occur.
-     * 
+     *
      * @param maxLength the length of the sequence to be searched
      * @param startIndex the initial offset of this sequence relative to the start of the text
      * @param sequenceValues the list of values to be searched
@@ -156,7 +156,7 @@ class defsWithComments {
         }
         /*
         if ( sequenceValues != []){
-            for ( x in 0..maxLength-1){            
+            for ( x in 0..maxLength-1){
                 if ( ! equalityMap.containsKey(sequenceValues[x])){
                     def subscriptList = []
                     subscriptList << (x + startIndex)
@@ -171,15 +171,15 @@ class defsWithComments {
         //println " eev: $equalityMap"
 //        return equalityMap
     }
-    
+
     /**
      * extractUniqueSequences takes an equalityMap produced by extractEqualValues
      * and determines the word sequences that correspond to each sequenceValue and the
      * indexes where these exist in the block.
-     * 
+     *
      * The method returns a map comprising a key of sequenceValue, with an entry that
      * is itself a map comprising the corresponding words and the indexes where these were found
-     * 
+     *
      * @param equalMap the map of sequenceValues and the list of indexes where those value occur in block
      * @param N the word sequence length
      * @param startIndex the start index of this block
@@ -208,7 +208,7 @@ class defsWithComments {
             println "WordMap for $sv is $wordMap"
         }
     }
-    
+
     def static extractConcordance (equalMap, N, startIndex, words, minSeqLen, printWriter)     {
         def sequenceValues = equalMap.keySet()
         //println "N: $N, sequenceValues: $sequenceValues"
@@ -216,7 +216,7 @@ class defsWithComments {
         def wordMap = [:]
         def indexList = []
         def wordMapEntry = []
-        def concordanceEntry = " "        
+        def concordanceEntry = " "
         for ( sv in sequenceValues){
             indexList = equalMap.get(sv)    // indexList values are offset by startIndex
             //println "Index List for $sv is $indexList"
@@ -239,19 +239,19 @@ class defsWithComments {
                                 printWriter.println "$concordanceEntry"
                             }
             }
-        }    
+        }
     }
-  
+
   def static int sizeof(Object obj) throws IOException {
-    
+
         ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteOutputStream);
-    
+
         objectOutputStream.writeObject(obj);
         objectOutputStream.flush();
         objectOutputStream.close();
-    
+
         return byteOutputStream.toByteArray().length;
     }
- 
+
 }

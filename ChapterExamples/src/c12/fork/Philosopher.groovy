@@ -8,20 +8,20 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Philosopher implements CSProcess {
-  
+
   def ChannelOutput leftFork
   def ChannelOutput rightFork
   def ChannelOutput enter
   def ChannelOutput exit
   def int id
-  
+
   def timer = new CSTimer()
-  
+
   def void action ( id, type, delay ) {
     println "${type} : ${id} "
     timer.sleep(delay)
   }
-  
+
   void run() {
      while (true) {
       action (id, "            thinking", 1000 )
@@ -42,4 +42,4 @@ class Philosopher implements CSProcess {
   }
 }
 
-      
+

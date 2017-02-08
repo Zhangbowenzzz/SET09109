@@ -1,6 +1,6 @@
 package c21
-  
- 
+
+
 import org.jcsp.lang.*
 import org.jcsp.net.*
 import org.jcsp.net.tcpip.*
@@ -19,9 +19,9 @@ def toGathererName = "NodesToGatherer"
 
 // pList and vList must be identical in content
 
-def pList = [ new Type1Process(), new Type2Process(), new Type3Process() ] 
+def pList = [ new Type1Process(), new Type2Process(), new Type3Process() ]
 def vList = [ new Type1Process(), new Type2Process(), new Type3Process() ]
-              
+
 def processList = new NodeProcess ( nodeId: 000000,
                                      toGathererName: toGathererName,
                                      toDataGenName: toDataGenName,

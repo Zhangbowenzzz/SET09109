@@ -11,13 +11,13 @@ import phw.util.*;
 
 
 /*
- * RunCollector creates port 3000 on its node.  The node’s IP address 
- * is then printed as this will be needed to inform the Base nodes.  
- * The any2one channel fromWorkers is created as a net2one channel 
- * because this is the reading end of the channel.  
- * Note that it uses the CodeLoadingChannelFilter.FilterRX() (line 27) structuring 
- * mechanism.  The unaltered Collector process is then invoked.  The 
- * number of workers specified in in the script RunEmitter must be the 
+ * RunCollector creates port 3000 on its node.  The node’s IP address
+ * is then printed as this will be needed to inform the Base nodes.
+ * The any2one channel fromWorkers is created as a net2one channel
+ * because this is the reading end of the channel.
+ * Note that it uses the CodeLoadingChannelFilter.FilterRX() (line 27) structuring
+ * mechanism.  The unaltered Collector process is then invoked.  The
+ * number of workers specified in in the script RunEmitter must be the
  * same as that specified in RunCollector.
  */
 
@@ -34,7 +34,7 @@ println "Collector: from Workers channel Location - ${fromWorkersLoc.toString()}
 def workers = Ask.Int ("Number of workers? ", 1, 20)
 
 
-def collector = new Collector ( fromWorkers: fromWorkers, 
+def collector = new Collector ( fromWorkers: fromWorkers,
                                 workers: workers)
 
 new PAR([collector]).run()

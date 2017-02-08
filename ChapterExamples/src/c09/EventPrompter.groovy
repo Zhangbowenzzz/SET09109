@@ -7,12 +7,12 @@ package c09
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
-class EventPrompter implements CSProcess {  
-    
+class EventPrompter implements CSProcess {
+
   def ChannelInput inChannel
   def ChannelOutput getChannel
-  def ChannelOutput outChannel  
-  
+  def ChannelOutput outChannel
+
   void run () {
     def s = 1
     while (true) {

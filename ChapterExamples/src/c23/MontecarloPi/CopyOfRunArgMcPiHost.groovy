@@ -24,7 +24,7 @@ def loadChannels = new ChannelOutputList()
 def nodes = []
 for ( w in 1 .. workers ) {
     def workerRequest = (RequestWorker)hostRequest.read()
-    def nodeLoadChannel = NetChannel.one2net(workerRequest.loadLocation, 
+    def nodeLoadChannel = NetChannel.one2net(workerRequest.loadLocation,
                                              new CodeLoadingChannelFilter.FilterTX())
     loadChannels.append(nodeLoadChannel)
     nodes << workerRequest.nodeIP
@@ -44,7 +44,7 @@ def workersSentTime = timer.read()
 println "Sent worker objects to workers"
 def emitterInConnections = []
 def emitterOutConnections = []
-for ( w in 0..< workers) {    
+for ( w in 0..< workers) {
     emitterOutConnections << [nodes[w], 100]
 }
 def collectorInConnections = []
@@ -58,7 +58,7 @@ def collectorInChannelList = new ChannelInputList()
 def collectorOutChannelList = new ChannelOutputList()
 
 for ( w in 0 ..< workers ) {
-    hostRequest.read()    
+    hostRequest.read()
 }
 emitterInConnections.each{ cn ->
     emmiterInChannelList.append(NetChannel.numberedNet2One(cn))
@@ -83,7 +83,7 @@ def emitter = new McPiEmitter(workers: workers, iterations: iterations)
 emitter.connect(emmiterInChannelList, emitterOutChannelList)
 def collector = new McPiCollector(workers: workers, iterations: iterations, cores: cores)
 collector.connect(collectorInChannelList, collectorOutChannelList)
- 
+
 def emitterPM = new ProcessManager( emitter )
 def collectorPM = new ProcessManager( collector)
 def hostStartTime = timer.read()
@@ -106,7 +106,7 @@ for ( w in 0 ..< workers){
     def load = workerRawTimes[2] - workerRawTimes[1]
     def initiate = workerRawTimes[3] - workerRawTimes[2]
     def elapsed = workerRawTimes[4] - workerRawTimes[3]
-    workerTimes << ["Wk: " + w, startup, load, initiate, elapsed]    
+    workerTimes << ["Wk: " + w, startup, load, initiate, elapsed]
 }
 println "Node\tstart\tload\tinit\telapsed"
 workerTimes.each { timings ->

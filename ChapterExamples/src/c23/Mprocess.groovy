@@ -11,12 +11,12 @@ class Mprocess  implements WorkerInterface {
 
     def ChannelInputList inChannels
     def ChannelOutputList outChannels
-    
+
     def connect(inChannels, outChannels){
         this.inChannels = inChannels
         this.outChannels = outChannels
     }
-        
+
     void run(){
         def boolean running = true
         def terminated = 0

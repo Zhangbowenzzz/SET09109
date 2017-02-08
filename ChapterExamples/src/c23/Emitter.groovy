@@ -11,15 +11,15 @@ import org.jcsp.groovy.*
 import org.jcsp.lang.*
 
 class Emitter implements WorkerInterface  {
-    
+
     def ChannelInputList inChannels
     def ChannelOutputList outChannels
-    
+
     def connect(inChannels, outChannels){
         this.inChannels = inChannels
         this.outChannels = outChannels
-    }    
-    
+    }
+
     void run(){
         //println "Emitter starting "
         def v = 1

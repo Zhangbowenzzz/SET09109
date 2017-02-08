@@ -1,5 +1,5 @@
 package c16
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.net.*
@@ -9,11 +9,11 @@ import phw.util.*
 
 
 class PrintSpooler implements CSProcess {
-  
+
   def ChannelInput printerRequest
   def ChannelInput printerRelease
   def int spoolers = 2
-  
+
   void run() {
     def spooling = 0
     def spoolChannels = []
@@ -35,7 +35,7 @@ class PrintSpooler implements CSProcess {
     while (true) {
       preCon[1] = (spooling < spoolers)
       def index = psAlt.select(preCon)
-      switch (index) { 
+      switch (index) {
         case 0:
           //user releasing a print channel
           def usedKey = printerRelease.read()
@@ -69,15 +69,14 @@ class PrintSpooler implements CSProcess {
           // printline being received from a user
           def pLine = spoolChannels[ index - 2].read()
           printMap[pLine.printKey] << pLine.line
-        
+
       } //switch
-      
+
     } //while
   } // run
 } // class
 
-      
-    
-    
-    
-    
+
+
+
+

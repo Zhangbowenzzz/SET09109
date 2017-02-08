@@ -5,10 +5,10 @@ import org.jcsp.groovy.*
 import c24.Distributed.processes.*
 
 class LoadedNode implements WorkerInterface {
-  
+
   def ChannelInputList inChannels       // one input channel from Reader
   def ChannelOutputList outChannels     // N output channels to Mergers
- 
+
   def N = 0
   def sourceList
   def runs
@@ -19,8 +19,8 @@ class LoadedNode implements WorkerInterface {
   def connect(inChannels, outChannels){
     this.inChannels = inChannels
     this.outChannels = outChannels
-  }  
-  
+  }
+
   void run(){
     def timeFileName = timeRoot + runId + "_N_" + node + "_times.txt"
     def timeHandle = new File(timeFileName)

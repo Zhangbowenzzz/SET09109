@@ -15,7 +15,7 @@ def philosopherNodeIP = "127.0.0.3"
 
 def philosopherNodeAddr = new TCPIPNodeAddress(philosopherNodeIP,3002)
 Node.getInstance().init (philosopherNodeAddr)
-def gotOne = NetChannel.net2any() 
+def gotOne = NetChannel.net2any()
 println "gotOne location = ${gotOne.getLocation()}"
 
 def canteenAddress = new TCPIPNodeAddress(canteenNodeIP,3000)
@@ -26,5 +26,4 @@ getOne.write(0)
 def philList = ( 0 .. 4 ).collect{
   i -> return new Philosopher(philosopherId:i, service:getOne, deliver:gotOne)
   }
-new PAR ( philList ).run()  
-   
+new PAR ( philList ).run()

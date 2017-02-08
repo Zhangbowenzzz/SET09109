@@ -11,7 +11,7 @@ import c12.canteen.*
 Node.getInstance().init(new TCPIPNodeFactory ())
 
 def cooked = CNS.createOne2Net ("COOKED")
-    
+
 def processList = [ new Kitchen ( supply: cooked) ]
 
-new PAR ( processList ).run()     
+new PAR ( processList ).run()

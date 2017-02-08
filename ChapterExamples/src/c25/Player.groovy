@@ -10,7 +10,7 @@ class Player implements CSProcess {
 //    ChannelInput fromController
 //    ChannelOutput toController
     int maxPlayers = 5
-    
+
     void run(){
         def dList = new DisplayList()
         def gameCanvas = new ActiveCanvas()

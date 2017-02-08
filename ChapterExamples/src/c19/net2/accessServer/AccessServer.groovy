@@ -8,7 +8,7 @@ import c19.net2.netObjects.*
 
 
 def serverIP = "127.0.0.1"
-    
+
 def accessAddress = new TCPIPNodeAddress(serverIP, 2345)
 Node.getInstance().init(accessAddress)
 def accessRequestChannel = NetChannel.numberedNet2One(1)
@@ -52,5 +52,5 @@ while (true) {
                 requestGLservice.write(clientRequest)
                 break
         }
-    } 
+    }
 }

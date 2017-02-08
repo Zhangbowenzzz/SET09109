@@ -1,23 +1,23 @@
 package c20
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.net.*
- 
-class AgentExtraElement implements CSProcess { 
-    
+
+class AgentExtraElement implements CSProcess {
+
   def ChannelInput fromRing
   def ChannelOutput toRing
-  
+
   def void run () {
     def One2OneChannel N2A = Channel.createOne2One()
-    def One2OneChannel A2N = Channel.createOne2One()  
+    def One2OneChannel A2N = Channel.createOne2One()
 
     def ChannelInput toAgentInEnd = N2A.in()
     def ChannelInput fromAgentInEnd = A2N.in()
     def ChannelOutput toAgentOutEnd = N2A.out()
     def ChannelOutput fromAgentOutEnd = A2N.out()
-    
+
     println "Extra Element starting ..."
     def NetChannelLocation originalToRing = toRing.getChannelLocation()
     def emptyPacket = new RingPacket ( source: -1, destination: -1 , value: -1 , full: false)
@@ -26,7 +26,7 @@ class AgentExtraElement implements CSProcess {
     while (true) {
       def ringBuffer = fromRing.read()
       if ( ringBuffer instanceof RingPacket) {
-        toRing.write( ringBuffer ) 
+        toRing.write( ringBuffer )
       }
       else {
         if (ringBuffer instanceof StopAgent) {
@@ -57,7 +57,7 @@ class AgentExtraElement implements CSProcess {
             theAgent.disconnect()
             toRing.write(theAgent)
             println "Node $element: stopping has passed agent on to next node"
-          }         
+          }
         }
         else {
           // must be instance of RestartAgent
@@ -74,7 +74,7 @@ class AgentExtraElement implements CSProcess {
             toRing.write(theAgent)
            }
           else {
-            if (element == targetNode) {                
+            if (element == targetNode) {
               toRing = NetChannelEnd.createAny2Net (originalToRing)
               println "Node $element: restarting has redirected toRing"
               agentManager.join()
@@ -88,8 +88,8 @@ class AgentExtraElement implements CSProcess {
               theAgent.disconnect()
               toRing.write(theAgent)
               println "Node $element: restarting has passed agent on to next node"
-            }         
-            
+            }
+
           }
         }
       }

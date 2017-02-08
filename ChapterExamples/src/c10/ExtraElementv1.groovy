@@ -8,10 +8,10 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class ExtraElementv1 implements CSProcess {
-    
+
   def ChannelInput fromRing
   def ChannelOutput toRing
-  
+
   void run () {
     while (true) {
       def packet = (RingPacket) fromRing.read()

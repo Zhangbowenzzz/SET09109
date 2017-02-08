@@ -11,7 +11,7 @@ class ExtraElement implements CSProcess {
 
   def ChannelInput fromRing
   def ChannelOutput toRing
-  
+
   void run () {
     def packet = new RingPacket (source:-1, destination:-1, value:-1, full: false )
     while (true) {
@@ -22,5 +22,5 @@ class ExtraElement implements CSProcess {
     }
   }
 }
- 
-      
+
+

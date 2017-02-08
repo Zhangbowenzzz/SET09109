@@ -1,4 +1,4 @@
-package c17.flagged 
+package c17.flagged
 
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
@@ -14,13 +14,13 @@ def d = Channel.one2one()
 def e = Channel.one2one()
 def f = Channel.one2one()
 
-def dataGen = new DataGenerator ( outChannel: a.out(), 
+def dataGen = new DataGenerator ( outChannel: a.out(),
                                   interval: 250)
 
-def sampler = new Sampler ( inChannel: a.in(), outChannel: b.out(), 
+def sampler = new Sampler ( inChannel: a.in(), outChannel: b.out(),
                              sampleRequest: e.in() )
 
-def samplingTimer = new SamplingTimer ( sampleRequest: e.out(), 
+def samplingTimer = new SamplingTimer ( sampleRequest: e.out(),
                                          sampleInterval: 2500 )
 
 def sampledNetwork = new SampledNetwork ( inChannel: b.in(),
@@ -36,8 +36,8 @@ def printResults = new GPrint ( inChannel: d.in(),
                                  heading: "output Values",
                                  delay: 0)
 
-def network = [dataGen, sampler, samplingTimer, sampledNetwork, 
-               gatherer, evaluator, printResults ]    
-                  
-new PAR(network).run()               
+def network = [dataGen, sampler, samplingTimer, sampledNetwork,
+               gatherer, evaluator, printResults ]
+
+new PAR(network).run()
 

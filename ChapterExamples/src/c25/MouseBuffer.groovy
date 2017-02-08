@@ -9,7 +9,7 @@ class MouseBuffer implements CSProcess {
     ChannelInput mouseEvent
     ChannelInput getPoint
     ChannelOutput sendPoint
-    
+
     void run(){
         def alt = new ALT([getPoint, mouseEvent])
         def preCon = new boolean[2]
@@ -17,7 +17,7 @@ class MouseBuffer implements CSProcess {
         preCon[GET] = false
         preCon[1] = true
         def point
-        
+
         while (true){
             switch ( alt.select(preCon)) {
                 case GET :

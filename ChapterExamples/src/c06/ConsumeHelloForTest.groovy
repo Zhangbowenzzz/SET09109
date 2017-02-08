@@ -7,15 +7,15 @@ package c06
 
 import org.jcsp.lang.*
 
-class ConsumeHelloForTest implements CSProcess {  
-    
+class ConsumeHelloForTest implements CSProcess {
+
   def ChannelInput inChannel
-  def message  
-  
+  def message
+
   void run() {
     def first = inChannel.read()
-    def second = inChannel.read()    
-    message = "${first} ${second}!!!"    
+    def second = inChannel.read()
+    message = "${first} ${second}!!!"
     println message
   }
 }

@@ -23,7 +23,7 @@ def toEmitterAddr = new TCPIPNodeAddress ( emitterIP, 3000)
 def toEmitter = NetChannel.any2net(toEmitterAddr, 50 )
 
 def toCollectorAddr = new TCPIPNodeAddress ( collectorIP, 3000)
-def toCollector = NetChannel.any2net(toCollectorAddr, 50,  
+def toCollector = NetChannel.any2net(toCollectorAddr, 50,
                                     new CodeLoadingChannelFilter.FilterTX())
 
 def base = new Worker ( toEmitter: toEmitter,

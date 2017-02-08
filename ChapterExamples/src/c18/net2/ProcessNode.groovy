@@ -8,20 +8,20 @@ import org.jcsp.lang.*
 
 
 class ProcessNode implements CSProcess{
-  
+
   def ChannelInput inChannel
   def ChannelOutput outChannel
-  def int nodeId   
+  def int nodeId
 
   void run() {
     def N2A = Channel.one2one()
-    def A2N = Channel.one2one()  
+    def A2N = Channel.one2one()
     def ChannelInput toAgentInEnd = N2A.in()
     def ChannelInput fromAgentInEnd = A2N.in()
     def ChannelOutput toAgentOutEnd = N2A.out()
     def ChannelOutput fromAgentOutEnd = A2N.out()
-    def int localValue = nodeId 
-    
+    def int localValue = nodeId
+
     while (true) {
       def theAgent = inChannel.read()
       theAgent.connect ( [fromAgentOutEnd, toAgentInEnd] )
@@ -34,7 +34,7 @@ class ProcessNode implements CSProcess{
       agentManager.join()
       theAgent.disconnect()
       outChannel.write(theAgent)
-      localValue = localValue + 10      
+      localValue = localValue + 10
     }
   }
 }

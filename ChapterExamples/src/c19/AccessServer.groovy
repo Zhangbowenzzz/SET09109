@@ -1,5 +1,5 @@
 package c19;
- 
+
 import org.jcsp.lang.*
 import org.jcsp.net.*
 import org.jcsp.net.tcpip.*
@@ -10,8 +10,8 @@ import phw.util.*
 class AccessServer implements CSProcess {
 
   def ChannelInput fromAccessSender
-  
-  void run() {  
+
+  void run() {
     def theServer = new MultiMobileProcessServer("A", fromAccessSender)
     //theServer.init("A", fromAccessSender)
     println " AccessServer: about to run"

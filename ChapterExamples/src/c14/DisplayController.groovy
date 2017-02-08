@@ -10,18 +10,18 @@ import java.awt.*
 class DisplayController implements CSProcess {
   def ChannelInput stateChange
   def ChannelInput activeTargets
-  
+
   def DisplayList displayList
   def ChannelOutput hitsToGallery
   def ChannelOutput possiblesToGallery
-  
+
   def Barrier setUpBarrier
   def Barrier goBarrier
-  def AltingBarrier finalBarrier  
-  
+  def AltingBarrier finalBarrier
+
   void run() {
-    
-    def GraphicsCommand [] targetGraphics = new GraphicsCommand [ 34 ]                                                                
+
+    def GraphicsCommand [] targetGraphics = new GraphicsCommand [ 34 ]
     targetGraphics[0] = new GraphicsCommand.SetColor (Color.BLACK)
     targetGraphics[1] = new GraphicsCommand.FillRect (0, 0, 450, 450)
     targetGraphics[2] = new GraphicsCommand.SetColor (Color.BLACK)
@@ -56,8 +56,8 @@ class DisplayController implements CSProcess {
     targetGraphics[31] = new GraphicsCommand.FillRect (230, 340, 100, 100)
     targetGraphics[32] = new GraphicsCommand.SetColor (Color.BLACK)
     targetGraphics[33] = new GraphicsCommand.FillRect (340, 340, 100, 100)
-    
-    def targetColour = [  
+
+    def targetColour = [
         [new GraphicsCommand.SetColor (Color.RED), 2],
         [new GraphicsCommand.SetColor (Color.GREEN), 4],
         [new GraphicsCommand.SetColor (Color.YELLOW), 6],
@@ -75,11 +75,11 @@ class DisplayController implements CSProcess {
         [new GraphicsCommand.SetColor (Color.MAGENTA), 30],
         [new GraphicsCommand.SetColor (Color.ORANGE), 32]
                        ]
-    
+
     def CHANGE = 1
-    def BARRIER = 0                      
+    def BARRIER = 0
     def TIMED_OUT = 0
-    def HIT = 1                       
+    def HIT = 1
     def controllerAlt = new ALT ( [ finalBarrier, stateChange ] )
 
     def whiteSquare = new GraphicsCommand.SetColor(Color.WHITE)
@@ -87,21 +87,21 @@ class DisplayController implements CSProcess {
     def graySquare = new GraphicsCommand.SetColor(Color.GRAY)
 
     def totalHits = 0
-    def possibleTargets = 0    
+    def possibleTargets = 0
     def timer = new CSTimer()
 
     displayList.set (targetGraphics)
     hitsToGallery.write (" " + totalHits)
     possiblesToGallery.write ( " " + possibleTargets )
     setUpBarrier.sync()
-    
+
     while (true) {
       def active = true
       def runningTargets = activeTargets.read()  // a list of running target Ids
       possibleTargets = possibleTargets + runningTargets.size
       possiblesToGallery.write ( " " + possibleTargets )
       for ( t in runningTargets)
-        displayList.change ( targetColour[t][0], targetColour[t][1])        
+        displayList.change ( targetColour[t][0], targetColour[t][1])
       goBarrier.sync()
       while (active) {
         switch (controllerAlt.priSelect()) {
@@ -124,9 +124,9 @@ class DisplayController implements CSProcess {
         } // end switch controllerAlt
       } // end of while active
       timer.sleep(1500)
-      for ( tId in runningTargets ) 
+      for ( tId in runningTargets )
           displayList.change ( blackSquare, targetColour[tId][1])
-      timer.sleep ( 500)       
+      timer.sleep ( 500)
     } // end while true
   }
 }

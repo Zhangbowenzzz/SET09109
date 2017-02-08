@@ -9,24 +9,24 @@ import phw.util.*;
 
 
 /*
- * Initially RunBase asks for the integer identity of the 
- * worker, (0 ..< workers).  The user then has to enter the IP 
- * addresses of the Emitter and Collector nodes.  The script then 
- * creates a port on this node numbered from 3002 indexed by the 
- * worker identity.  The net input channel fromEmitter is then 
- * created as a code loading channel and its location determined 
- * as fromEmitterLoc (line 21 and 22).  Now the any end of the net 
- * channel that connects the Base node to the Emitter and Collector 
- * nodes are created.  We know that the input end of the Base node 
- * to Emitter node is located at port 3000 on the Emitter node (line 25). 
- * We can then create an any2net net channel called toEmitter (line 26).  
- * This is created on virtual channel number 50.  A particular port 
- * on a node can have a large number of virtual channels created.  
- * Thus only one port on a node is required for a connection between 
- * any two nodes that may involve many channels.   
- * 
- * The same mechanism is used to create the net any2net channels 
- * from the Base node to the Collector node (lines 28 and 29).  
+ * Initially RunBase asks for the integer identity of the
+ * worker, (0 ..< workers).  The user then has to enter the IP
+ * addresses of the Emitter and Collector nodes.  The script then
+ * creates a port on this node numbered from 3002 indexed by the
+ * worker identity.  The net input channel fromEmitter is then
+ * created as a code loading channel and its location determined
+ * as fromEmitterLoc (line 21 and 22).  Now the any end of the net
+ * channel that connects the Base node to the Emitter and Collector
+ * nodes are created.  We know that the input end of the Base node
+ * to Emitter node is located at port 3000 on the Emitter node (line 25).
+ * We can then create an any2net net channel called toEmitter (line 26).
+ * This is created on virtual channel number 50.  A particular port
+ * on a node can have a large number of virtual channels created.
+ * Thus only one port on a node is required for a connection between
+ * any two nodes that may involve many channels.
+ *
+ * The same mechanism is used to create the net any2net channels
+ * from the Base node to the Collector node (lines 28 and 29).
  * The process BaseNet is then invoked.
  */
 

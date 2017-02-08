@@ -19,4 +19,4 @@ def processList = [
   new ClockedQueuingServery(service:getOne, deliver:gotOne, supply:cooked)
   ]
 
-new PAR ( processList ).run()     
+new PAR ( processList ).run()

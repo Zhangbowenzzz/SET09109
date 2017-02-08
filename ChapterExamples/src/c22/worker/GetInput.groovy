@@ -8,13 +8,13 @@ import c22.universalClasses.*
 
 
 class GetInput implements CSProcess {
-    
+
     def toEmitter
     def baseId
     def fromEmitter
     def toWorker
     def sharedData
-    
+
     void run(){
         def index = 0
         def running = true

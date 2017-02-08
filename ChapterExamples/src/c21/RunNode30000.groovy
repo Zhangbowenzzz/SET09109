@@ -1,6 +1,6 @@
 package c21
- 
-  
+
+
 import org.jcsp.lang.*
 import org.jcsp.net.*
 import org.jcsp.net.tcpip.*
@@ -17,7 +17,7 @@ def toGathererName = "NodesToGatherer"
 
 def pList = [ new Type3Process()]
 def vList = [ new Type3Process()]
-              
+
 def processList = new NodeProcess ( nodeId: 300000,
                                      toGathererName: toGathererName,
                                      toDataGenName: toDataGenName,

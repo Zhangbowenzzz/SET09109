@@ -7,16 +7,16 @@ class defs {
         words = line.tokenize(' ')
         return words
     }
-    
+
     def static endPunctuationList =[',','.',';',':','?','!', '\'', '"', '_', '}']
-    
+
     def static startPunctuationList = ['\'' ,'"', '_', '\t', '{']
 
     def static removePunctuation(w) {
         def ew = w
         def rw
         def len = w.size()
-        if ( len == 1 ) 
+        if ( len == 1 )
             rw = w
         else {
             def lastCh = w.substring(len-1, len)
@@ -35,7 +35,7 @@ class defs {
         }
         return rw
     }
-    
+
         def static charSum(w) {
         def sum = 0
         def wbuff = new StringBuffer(w)
@@ -45,16 +45,16 @@ class defs {
         }
         return sum
     }
-    
+
     def static sequencer (N, baseList, outList){
         def seqLength = baseList.size()
         for (gl in 0..seqLength-N) {
             def int partSum = 0
             for ( i in 0..< N) partSum = partSum + baseList[gl + i]
             outList << partSum
-        }       
+        }
     }
-    
+
     def static multiSequencer (N, n, baseList, outList, lastBlock){
         def seqLength = baseList.size()
         def limit = seqLength - N
@@ -64,9 +64,9 @@ class defs {
             if ( n == 1) partSum = baseList[gl]
             else for ( i in 0..< n) partSum = partSum + baseList[gl + i]
             outList << partSum
-        }       
+        }
     }
-    
+
     def static extractEqualValues (maxLength, startIndex, sequenceValues, equalityMap){
         def index = 0
         def indexList = []
@@ -77,14 +77,14 @@ class defs {
             index = index + 1
         }
     }
-    
+
     def static extractConcordance (equalMap, N, startIndex, words, minSeqLen, printWriter)     {
         def sequenceValues = equalMap.keySet()
         def wordKeyList = []
         def wordMap = [:]
         def indexList = []
         def wordMapEntry = []
-        def concordanceEntry = " "        
+        def concordanceEntry = " "
         for ( sv in sequenceValues){
             indexList = equalMap.get(sv)    // indexList values are offset by startIndex
             //println "Index List for $sv is $indexList"
@@ -104,8 +104,8 @@ class defs {
                                 printWriter.println "$concordanceEntry"
                             }
             }
-        }    
-    }    
+        }
+    }
 
     def static extractUniqueSequences (equalMap, N, startIndex, words, equalWordMap) {
         def sequenceValues = equalMap.keySet()
@@ -129,20 +129,20 @@ class defs {
             //println "WordMap for $sv is $wordMap"
         }
     }
-  
+
   def static int sizeof(Object obj) throws IOException {
-    
+
         ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteOutputStream);
-    
+
         objectOutputStream.writeObject(obj);
         objectOutputStream.flush();
         objectOutputStream.close();
-    
+
         return byteOutputStream.toByteArray().length;
     }
- 
-    
+
+
 }
 
 

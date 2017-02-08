@@ -8,34 +8,34 @@ import org.jcsp.net2.*
 import org.jcsp.net2.tcpip.*
 
 class ForwardBackRoot implements CSProcess{
-  
+
   def ChannelInput inChannel
   def ChannelOutput outChannel
   def int iterations
   def String initialValue
   def NetChannelInput backChannel
-  
+
   void run() {
     def N2A = Channel.one2one()
-    def A2N = Channel.one2one() 
-     
+    def A2N = Channel.one2one()
+
     def ChannelInput toAgentInEnd = N2A.in()
     def ChannelInput fromAgentInEnd = A2N.in()
     def ChannelOutput toAgentOutEnd = N2A.out()
     def ChannelOutput fromAgentOutEnd = A2N.out()
 
     def backChannelLocation = backChannel.getLocation()
-    
+
     def theAgent = new ForwardBackAgent( results: [initialValue],
                                          backChannel: backChannelLocation)
-    
+
     def rootAlt = new ALT ( [inChannel, backChannel])
-    
+
     outChannel.write(theAgent)
     def i = 1
     def rootValue = -1
     def running = true
-    
+
     while ( running) {
       def index = rootAlt.select()
       switch (index) {
@@ -49,7 +49,7 @@ class ForwardBackRoot implements CSProcess{
           forwardChannel.write (rootValue)
           rootValue = rootValue - 1
           def returnedResults = fromAgentInEnd.read()
-          println "Root: Iteration: $i is $returnedResults "    
+          println "Root: Iteration: $i is $returnedResults "
           returnedResults << "end of " + i
           toAgentOutEnd.write (returnedResults)
           def backValue = backChannel.read()
@@ -63,7 +63,7 @@ class ForwardBackRoot implements CSProcess{
             running = false
           }
           break
-          
+
         case 1:
           def forwardLocation = backChannel.read()
           def forwardChannel = NetChannel.one2net(forwardLocation)
@@ -73,6 +73,6 @@ class ForwardBackRoot implements CSProcess{
           println "Root: During Iteration $i: received $backValue"
           break
       } // end switch
-    } // end while 
+    } // end while
   } //  end run
 }

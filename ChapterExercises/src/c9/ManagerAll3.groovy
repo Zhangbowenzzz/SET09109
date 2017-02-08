@@ -5,7 +5,7 @@ import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
 
 class ManagerAll3 implements CSProcess {
-    
+
     def ChannelInputList inputs
     def ChannelOutputList outputs
     def int hoppers = 3
@@ -19,5 +19,5 @@ class ManagerAll3 implements CSProcess {
             // and read the termninating 2 from the hoppers
             // now send a response to the hoppers and the blender
         }
-    }    
+    }
 }

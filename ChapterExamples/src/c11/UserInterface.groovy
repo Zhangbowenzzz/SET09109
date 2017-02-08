@@ -1,5 +1,5 @@
 package c11
- 
+
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 import org.jcsp.groovy.*
@@ -8,13 +8,13 @@ import org.jcsp.awt.*
 import java.awt.*
 
 class UserInterface implements CSProcess {
-    
+
   def ActiveCanvas particleCanvas
   def int canvasSize
   def ChannelInput tempValueConfig
   def ChannelInput pauseButtonConfig
   def ChannelOutput buttonEvent
-  
+
   void run() {
     def root = new ActiveClosingFrame ("Brownian Motion Particle System")
     def mainFrame = root.getActiveFrame()
@@ -32,7 +32,7 @@ class UserInterface implements CSProcess {
     tempContainer.add ( tempValue )
     tempContainer.add ( downButton )
     mainFrame.setLayout( new BorderLayout() )
-    particleCanvas.setSize (canvasSize, canvasSize) 
+    particleCanvas.setSize (canvasSize, canvasSize)
     mainFrame.add (particleCanvas, BorderLayout.CENTER)
     mainFrame.add (tempContainer, BorderLayout.SOUTH)
     mainFrame.pack()
@@ -42,5 +42,4 @@ class UserInterface implements CSProcess {
   }
 }
 
-    
-    
+

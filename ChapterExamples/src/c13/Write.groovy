@@ -1,5 +1,5 @@
 package c13
- 
+
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 
@@ -8,12 +8,12 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Write implements CSProcess {
-  
+
   def ChannelOutput w2db
   def ChannelInput db2w
   def int id
   def ChannelOutput toConsole
-  
+
   void run () {
     def timer = new CSTimer()
     toConsole.write ( "Writer $id has started \n" )
@@ -29,5 +29,4 @@ class Write implements CSProcess {
     }
     toConsole.write ( "Writer $id has finished \n" )
   }
-}   
- 
+}

@@ -10,8 +10,8 @@ class Blender implements CSProcess {
     def ChannelOutput toConsole
     def ChannelOutput clearConsole
     def ChannelOutput toManager
-    def ChannelInput fromManager    
-    
+    def ChannelInput fromManager
+
     void run(){
         while (true) {
             toConsole.write("Input an r when Blender ready\n")
@@ -27,6 +27,6 @@ class Blender implements CSProcess {
             fromManager.read() // manager confirms to the blender finish and all hoppers have stopped emptying
             toConsole.write("Cycle complete\n")
         }
-        
-    }    
+
+    }
 }

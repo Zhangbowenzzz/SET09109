@@ -8,13 +8,13 @@ import org.jcsp.util.*
 import phw.util.*
 
 def delay = Ask.Int("Target visible period (2000 to 3500)?  ", 2000, 3500)
- 
+
 def targets = 16
 def targetOrigins = [ [10,  10],[120,  10],[230,  10],[340,  10],
                       [10, 120],[120, 120],[230, 120],[340, 120],
                       [10, 230],[120, 230],[230, 230],[340, 230],
                       [10, 340],[120, 340],[230, 340],[340, 340] ]
-                      
+
 def setUpBarrier = new Barrier(targets + 5)
 def initBarrier = new Barrier()
 def goBarrier= new Barrier(3)
@@ -48,9 +48,9 @@ def mousePoints = new ChannelOutputList ( mousePointToTP )
 def imageList = new DisplayList()
 def targetCanvas = new ActiveCanvas ()
 targetCanvas.setPaintable ( imageList )
- 
+
 def targetList = ( 0 ..< targets ).collect { i ->
-                  return new TargetProcess ( 
+                  return new TargetProcess (
                       targetRunning: targetIdToManager.out(),
                       stateToDC: targetStateToDC.out(),
                       mousePoint: mousePointToTP[i].in(),
@@ -59,14 +59,14 @@ def targetList = ( 0 ..< targets ).collect { i ->
                       goBarrier: goBarrier,
                       timeAndHitBarrier: timeAndHitBarrier[i],
                       buckets: buckets,
-                      targetId: i, 
+                      targetId: i,
                       x: targetOrigins[i][0],
                       y: targetOrigins[i][1],
                       delay: delay
                       )
                   }
 
-def barrierManager = new BarrierManager ( 
+def barrierManager = new BarrierManager (
                       timeAndHitBarrier: timeAndHitBarrier[targets],
                       finalBarrier: finalBarrier[0] ,
                       goBarrier: goBarrier,
@@ -83,14 +83,14 @@ def targetController = new TargetController (
                       timeAndHitBarrier: timeAndHitBarrier[targets + 1]
                       )
 
-def galleryProcess = new Gallery ( 
+def galleryProcess = new Gallery (
                       targetCanvas: targetCanvas,
                       hitsFromGallery: hitsToGallery.in(),
-                      possiblesFromGallery: possiblesToGallery.in(),    
-                      mouseEvent: mouseEvent.out() 
+                      possiblesFromGallery: possiblesToGallery.in(),
+                      mouseEvent: mouseEvent.out()
                       )
 
-def flusher = new TargetFlusher (  
+def flusher = new TargetFlusher (
                       buckets: buckets,
                       targetsFlushed: targetsFlushed.out(),
                       flushNextBucket: flushNextBucket.in(),
@@ -128,18 +128,18 @@ def displayControl = new DisplayController (
                       possiblesToGallery: possiblesToGallery.out(),
                       setUpBarrier: setUpBarrier,
                       goBarrier: goBarrier,
-                      finalBarrier: finalBarrier[1]     
+                      finalBarrier: finalBarrier[1]
                       )
 
-def procList = targetList + 
-               mouseBuffer +
-               mouseBufferPrompt +
-               targetManager + 
-               galleryProcess + 
-               displayControl +
-               flusher + 
-               targetController +
+def procList = targetList +
+               mouseBuffer
+               mouseBufferPrompt
+               targetManager +
+               galleryProcess +
+               displayControl
+               flusher +
+               targetController
                barrierManager
 
-new PAR ( procList ).run()  
+new PAR ( procList ).run()
 

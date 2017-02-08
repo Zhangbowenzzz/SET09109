@@ -7,12 +7,12 @@ import org.jcsp.net2.*
 import org.jcsp.net2.tcpip.*
 import phw.util.*
 
-class PrintSpooler implements CSProcess {  
-    
+class PrintSpooler implements CSProcess {
+
   def ChannelInput printerRequest
   def ChannelInput printerRelease
-  def int spoolers = 2  
-  
+  def int spoolers = 2
+
   void run() {
     def timer = new CSTimer()
     def spooling = 0
@@ -35,7 +35,7 @@ class PrintSpooler implements CSProcess {
     while (true) {
       preCon[1] = (spooling < spoolers)
       def index = psAlt.select(preCon)
-      switch (index) { 
+      switch (index) {
         case 0:
           //user releasing a print channel
           def usedKey = printerRelease.read()
@@ -70,13 +70,12 @@ class PrintSpooler implements CSProcess {
           def pLine = spoolChannels[ index - 2].read()
           printMap[pLine.printKey] << pLine.line
           timer.sleep(5000)
-      } //switch      
+      } //switch
     } //while
   } // run
 } // class
 
-      
-    
-    
-    
-    
+
+
+
+

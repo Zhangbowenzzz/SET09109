@@ -11,22 +11,22 @@ import c22.universalClasses.*
 
 
 class CopyOfEmitterNet implements CSProcess {
-    
+
     /*
-     * The changes required to EmitterNet result from the 
-     * fact that the InitObject now contains a net channel 
-     * location of the input end of the channel to which 
-     * the process will write data objects.  NetLocations 
-     * is a map that holds the net locations indexed by 
+     * The changes required to EmitterNet result from the
+     * fact that the InitObject now contains a net channel
+     * location of the input end of the channel to which
+     * the process will write data objects.  NetLocations
+     * is a map that holds the net locations indexed by
      * the identity of the Base node, see lines 22 and 29.
      */
-    
+
     def fromWorkers
     def toWorkers
     def loops = 10
     def workers = 2
     def elements = 5
-    
+
     void run(){
         def timer = new CSTimer()
         def data = []

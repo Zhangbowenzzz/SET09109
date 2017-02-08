@@ -7,11 +7,11 @@ import org.jcsp.groovy.*
 import org.jcsp.lang.*
 
 
-class DataGenerator implements CSProcess {  
-    
+class DataGenerator implements CSProcess {
+
   def ChannelOutput outChannel
   def interval = 500
-  
+
   void run() {
     println "Generator Started"
     def timer = new CSTimer()
@@ -21,6 +21,6 @@ class DataGenerator implements CSProcess {
       outChannel.write(v)
       i = i + 2
       timer.sleep(interval)
-    }    
+    }
   }
 }

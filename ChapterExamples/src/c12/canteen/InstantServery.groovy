@@ -9,14 +9,14 @@ import org.jcsp.groovy.plugAndPlay.*
 
 class InstantServery implements CSProcess{
 
-  def ChannelInput service    
-  def ChannelOutput deliver    
-  def ChannelInput supply   
-    
+  def ChannelInput service
+  def ChannelOutput deliver
+  def ChannelInput supply
+
   void run() {
-      
+
     def console = Channel.one2one()
-      
+
     def servery = new InstantCanteen ( service: service,
                                         deliver: deliver,
                                         supply: supply,

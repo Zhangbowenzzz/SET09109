@@ -8,13 +8,13 @@ import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
 
 class RingElementv2 implements CSProcess {
-  
+
   def ChannelInput fromRing
   def ChannelOutput toRing
   def ChannelInput fromLocal
   def ChannelOutput toLocal
   def int element
-  
+
   void run () {
     def RING = 0
     def LOCAL= 1
@@ -67,7 +67,7 @@ class RingElementv2 implements CSProcess {
             }
           }
           break
-        case LOCAL:  
+        case LOCAL:
           localBuffer = fromLocal.read()
           preCon[LOCAL] = false             // stop any more Sends until buffer is emptied
           localBufferFull = true
@@ -77,4 +77,3 @@ class RingElementv2 implements CSProcess {
     }
   }
 }
-      

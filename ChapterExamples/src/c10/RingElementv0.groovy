@@ -8,13 +8,13 @@ import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
 
 class RingElementv0 implements CSProcess {
-    
+
   def ChannelInput fromRing
   def ChannelOutput toRing
   def ChannelInput fromLocal
   def ChannelOutput toLocal
   def int element
-  
+
   void run () {
     def RING = 0
     def LOCAL= 1
@@ -31,7 +31,7 @@ class RingElementv0 implements CSProcess {
           }
           else {
             println "--REv0: Element ${element} writing packet from ring to ring"
-            toRing.write (packet) 
+            toRing.write (packet)
           }
           break
         case LOCAL:
@@ -44,5 +44,4 @@ class RingElementv0 implements CSProcess {
   }
 }
 
-    
-        
+

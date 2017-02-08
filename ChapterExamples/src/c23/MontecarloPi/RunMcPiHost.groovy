@@ -61,7 +61,7 @@ println "Sent worker objects to workers"
 // create in and out connection lists for Emitter and Collector
 def emitterInConnections = []
 def emitterOutConnections = []
-for ( w in 0..< workers) {    
+for ( w in 0..< workers) {
     emitterOutConnections << [nodes[w], 100]
 }
 def collectorInConnections = []
@@ -75,7 +75,7 @@ def collectorInChannelList = new ChannelInputList()
 def collectorOutChannelList = new ChannelOutputList()
 // read a signal form each node to indicate input channel have been created
 for ( w in 0 ..< workers ) {
-    hostRequest.read()    
+    hostRequest.read()
 }
 println "Read in channel creation complete signals from workers"
 // construct inChannels for Emitter and Collector
@@ -141,7 +141,7 @@ for ( w in 0 ..< workers){
     def load = workerRawTimes[2] - workerRawTimes[1]
     def initiate = workerRawTimes[3] - workerRawTimes[2]
     def elapsed = workerRawTimes[4] - workerRawTimes[3]
-    workerTimes << ["Wk: " + w, startup, load, initiate, elapsed]    
+    workerTimes << ["Wk: " + w, startup, load, initiate, elapsed]
 }
 println "Node\tstart\tload\tinit\telapsed"
 workerTimes.each { timings ->

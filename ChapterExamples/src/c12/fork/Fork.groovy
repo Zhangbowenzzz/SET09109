@@ -8,10 +8,10 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class Fork implements CSProcess {
-  
+
   def ChannelInput left
   def ChannelInput right
-  
+
   void run () {
     def fromPhilosopher = [left, right]
     def forkAlt = new ALT ( fromPhilosopher )
@@ -23,5 +23,4 @@ class Fork implements CSProcess {
   }
 }
 
-      
-    
+

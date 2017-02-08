@@ -1,5 +1,5 @@
 package c21.net2
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.net2.*
@@ -8,11 +8,11 @@ import org.jcsp.net2.*
 
 
 class Type2Process extends DynamicMobileProcess implements Serializable {
-    
+
   def toGatherer
   def ChannelInput inChannel
   def int nodeId
-  
+
   def connect (l) {
     inChannel = l[0]
     nodeId = l[1]
@@ -32,7 +32,7 @@ class Type2Process extends DynamicMobileProcess implements Serializable {
       //println "T2: $d sending modified data to Gatherer"
       toGathererChannel.write(d)
       //println "T2: $d have sent modified data to Gatherer"
-    }    
+    }
   }
 
 }

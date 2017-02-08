@@ -7,17 +7,17 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import c05.*
 
-class Comparator implements CSProcess {  
-    
+class Comparator implements CSProcess {
+
   def ChannelInput fromSystemOutput
   def ChannelInput fromSniffer
-  
+
   void run() {
     def SNIFF = 0
     def COMPARE = 1
     def comparatorAlt = new ALT ([fromSniffer, fromSystemOutput ])
     def running = true
-    
+
     while (running) {
       def index = comparatorAlt.priSelect()
       switch (index) {
@@ -41,7 +41,7 @@ class Comparator implements CSProcess {
         case COMPARE:
           fromSystemOutput.read()
           break
-      } // end switch      
+      } // end switch
     } // end while running
   } // end run
 }

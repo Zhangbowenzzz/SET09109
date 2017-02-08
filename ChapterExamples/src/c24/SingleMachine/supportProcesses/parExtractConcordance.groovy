@@ -14,10 +14,10 @@ class parExtractConcordance implements CSProcess{
     def words
     def minSeqLen
     def printWriter
-    
+
     void run(){
-        defs.extractConcordance ( equalMap, n, 
-                                  startIndex, words, 
+        defs.extractConcordance ( equalMap, n,
+                                  startIndex, words,
                                   minSeqLen, printWriter )
         printWriter.flush()
         printWriter.close()

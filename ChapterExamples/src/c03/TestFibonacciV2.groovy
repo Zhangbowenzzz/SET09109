@@ -10,8 +10,8 @@ import org.jcsp.groovy.examples.*
 def F2P = Channel.one2one()
 
 def testList = [ new FibonacciV2 ( outChannel: F2P.out() ),
-                 new GPrint ( inChannel: F2P.in(), 
+                 new GPrint ( inChannel: F2P.in(),
                               heading: "Fibonacci V2" )
                ]
 
-new PAR ( testList ).run()                          
+new PAR ( testList ).run()

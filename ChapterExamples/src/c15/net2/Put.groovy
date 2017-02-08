@@ -7,10 +7,10 @@ package c15.net2
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
-class Put implements CSProcess { 
-     
-  def ChannelOutput outChannel  
-  
+class Put implements CSProcess {
+
+  def ChannelOutput outChannel
+
   void run() {
     def i = 1
     while (true) {
@@ -20,5 +20,5 @@ class Put implements CSProcess {
   }
 }
 
-      
-  
+
+

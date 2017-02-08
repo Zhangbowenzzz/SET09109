@@ -8,12 +8,12 @@ import org.jcsp.lang.*
 
 
 class GenerateNumbers implements CSProcess{
-    
+
   def delay = 1000
   def iterations = 20
-  def ChannelOutput outChannel  
+  def ChannelOutput outChannel
   def generatedList = []
-  
+
   void run() {
     println "Numbers started"
     def timer = new CSTimer()

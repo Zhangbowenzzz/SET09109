@@ -17,9 +17,9 @@ def pRelease = NetChannel.net2one()        // cn = 51
 println "pRequest location = ${pRequest.getLocation()}"
 println "pRelease location = ${pRelease.getLocation()}"
 
-new PAR ( [ new PrintSpooler ( printerRequest: pRequest, 
-                               printerRelease: pRelease, 
-                               spoolers : spoolers  
+new PAR ( [ new PrintSpooler ( printerRequest: pRequest,
+                               printerRelease: pRelease,
+                               spoolers : spoolers
                              )
           ] ).run()
 

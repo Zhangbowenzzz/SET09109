@@ -8,13 +8,13 @@ import org.jcsp.net2.mobile.*;
 import c22.universalClasses.*
 
 class EmitterNet implements CSProcess {
-    
+
     def fromWorkers
     def toWorkers
     def loops = 10
     def workers = 2
     def elements = 5
-    
+
     void run(){
         def data = []
         def workerId = 0
@@ -23,12 +23,12 @@ class EmitterNet implements CSProcess {
         for ( i in 0 ..< loops) {
             data[i] = new TestObject (elements, i)
         }
-        println "Emitter: Data Generated, Loops: $loops, " +
+        println "Emitter: Data Generated, Loops: $loops, "
             "Elements per object: $elements for $workers Workers"
     // receive an InitObject from each worker
         for ( i in 1..workers) {
             def initLoc = (InitObject)fromWorkers.read()
-            netLocations.put (initLoc.id, NetChannel.one2net(initLoc.channelAddress, 50,  
+            netLocations.put (initLoc.id, NetChannel.one2net(initLoc.channelAddress, 50,
                         new CodeLoadingChannelFilter.FilterTX()))
         }
         println "Emitter: $workers Workers have registered"

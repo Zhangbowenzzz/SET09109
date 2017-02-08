@@ -7,12 +7,12 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 
-class Sniffer implements CSProcess{  
-    
+class Sniffer implements CSProcess{
+
   def ChannelInput fromSystemCopy
   def ChannelOutput toComparator
   def sampleInterval = 10000
-  
+
   void run() {
     def TIME = 0
     def INPUT = 1
@@ -20,7 +20,7 @@ class Sniffer implements CSProcess{
     def snifferAlt = new ALT([timer, fromSystemCopy])
     def timeout = timer.read() + sampleInterval
     timer.setAlarm(timeout)
-    
+
     while (true) {
       def index = snifferAlt.select()
       switch (index) {
@@ -33,6 +33,6 @@ class Sniffer implements CSProcess{
           fromSystemCopy.read()
           break
       }
-    } // end while    
+    } // end while
   }
 }

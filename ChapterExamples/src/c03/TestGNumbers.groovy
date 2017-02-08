@@ -14,4 +14,3 @@ def testList = [ new GNumbers ( outChannel: N2P.out() ),
                               heading : "Numbers" )
                ]
 new PAR ( testList ).run()
-                                               

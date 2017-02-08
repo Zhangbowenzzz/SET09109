@@ -8,7 +8,7 @@ import org.jcsp.awt.*
 import java.awt.*
 
 class ParticleManager implements CSProcess {
-    
+
   def ChannelInput fromParticles
   def ChannelOutput toParticles
   def DisplayList toUI
@@ -18,49 +18,49 @@ class ParticleManager implements CSProcess {
   def int START_TEMP
   def ChannelInput fromUIButtons
   def ChannelOutput toUILabel
-  def ChannelOutput toUIPause  
-  
+  def ChannelOutput toUIPause
+
   void run() {
-    def colourList = [ Color.BLUE, Color.GREEN, 
-                       Color.RED, Color.MAGENTA, 
+    def colourList = [ Color.BLUE, Color.GREEN,
+                       Color.RED, Color.MAGENTA,
                        Color.CYAN, Color.YELLOW]
-    
-    def temperature = START_TEMP                      
+
+    def temperature = START_TEMP
 
     GraphicsCommand [] particleGraphics = new GraphicsCommand [ 1 + (PARTICLES * 2) ]
-    
+
     particleGraphics[0] = new GraphicsCommand.ClearRect ( 0, 0, CANVASSIZE, CANVASSIZE )
 
     GraphicsCommand [] initialGraphic = new GraphicsCommand [ 2 ]
 
     initialGraphic[0] = new GraphicsCommand.SetColor (Color.BLACK)
     initialGraphic[1] = new GraphicsCommand.FillOval (CENTRE, CENTRE, 10, 10)
-    
+
     for ( i in 0 ..< PARTICLES ) {
       def p = (i * 2) + 1
       for ( j in 0 ..< 2) {
         particleGraphics [p+j] = initialGraphic[j]
       }
     }
-    
-    toUI.set (particleGraphics)  
+
+    toUI.set (particleGraphics)
     GraphicsCommand [] positionGraphic =  new GraphicsCommand [ 2 ]
-    positionGraphic = 
+    positionGraphic =
       [ new GraphicsCommand.SetColor (Color.WHITE),
         new GraphicsCommand.FillOval (CENTRE, CENTRE, 10, 10)
       ]
-      
+
     def pmAlt = new ALT ( [fromUIButtons, fromParticles] )
-    
+
     def initTemp = " " + temperature + " "
-    toUILabel.write ( initTemp ) 
-    
+    toUILabel.write ( initTemp )
+
     def direction = fromUIButtons.read()
     while ( direction != "START" ) {
       direction = fromUIButtons.read()
     }
     toUIPause.write("PAUSE")
-                   
+
     while (true) {
       def index = pmAlt.priSelect()
       if ( index == 0 ) {        // dealing with a button event
@@ -79,7 +79,7 @@ class ParticleManager implements CSProcess {
               def s = "+" + temperature + "+"
               toUILabel.write ( s )
           }
-          else { 
+          else {
             if ( (direction == "Down" ) && ( temperature > 10 ) ) {
               temperature = temperature - 5
               def s = "-" + temperature + "-"
@@ -111,4 +111,3 @@ class ParticleManager implements CSProcess {
     } // while
   } // run
 }
-                   

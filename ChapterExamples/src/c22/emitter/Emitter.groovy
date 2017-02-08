@@ -8,13 +8,13 @@ import c22.universalClasses.*
 
 
 class Emitter implements CSProcess {
-        
+
     def fromWorkers
     def toWorkers
     def loops = 10
     def workers = 2
     def elements = 5
-    
+
     void run(){
         def data = []
         def workerId = 0

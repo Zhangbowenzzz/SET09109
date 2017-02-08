@@ -4,11 +4,11 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class TestWorker implements CSProcess {
-    
+
     def ChannelInput inChannel
     def ChannelOutput outChannel
     def cores = 1
-    
+
     void run(){
         println "running testWorker"
         def M2C = Channel.one2oneArray(cores)
@@ -16,7 +16,7 @@ class TestWorker implements CSProcess {
         def toCores = new ChannelOutputList(M2C)
         def fromCores = new ChannelInputList(C2M)
         def coreNetwork = (0 ..< cores).collect{ c ->
-            return new McPiCore( inChannel: M2C[c].in(), 
+            return new McPiCore( inChannel: M2C[c].in(),
                                  outChannel: C2M[c].out() ) }
         def manager = new McPiManager ( inChannel: inChannel,
                                         outChannel: outChannel,

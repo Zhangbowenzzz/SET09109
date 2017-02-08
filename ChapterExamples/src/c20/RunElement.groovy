@@ -1,5 +1,5 @@
 package c20
- 
+
 import org.jcsp.lang.*
 import org.jcsp.net.*
 import org.jcsp.net.tcpip.*
@@ -21,11 +21,11 @@ println " Node $nodeId: connection from $fromRingName to $toRingName "
 
 def fromRing = CNS.createNet2One(fromRingName)
 def toRing = CNS.createAny2Net(toRingName)
- 
+
 def processNode = new AgentElement ( fromRing: fromRing,
                                      toRing: toRing,
                                      element: nodeId,
                                      iterations: sentMessages,
-                                     nodes: nodes) 
+                                     nodes: nodes)
 
 new PAR ([ processNode]).run()

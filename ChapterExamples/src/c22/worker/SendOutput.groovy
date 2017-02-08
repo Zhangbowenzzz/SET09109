@@ -8,11 +8,11 @@ import c22.universalClasses.*
 
 
 class SendOutput implements CSProcess {
-    
+
     def workerFinished
     def toCollector
     def sharedData
-    
+
     void run(){
         def index = -1
         def running = true

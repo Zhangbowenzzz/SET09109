@@ -7,11 +7,11 @@ package c15.net2
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
-class Get implements CSProcess { 
-     
+class Get implements CSProcess {
+
   def ChannelInput inChannel
-  def int id = 0  
-  
+  def int id = 0
+
   void run() {
     def timer = new CSTimer()
     while (true) {

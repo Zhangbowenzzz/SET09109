@@ -1,4 +1,4 @@
-package c17.counted  
+package c17.counted
 
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
@@ -7,18 +7,18 @@ import org.jcsp.groovy.*
 import org.jcsp.lang.*
 
 
-class CountingGatherer implements CSProcess {  
-    
+class CountingGatherer implements CSProcess {
+
   def ChannelInput inChannel
   def ChannelOutput outChannel
   def ChannelOutput gatheredData
   def ChannelInput countInput
-  
+
   void run(){
     def counter = 0
     def required = 0
     def gatherAlt = new ALT([countInput, inChannel])
-    
+
     while (true){
       def index = gatherAlt.priSelect()
       if (index == 0) {
@@ -32,8 +32,8 @@ class CountingGatherer implements CSProcess {
           println "Gathered value was ${v}"
           def cv = new CountedData ( counter: counter, value: v)
           gatheredData.write(cv)
-        } // end if       
+        } // end if
       } // end else
-    } // end while    
+    } // end while
   } // end run
 }

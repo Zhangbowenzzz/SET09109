@@ -8,16 +8,16 @@ import c22.universalClasses.*
 
 
 class Collector implements CSProcess {
-        
+
     def fromWorkers
     def workers = 2
-    
+
     void run(){
         def timer = new CSTimer()
         def terminated = 0
         def stopped = false
-        def now = 0 
-        def start 
+        def now = 0
+        def start
         def first = true
         def results = []
         while (!stopped) {
@@ -33,7 +33,7 @@ class Collector implements CSProcess {
             else {
                 now = timer.read()
                 results << o.display(now)
-            }            
+            }
         }
         def end = timer.read()
         def l = 1

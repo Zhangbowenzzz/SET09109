@@ -13,10 +13,10 @@ class parExtractUniqueSequences implements CSProcess{
     def startIndex
     def words
     def equalWordMap
-    
+
     void run(){
-        defs.extractUniqueSequences ( equalMap, n, 
-                                      startIndex, words, 
+        defs.extractUniqueSequences ( equalMap, n,
+                                      startIndex, words,
                                       equalWordMap )
     }
 

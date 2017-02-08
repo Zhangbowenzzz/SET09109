@@ -8,13 +8,13 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class BadC implements CSProcess {
-    
+
   def ChannelInput inChannel
-  def ChannelOutput outChannel 
-   
+  def ChannelOutput outChannel
+
   void run() {
     println "BadC: Starting"
-    
+
     while (true) {
       println "BadC: outputting"
       outChannel.write(1)
@@ -25,4 +25,3 @@ class BadC implements CSProcess {
   }
 }
 
-      

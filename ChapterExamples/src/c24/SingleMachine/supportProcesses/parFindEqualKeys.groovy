@@ -12,8 +12,8 @@ class parFindEqualKeys implements CSProcess {
     def startIndex
     def inList
     def outMap
-    
-    void run(){    
+
+    void run(){
         defs.extractEqualValues(words, startIndex, inList, outMap)
     }
 

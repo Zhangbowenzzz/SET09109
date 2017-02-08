@@ -58,7 +58,7 @@ def mergerLoadChannels = new ChannelOutputList()
 def workerNodes = []
 for ( w in 1 .. nodes ) {
     def workerRequest = (RequestWorker)hostRequest.read()
-    def nodeLoadChannel = NetChannel.one2net( workerRequest.loadLocation, 
+    def nodeLoadChannel = NetChannel.one2net( workerRequest.loadLocation,
                                               new CodeLoadingChannelFilter.FilterTX())
     nodeLoadChannels.append(nodeLoadChannel)
     workerNodes << workerRequest.nodeIP

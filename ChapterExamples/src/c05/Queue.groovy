@@ -7,26 +7,26 @@ package c05
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
-class Queue implements CSProcess {  
-    
+class Queue implements CSProcess {
+
   def ChannelInput  put
   def ChannelInput  get
   def ChannelOutput receive
-  def int elements = 5   
-  
+  def int elements = 5
+
   void run() {
     def qAlt = new ALT ( [ put, get ] )
     def preCon = new boolean[2]
     def PUT = 0
     def GET = 1
-    preCon[PUT] = true    
-    preCon[GET] = false  
+    preCon[PUT] = true
+    preCon[GET] = false
     def data = []
-    def counter = 0       
-    def front = 0       
-    def rear = 0     
+    def counter = 0
+    def front = 0
+    def rear = 0
     def running = true
-    
+
     while (running) {
       def index = qAlt.priSelect(preCon)
       switch (index) {
@@ -36,9 +36,9 @@ class Queue implements CSProcess {
           counter = counter + 1
           break
         case GET:
-          get.read()      
+          get.read()
           receive.write( data[rear])
-          if (data[rear] == null) running = false          
+          if (data[rear] == null) running = false
           rear = (rear + 1) % elements
           counter = counter - 1
           break
@@ -50,4 +50,3 @@ class Queue implements CSProcess {
   }
 }
 
-          

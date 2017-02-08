@@ -22,7 +22,7 @@ def toRing = NetChannel.one2net(nextNodeAddress, 50)
 toRing.write(0)
 fromRing.read()
 
-def rootNode = new Root ( inChannel: fromRing, 
+def rootNode = new Root ( inChannel: fromRing,
                            outChannel: toRing,
                            iterations: iterations,
                            initialValue: initialValue )

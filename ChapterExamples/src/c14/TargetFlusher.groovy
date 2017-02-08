@@ -1,5 +1,5 @@
 package c14
- 
+
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 
@@ -8,7 +8,7 @@ import org.jcsp.lang.*
 import org.jcsp.groovy.*
 
 class TargetFlusher implements CSProcess {
-    
+
   def buckets
   def ChannelOutput targetsFlushed
   def ChannelInput flushNextBucket
@@ -23,7 +23,7 @@ class TargetFlusher implements CSProcess {
       targetsInBucket = buckets[currentBucket].holding()
       while ( targetsInBucket == 0) {
         currentBucket = (currentBucket + 1) % nBuckets
-        targetsInBucket = buckets[currentBucket].holding()        
+        targetsInBucket = buckets[currentBucket].holding()
       } // end of while targetsInBucket
       initBarrier.reset( targetsInBucket)
       targetsFlushed.write(targetsInBucket)

@@ -12,5 +12,4 @@ def connect = Channel.one2one()
 def processList = [ new ProduceHN ( outChannel: connect.out() ),
                     new ConsumeHello ( inChannel: connect.in() )
                   ]
-new PAR (processList).run()   
-                
+new PAR (processList).run()

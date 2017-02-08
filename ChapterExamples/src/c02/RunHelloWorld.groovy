@@ -9,9 +9,8 @@ import org.jcsp.groovy.*
 
 def connect = Channel.one2one()
 
-def processList = [ 
+def processList = [
                     new ProduceHW ( outChannel: connect.out() ),
                     new ConsumeHello ( inChannel: connect.in() )
                   ]
-new PAR (processList).run()  
-                 
+new PAR (processList).run()

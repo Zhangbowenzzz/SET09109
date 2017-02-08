@@ -9,7 +9,7 @@ class ScalingDevice implements CSProcess {
 
   def ChannelInput inChannel
   def ChannelOutput outChannel
-  
+
   void run() {
     def oldScale = Channel.createOne2One()
     def newScale = Channel.createOne2One()
@@ -29,10 +29,10 @@ class ScalingDevice implements CSProcess {
                                      factor: oldScale.in(),
                                      suspend: pause.out(),
                                      injector: newScale.out() )
-    
+
     def testList = [ scaler, control]
-    
-    new PAR(testList).run()                 
+
+    new PAR(testList).run()
   }
 
 }

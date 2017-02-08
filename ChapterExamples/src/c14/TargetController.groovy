@@ -8,22 +8,22 @@ import org.jcsp.awt.*
 import org.jcsp.groovy.*
 
 class TargetController implements CSProcess {
-    
+
   def ChannelOutput getActiveTargets
-  def ChannelInput activatedTargets  
-  def ChannelInput receivePoint  
+  def ChannelInput activatedTargets
+  def ChannelInput receivePoint
   def ChannelOutputList sendPoint
-  
+
   def Barrier setUpBarrier
   def Barrier goBarrier
-  def AltingBarrier timeAndHitBarrier  
+  def AltingBarrier timeAndHitBarrier
   def int targets = 16
 
    void run() {
      def POINT = 1
      def BARRIER = 0
      def controllerAlt = new ALT ( [ timeAndHitBarrier, receivePoint] )
-    
+
      setUpBarrier.sync()
      while (true) {
        getActiveTargets.write(1)
@@ -32,7 +32,7 @@ class TargetController implements CSProcess {
        def ChannelOutputList sendList = []
        for ( t in activeTargets) sendList.append(sendPoint[t])
        def active = true
-       goBarrier.sync()  
+       goBarrier.sync()
        while (active) {
          switch ( controllerAlt.priSelect() ) {
            case BARRIER:

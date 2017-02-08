@@ -7,16 +7,16 @@ package c06
 
 import org.jcsp.lang.*
 
-class QProducerForTest implements CSProcess {  
-    
+class QProducerForTest implements CSProcess {
+
   def ChannelOutput put
   def int iterations = 100
-  def delay = 0  
-  def sequence = [] 
-   
+  def delay = 0
+  def sequence = []
+
   void run () {
     def timer = new CSTimer()
-    
+
     for ( i in 1 .. iterations ) {
       put.write(i)
       timer.sleep (delay)

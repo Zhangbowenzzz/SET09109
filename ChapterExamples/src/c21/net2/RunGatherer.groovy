@@ -1,6 +1,6 @@
 package c21.net2
- 
-   
+
+
 import org.jcsp.lang.*
 import org.jcsp.net2.*
 import org.jcsp.net2.tcpip.*

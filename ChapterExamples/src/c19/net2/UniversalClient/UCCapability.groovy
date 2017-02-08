@@ -8,10 +8,10 @@ import c19.net2.netObjects.*
 
 
 class UCCapability implements CSProcess {
-    
+
     def ChannelInput receiveNodeIdentity
     def networkBaseIP = "127.0.0."
-    
+
     void run(){
         def clientINodeId = receiveNodeIdentity.read()
         def clientIpAddress = networkBaseIP + clientINodeId

@@ -26,7 +26,7 @@ for (source in ["ACM", "TMM", "WAD", "bible", "2bibles", "4bibles"]){
     if (outFile.exists()) outFile.delete()
     def printWriter = outFile.newPrintWriter()
     for (run in 1..runs){
-        println "Processing: $fileName, N: $N, minSequenceLength: $minSeqLen"        
+        println "Processing: $fileName, N: $N, minSequenceLength: $minSeqLen"
         def startTime = timer.read()
         def wordBuffer = new ArrayList(10000)
         def NSequenceLists = []
@@ -54,17 +54,17 @@ for (source in ["ACM", "TMM", "WAD", "bible", "2bibles", "4bibles"]){
         def endFindEqualKeys = timer.read()
         for ( n in 1..N){
             defs.extractConcordance (equalKeyMapList[n], n, 0, wordBuffer, minSeqLen, printWriter )
-        }        
+        }
         def endConcordance = timer.read()
         def readTime = endRead - startTime
         def genTime = endGenSeq - endRead
         def equalKeysTime = endFindEqualKeys - endGenSeq
         def concordanceTime = endConcordance - endFindEqualKeys
         def totalTime = endConcordance - startTime
-        
+
         timesWriter.print "$run\t$source\t$N\t$minSeqLen\t\t"
         timesWriter.println "$readTime\t$genTime\t\t$equalKeysTime\t\t$concordanceTime\t\t$totalTime\t$wordCount"
-        
+
         print "Seq\tSource\tN\tminSeqLen\t"
         println "Read\tGenerate\tEqualKeys\tConcordance\tTotal\tWords"
         print "$run\t$source\t$N\t$minSeqLen\t\t"

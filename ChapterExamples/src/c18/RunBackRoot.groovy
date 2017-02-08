@@ -1,5 +1,5 @@
 package c18
- 
+
 import org.jcsp.lang.*
 import org.jcsp.net.*
 import org.jcsp.net.tcpip.*
@@ -21,7 +21,7 @@ def toRing = CNS.createOne2Net(toRingName)
 
 println " BackRoot: connection from $fromRingName to $toRingName "
 
-def rootNode = new BackRoot ( inChannel: fromRing, 
+def rootNode = new BackRoot ( inChannel: fromRing,
                                outChannel: toRing,
                                iterations: iterations,
                                initialValue: initialValue,

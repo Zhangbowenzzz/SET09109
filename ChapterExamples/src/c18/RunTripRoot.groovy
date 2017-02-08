@@ -1,4 +1,4 @@
-package c18 
+package c18
 
 import org.jcsp.lang.*
 import org.jcsp.net.*
@@ -16,7 +16,7 @@ def fromNodes = CNS.createNet2One("toRoot")
 
 println " Root: input channel created "
 
-def rootNode = new TripRoot ( fromNodes: fromNodes, 
+def rootNode = new TripRoot ( fromNodes: fromNodes,
                                nodes: nodes,
                                initialValue: initialValue )
 

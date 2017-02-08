@@ -8,9 +8,9 @@ import org.jcsp.lang.*
 
 
 class UCInterface implements CSProcess {
-    
+
     def ChannelOutput sendNodeIdentity
-    
+
     void run (){
         def root = new ActiveClosingFrame ("Universal Client")
         def main = root.getActiveFrame()

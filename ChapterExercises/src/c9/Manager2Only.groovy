@@ -5,7 +5,7 @@ import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
 
 class Manager2Only implements CSProcess {
-    
+
     def ChannelInputList inputs
     def ChannelOutputList outputs
     def ChannelInput fromBlender
@@ -22,5 +22,5 @@ class Manager2Only implements CSProcess {
             // and the termninating 2 from the hoppers
             // now send a response to the hoppers and the blender
         }
-    }    
+    }
 }

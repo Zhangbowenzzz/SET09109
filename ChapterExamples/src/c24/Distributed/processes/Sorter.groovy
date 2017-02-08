@@ -8,24 +8,24 @@ import c24.Distributed.dataRecords.*
 
 
 class Sorter implements CSProcess {
-  
+
   def Nvalue = 0
   def ChannelInput startChannel
   def ChannelOutput toMerger
   def sbl   // the reference to the sequenceBlockList
   def source
   def run
-  def node 
+  def node
   def timeWriter
 
-  void run(){ 
-    
+  void run(){
+
     def union = {s1, s2 ->
       s2.each{v ->
         if ( !(s1.contains(v))) s1 << v
       }
     } // end union
-    
+
     def timer = new CSTimer()
     def sbKeys = []
       startChannel.read()
@@ -41,14 +41,14 @@ class Sorter implements CSProcess {
     def sortedTime = timer.read()
     sortedKeys.each { keySV ->
       def compositeWordSSMap = [:]
-      sbl.each { sb -> 
+      sbl.each { sb ->
         def wmEntry = sb.equalWordMapList[Nvalue].get(keySV, [] )
-        wmEntry.each { 
+        wmEntry.each {
           def wordKey = it.key
           def subScripts = it.value
           def existingSS = compositeWordSSMap.get(wordKey, [])
           existingSS << subScripts
-          compositeWordSSMap.put(wordKey, existingSS)          
+          compositeWordSSMap.put(wordKey, existingSS)
         } // end of each wmEntry
       }// end of each sbl
       def partConcordance = new PartConcordance( seqVal: keySV,
@@ -57,10 +57,10 @@ class Sorter implements CSProcess {
     } // end of each sbKeys
     def endTime = timer.read()
     toMerger.write(new Sentinel())
-    println "SORTER, $source, $run, $node, $Nvalue, ${sortedTime - startTime}, " +
+    println "SORTER, $source, $run, $node, $Nvalue, ${sortedTime - startTime}, "
             "${endTime - sortedTime}, ${endTime - startTime}"
-    timeWriter.println "SORTER, $source, $run, $node, $Nvalue, " +
-                       "${sortedTime - startTime}, ${endTime - sortedTime}, " +
+    timeWriter.println "SORTER, $source, $run, $node, $Nvalue, "
+                       "${sortedTime - startTime}, ${endTime - sortedTime}, "
                        "${endTime - startTime}"
   } // end of run()
 }

@@ -8,13 +8,13 @@ import c22.universalClasses.*
 
 
 class Worker implements CSProcess {
-    
+
     def toEmitter
     def fromEmitterLoc
     def fromEmitter
     def toCollector
     def baseId
-    
+
     void run(){
         toEmitter.write(new InitObject(id: baseId, channelAddress: fromEmitterLoc))
         def startWork = Channel.one2one()
@@ -27,11 +27,11 @@ class Worker implements CSProcess {
                                     fromEmitter: fromEmitter,
                                     toWorker: startWork.out(),
                                     sharedData: sharedData )
-        def worker = new DoWork ( workOn: startWork.in(), 
+        def worker = new DoWork ( workOn: startWork.in(),
                                   workCompleted: workFinished.out(),
-                                  workerId: baseId, 
+                                  workerId: baseId,
                                   sharedData: sharedData )
-        def putter = new SendOutput ( workerFinished: workFinished.in(), 
+        def putter = new SendOutput ( workerFinished: workFinished.in(),
                                       toCollector: toCollector,
                                       sharedData: sharedData)
         new PAR([getter, worker, putter]).run()

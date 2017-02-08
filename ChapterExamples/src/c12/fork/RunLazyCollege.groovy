@@ -19,17 +19,17 @@ def exitsList = new ChannelInputList(exits)
 
 def butler = new LazyButler ( enters: entersList, exits: exitsList )
 
-def philosophers = ( 0 ..< PHILOSOPHERS).collect { i ->  
-         return new Philosopher ( leftFork: lefts[i].out(), 
-                                   rightFork: rights[i].out(), 
-                                   enter: enters[i].out(), 
+def philosophers = ( 0 ..< PHILOSOPHERS).collect { i ->
+         return new Philosopher ( leftFork: lefts[i].out(),
+                                   rightFork: rights[i].out(),
+                                   enter: enters[i].out(),
                                    exit: exits[i].out(), id:i ) }
 
-def forks = ( 0 ..< PHILOSOPHERS).collect { i ->  
-               return new Fork ( left: lefts[i].in(), 
+def forks = ( 0 ..< PHILOSOPHERS).collect { i ->
+               return new Fork ( left: lefts[i].in(),
                                   right: rights[(i+1)%PHILOSOPHERS].in() ) }
 
 def processList = philosophers + forks + butler
 
-new PAR ( processList ).run()                               
-                               
+new PAR ( processList ).run()
+

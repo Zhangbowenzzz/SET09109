@@ -1,5 +1,5 @@
 package c16
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.net.*

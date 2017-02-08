@@ -1,5 +1,5 @@
 package c16
-  
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.net.*
@@ -16,9 +16,9 @@ Node.getInstance().init(new TCPIPNodeFactory ())
 def pRequest = CNS.createNet2One ("REQUEST")
 def pRelease = CNS.createNet2One ("RELEASE")
 
-new PAR ( [ new PrintSpooler ( printerRequest: pRequest, 
-                               printerRelease: pRelease, 
-                               spoolers : spoolers  
+new PAR ( [ new PrintSpooler ( printerRequest: pRequest,
+                               printerRelease: pRelease,
+                               spoolers : spoolers
                              )
           ] ).run()
 

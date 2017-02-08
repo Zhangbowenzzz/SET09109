@@ -1,5 +1,5 @@
 package c20
-  
+
 import org.jcsp.lang.*
 import org.jcsp.net.*
 import org.jcsp.net.tcpip.*
@@ -25,6 +25,6 @@ def processNode = new AgentElement ( fromRing: fromRing,
                                      toRing: toRing,
                                      element: nodeId,
                                      iterations: sentMessages,
-                                     nodes: nodes) 
+                                     nodes: nodes)
 
 new PAR ([ processNode]).run()

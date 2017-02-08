@@ -1,14 +1,14 @@
 package c14
-  
+
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 
 import org.jcsp.lang.*
 import java.awt.Point
 import org.jcsp.groovy.*
- 
+
 class TargetProcess implements CSProcess {
-    
+
   def ChannelOutput targetRunning
   def ChannelOutput stateToDC
   def ChannelInput mousePoint
@@ -21,7 +21,7 @@ class TargetProcess implements CSProcess {
   def int x
   def int y
   def delay = 2000
-  
+
   def boolean within ( Point p, int x, int y) {
     def maxX = x + 100
     def maxY = y + 100
@@ -31,7 +31,7 @@ class TargetProcess implements CSProcess {
     if ( p.y > maxY ) return false
     return true
   }
-  
+
   void run() {
     def rng = new Random()
     def timer = new CSTimer()
@@ -39,13 +39,13 @@ class TargetProcess implements CSProcess {
     def bucketId = rng.nextInt( range )
     def POINT= 1
     def TIMER = 0
-    def BARRIER = 0    
+    def BARRIER = 0
     def TIMED_OUT = 0
     def HIT = 1
 
     def preTimeOutAlt = new ALT ([ timer, mousePoint ])
     def postTimeOutAlt = new ALT ([ timeAndHitBarrier, mousePoint ])
-    
+
     timeAndHitBarrier.resign()
     setUpBarrier.sync()
     buckets[bucketId].fallInto()
@@ -72,7 +72,7 @@ class TargetProcess implements CSProcess {
               resultList << HIT
               stateToDC.write(resultList)
             }
-            else {              
+            else {
             }
             break
         }
@@ -94,9 +94,9 @@ class TargetProcess implements CSProcess {
     }// end while true
   }
 }
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+

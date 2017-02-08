@@ -11,10 +11,10 @@ import phw.util.*;
 
 
 /*
- * RunEmitter creates port 3000 on its node.  The node's 
- * IP address is then printed as this will be needed by 
- * the RunBase instances created last.  The next few 
- * interactions specify the parameters of this execution 
+ * RunEmitter creates port 3000 on its node.  The node's
+ * IP address is then printed as this will be needed by
+ * the RunBase instances created last.  The next few
+ * interactions specify the parameters of this execution
  * of the system.  The process EmitterNet is then invoked.
  */
 
@@ -39,7 +39,7 @@ def emit = new EmitterNet ( fromWorkers: fromWorkers,
                             elements: elements )
 new PAR([emit]).run()
 
-    
+
 
 
 

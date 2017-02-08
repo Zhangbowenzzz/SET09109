@@ -20,10 +20,10 @@ def rootNodeAddress = new TCPIPNodeAddress(rootNodeIP, 3000)
 def toRoot = NetChannel.any2net(rootNodeAddress, 50)
 
 def processNode = new TripNode ( toRoot: toRoot,
-                                  nodeId: nodeId) 
+                                  nodeId: nodeId)
 
 new PAR ([processNode]).run()
 
 
 
-  
+

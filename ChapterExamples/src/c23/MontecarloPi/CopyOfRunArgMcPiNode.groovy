@@ -19,23 +19,23 @@ def loadChannelLocation = loadChannel.getLocation()
 def hostIP = args[0]
 def hostAddr = new TCPIPNodeAddress(hostIP, 1000)
 def hostRequest = NetChannel.any2net(hostAddr, 1)
-def requestWorker = new RequestWorker (loadLocation: loadChannelLocation, 
+def requestWorker = new RequestWorker (loadLocation: loadChannelLocation,
                                        nodeIP: workerIP)
 hostRequest.write(requestWorker)
 def requestSentTime = timer.read()
- 
+
 def workerObject = (WorkerObject)loadChannel.read()
 def workerReadTime = timer.read()
- 
+
 def wProcess = (WorkerInterface) workerObject.workerProcess
 def inConnections =  workerObject.inConnections
 def outConnections =  workerObject.outConnections
- 
+
 def inChannels = new ChannelInputList()
 inConnections.each{ cn ->
     inChannels.append(NetChannel.numberedNet2One(cn))
 }
- 
+
 hostRequest.write(new Signal())
 loadChannel.read()
 
@@ -51,5 +51,5 @@ wPM.start()
 wPM.join()
 def workerEndTime = timer.read()
 println "worker has terminated"
-hostRequest.write([ startTime, requestSentTime, workerReadTime, 
+hostRequest.write([ startTime, requestSentTime, workerReadTime,
                     workerStartTime, workerEndTime])

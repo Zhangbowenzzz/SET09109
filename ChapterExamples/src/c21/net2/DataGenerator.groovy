@@ -1,5 +1,5 @@
 package c21.net2
- 
+
 import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.net2.*
@@ -33,39 +33,39 @@ class DataGenerator implements CSProcess {
             def nodeData = fromNodes.read()
             toNodes.append ( NetChannel.one2net ( nodeData.dgl[0] ) )
             agentVisitChannelList << nodeData.dgl[1]
-            allocationList << nodeData.dgl[2]                                      
+            allocationList << nodeData.dgl[2]
             nodesRegistered = nodesRegistered + 1
             nodeAppended = true
             break
           case 1:
             checkingForNewNodes = false
             break
-        }        
+        }
       }
 
-      if (nodeAppended) { 
-        toNodes.write(new AvailableNodeList ( anl: agentVisitChannelList)) 
+      if (nodeAppended) {
+        toNodes.write(new AvailableNodeList ( anl: agentVisitChannelList))
       }
       def nNodes = toNodes.size()
       def nodeId = rng.nextInt(nNodes)
       switch ( rng.nextInt(3) + 1) {
         case 1:
-          toNodes[nodeId].write ( new Type1 ( typeInstance: type1Instance, 
+          toNodes[nodeId].write ( new Type1 ( typeInstance: type1Instance,
                                                instanceValue: instanceValue ))
           type1Instance = type1Instance + 1
           break
         case 2:
-          toNodes[nodeId].write ( new Type2 ( typeInstance: type2Instance, 
+          toNodes[nodeId].write ( new Type2 ( typeInstance: type2Instance,
                                                instanceValue: instanceValue ))
           type2Instance = type2Instance + 1
           break
         case 3:
-          toNodes[nodeId].write ( new Type3 ( typeInstance: type3Instance, 
+          toNodes[nodeId].write ( new Type3 ( typeInstance: type3Instance,
                                                instanceValue: instanceValue ))
           type3Instance = type3Instance + 1
           break
       }
       instanceValue = instanceValue + 1
-    } // end while true    
+    } // end while true
   } // end run
 }

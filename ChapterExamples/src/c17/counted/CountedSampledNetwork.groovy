@@ -8,10 +8,10 @@ import org.jcsp.lang.*
 
 
 class CountedSampledNetwork implements CSProcess {
-    
+
   def ChannelOutput outChannel
-  def ChannelInput inChannel  
-  
+  def ChannelInput inChannel
+
   void run() {
     def timer = new CSTimer()
     while (true){

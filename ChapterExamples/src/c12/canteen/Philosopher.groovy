@@ -14,8 +14,8 @@ class Philosopher implements CSProcess{
   def int philosopherId
 
   void run() {
-    
-    def console = Channel.one2one()    
+
+    def console = Channel.one2one()
     def philosopher = new PhilosopherBehaviour ( service: service,
                                                   deliver: deliver,
                                                   toConsole: console.out(),
