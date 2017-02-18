@@ -1,10 +1,10 @@
 package c5
 
-import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
+import org.jcsp.lang.*
+
 import c05.Controller
-import c05.ScaledData
 
 def data = Channel.createOne2One()
 def timedData = Channel.createOne2One()
@@ -22,7 +22,8 @@ def network = [ new GNumbers ( outChannel: data.out() ),
                             factor: oldScale.out(),
                             suspend: pause.in(),
                             injector: newScale.in(),
-                            scaling: 2 ),
+                            scaling: 2,
+                            multiplier: 2 ),
                 new Controller ( testInterval: 7000,
                                  computeInterval: 700,
                                  factor: oldScale.in(),
