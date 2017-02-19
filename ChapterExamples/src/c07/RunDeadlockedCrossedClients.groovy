@@ -4,8 +4,8 @@ package c07
 // Let's Do It In Parallel
 
 
-import org.jcsp.lang.*
 import org.jcsp.groovy.*
+import org.jcsp.lang.*
 
 def S02S1request = Channel.one2one()
 def S12S0send = Channel.one2one()
@@ -26,12 +26,12 @@ def client1List = [11,12,13,14,15,6,17,8,19,20]
 def client0 = new Client ( requestChannel: C02S0request.out(),
                             receiveChannel: S02C0send.in(),
                             selectList: client0List,
-                            clientNumber: 0)
+                            clientNumber: 0, )
 
 def client1 = new Client ( requestChannel: C12S1request.out(),
                             receiveChannel: S12C1send.in(),
                             selectList: client1List,
-                            clientNumber: 1)
+                            clientNumber: 1, )
 
 def server0 = new Server ( clientRequest: C02S0request.in(),
                             clientSend: S02C0send.out(),
@@ -39,7 +39,8 @@ def server0 = new Server ( clientRequest: C02S0request.in(),
                             thisServerReceive: S12S0send.in(),
                             otherServerRequest: S12S0request.in(),
                             otherServerSend: S02S1send.out(),
-                            dataMap: server0Map)
+                            dataMap: server0Map,
+                            serverNumber: 0, )
 
 def server1 = new Server ( clientRequest: C12S1request.in(),
                             clientSend: S12C1send.out(),
@@ -47,7 +48,8 @@ def server1 = new Server ( clientRequest: C12S1request.in(),
                             thisServerReceive: S02S1send.in(),
                             otherServerRequest: S02S1request.in(),
                             otherServerSend: S12S0send.out(),
-                            dataMap: server1Map)
+                            dataMap: server1Map,
+                            serverNumber: 1, )
 
 def network = [client0, client1, server0, server1]
 new PAR (network).run()

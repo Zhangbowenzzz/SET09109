@@ -3,8 +3,8 @@ package c07
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 
-import org.jcsp.lang.*
 import org.jcsp.groovy.*
+import org.jcsp.lang.*
 
 
 class Client implements CSProcess{
@@ -20,7 +20,9 @@ class Client implements CSProcess{
 
     for ( i in 0 ..< iterations) {
       def key = selectList[i]
+      println "Client $clientNumber requesting ${key}"
       requestChannel.write(key)
+      println "Client $clientNumber receiving ${key}"
       def v = receiveChannel.read()
     }
 
