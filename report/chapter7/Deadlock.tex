@@ -10,4 +10,6 @@
 
 \subsubsection*{Results}
 
-\includegraphics[width=\textwidth]{img/screenshots/7-1.png} \\
+\includegraphics[width=\textwidth]{img/screenshots/7-1.png}
+
+We can see from the results that the program deadlocks when both servers send a request to the other for information.  This causes both servers to lock on line 39 \mintinline{groovy}{thisServerRequest.write(key)}.  As they are both attempting to write to the other, neither can read and break the deadlock.
