@@ -4,8 +4,7 @@ import java.awt.*
 
 import org.jcsp.awt.*
 import org.jcsp.groovy.*
-import org.jcsp.groovy.plugAndPlay.GNumbers
-import org.jcsp.groovy.plugAndPlay.GObjectToConsoleString
+import org.jcsp.groovy.plugAndPlay.*
 import org.jcsp.lang.*
 
 class UserInterface implements CSProcess {
@@ -18,13 +17,19 @@ class UserInterface implements CSProcess {
   def pauseButton
   def resetTextField
 
+  def fromNumbers = Channel.one2one()
   def originalValueChannel = Channel.one2one()
-  def a = Channel.one2one()
+  def fromDelay = Channel.one2one()
 
   def network = [
-      new GNumbers ( outChannel: a.out() ),
-      new GObjectToConsoleString(inChannel: a.in(),
-        outChannel: originalValueChannel.out())
+      new GNumbers ( outChannel: fromNumbers.out() ),
+
+      new GFixedDelay (delay: 1000,
+                       inChannel: fromNumbers.in(),
+                       outChannel: fromDelay.out() ),
+
+      new GObjectToConsoleString(inChannel: fromDelay.in(),
+                                 outChannel: originalValueChannel.out() )
 
     ]
 
