@@ -1,4 +1,4 @@
-package c09;
+package c9;
 
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
@@ -6,6 +6,10 @@ package c09;
 
 import org.jcsp.groovy.*
 import org.jcsp.lang.*
+
+import c09.EventOWBuffer
+import c09.EventPrompter
+import c09.EventReceiver
 
 class EventHandler implements CSProcess {
 

@@ -1,4 +1,4 @@
-package c09
+package c9
 
 import org.jcsp.lang.CSProcess
 import org.jcsp.lang.ChannelInput

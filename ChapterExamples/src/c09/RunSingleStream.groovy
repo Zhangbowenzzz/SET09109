@@ -3,9 +3,11 @@ package c09
 // copyright 2012-13 Jon Kerridge
 // Let's Do It In Parallel
 
-import org.jcsp.lang.*
 import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
+import org.jcsp.lang.*
+
+import c9.EventHandler;
 
 def eg2h = Channel.one2one()
 def h2udd = Channel.one2one()
