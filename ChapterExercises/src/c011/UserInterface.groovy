@@ -28,6 +28,7 @@ class UserInterface implements CSProcess {
 
   def originalValueChannel = Channel.one2one()
   def scaledValueChannel = Channel.one2one()
+  def pauseButtonChannel = Channel.one2one()
 
   def network = [
       new GNumbers ( outChannel: fromNumbers.out() ),
@@ -47,6 +48,10 @@ class UserInterface implements CSProcess {
       new ScaledToLabel ( inChannel: fromScaled.in(),
                           normalOutChannel: originalValueChannel.out(),
                           scaledOutChannel: scaledValueChannel.out() ),
+
+      new SuspendManager ( pauseIn: pauseButtonChannel.in(),
+                           pauseOut: suspend.out(),
+                           previousScale: oldScale.in() )
 
     ]
 
@@ -108,7 +113,7 @@ class UserInterface implements CSProcess {
 
   ActiveButton getPauseButton() {
     if (pauseButton == null) {
-      pauseButton = new ActiveButton("Pause")
+      pauseButton = new ActiveButton(null, pauseButtonChannel.out(), "Pause")
     }
     return pauseButton
   }
