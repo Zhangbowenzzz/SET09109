@@ -8,6 +8,8 @@ class TextFieldToIntegerSafe implements CSProcess {
   def ChannelInput inChannel
   def ChannelInput submitChannel
   def ChannelOutput outChannel
+  def ChannelOutput pauseButtonEnableOut
+  def ChannelOutput injectTextViewEnableOut
 
   @Override
   public void run() {
@@ -19,6 +21,9 @@ class TextFieldToIntegerSafe implements CSProcess {
         case 0:
           submitChannel.read()
           outChannel.write(parsed)
+          pauseButtonEnableOut.write(Boolean.TRUE)
+          injectTextViewEnableOut.write(Boolean.FALSE)
+          injectTextViewEnableOut.write("")
           break
         case 1:
           def input = inChannel.read()

@@ -34,6 +34,9 @@ class UserInterface implements CSProcess {
   def resetTextFieldChannel = Channel.one2one()
   def resetTextFieldKeyEventChannel = Channel.one2one()
 
+  def pauseButtonEnableChannel = Channel.any2one()
+  def resetTextFieldEnableChannel = Channel.any2one()
+
   def network = [
       new GNumbers ( outChannel: fromNumbers.out() ),
 
@@ -55,11 +58,15 @@ class UserInterface implements CSProcess {
 
       new SuspendManager ( pauseIn: pauseButtonChannel.in(),
                            pauseOut: suspend.out(),
-                           previousScale: oldScale.in() ),
+                           previousScale: oldScale.in(),
+                           pauseButtonEnableOut: pauseButtonEnableChannel.out(),
+                           injectTextViewEnableOut: resetTextFieldEnableChannel.out() ),
 
       new TextFieldToIntegerSafe( inChannel: resetTextFieldChannel.in(),
                                    outChannel: injector.out(),
-                                   submitChannel: a.in() ),
+                                   submitChannel: a.in(),
+                                   pauseButtonEnableOut: pauseButtonEnableChannel.out(),
+                                   injectTextViewEnableOut: resetTextFieldEnableChannel.out() ),
 
       new KeyEventFilter ( inChannel: resetTextFieldKeyEventChannel.in(),
                            outChannel: a.out(),
@@ -75,7 +82,9 @@ class UserInterface implements CSProcess {
     mainFrame.setVisible (true)
     def interfaceNetwork = [ root,
                              getOriginalValueLabel(),
-                             getScaledValueLabel() ]
+                             getScaledValueLabel(),
+                             getPauseButton(),
+                             getResetTextBox() ]
     new PAR (interfaceNetwork + network).run()
   }
 
@@ -125,15 +134,19 @@ class UserInterface implements CSProcess {
 
   ActiveButton getPauseButton() {
     if (pauseButton == null) {
-      pauseButton = new ActiveButton(null, pauseButtonChannel.out(), "Pause")
+      pauseButton = new ActiveButton(pauseButtonEnableChannel.in(),
+                                     pauseButtonChannel.out(),
+                                     "Pause")
     }
     return pauseButton
   }
 
   ActiveTextField getResetTextBox() {
     if (resetTextField == null) {
-      resetTextField = new ActiveTextField(null, resetTextFieldChannel.out())
+      resetTextField = new ActiveTextField(resetTextFieldEnableChannel.in(),
+                                           resetTextFieldChannel.out())
       resetTextField.addKeyEventChannel(resetTextFieldKeyEventChannel.out())
+      resetTextField.setEnabled(false)
     }
     return resetTextField
   }
