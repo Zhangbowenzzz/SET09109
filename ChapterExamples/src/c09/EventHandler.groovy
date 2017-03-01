@@ -4,8 +4,8 @@ package c09;
 // Let's Do It In Parallel
 
 
-import org.jcsp.lang.*
 import org.jcsp.groovy.*
+import org.jcsp.lang.*
 
 class EventHandler implements CSProcess {
 
@@ -16,6 +16,7 @@ class EventHandler implements CSProcess {
     def get = Channel.one2one()
     def transfer = Channel.one2one()
     def toBuffer = Channel.one2one()
+    def toVerifier = Channel.one2one()
 
     def handlerList = [ new EventReceiver ( eventIn: inChannel,
                                             eventOut: toBuffer.out()),
@@ -24,7 +25,10 @@ class EventHandler implements CSProcess {
                                             outChannel: transfer.out() ),
                         new EventPrompter ( inChannel: transfer.in(),
                                             getChannel: get.out(),
-                                            outChannel: outChannel )
+                                            outChannel: toVerifier.out() ),
+                        new EventMissedVerifier ( inChannel: toVerifier.in(),
+                                                  outChannel: outChannel,
+                                                  initialDataValue: 100 )
                       ]
     new PAR ( handlerList ).run()
   }
