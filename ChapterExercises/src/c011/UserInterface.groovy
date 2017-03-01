@@ -7,6 +7,8 @@ import org.jcsp.groovy.*
 import org.jcsp.groovy.plugAndPlay.*
 import org.jcsp.lang.*
 
+import c05.Scale
+
 class UserInterface implements CSProcess {
 
   def baseContainer
@@ -18,8 +20,14 @@ class UserInterface implements CSProcess {
   def resetTextField
 
   def fromNumbers = Channel.one2one()
-  def originalValueChannel = Channel.one2one()
   def fromDelay = Channel.one2one()
+  def fromScaled = Channel.one2one()
+  def oldScale = Channel.one2one()
+  def suspend = Channel.one2one()
+  def injector = Channel.one2one()
+
+  def originalValueChannel = Channel.one2one()
+  def scaledValueChannel = Channel.one2one()
 
   def network = [
       new GNumbers ( outChannel: fromNumbers.out() ),
@@ -28,8 +36,17 @@ class UserInterface implements CSProcess {
                        inChannel: fromNumbers.in(),
                        outChannel: fromDelay.out() ),
 
-      new GObjectToConsoleString(inChannel: fromDelay.in(),
-                                 outChannel: originalValueChannel.out() )
+      new Scale ( inChannel: fromDelay.in(),
+                  outChannel: fromScaled.out(),
+                  factor: oldScale.out(),
+                  suspend: suspend.in(),
+                  injector: injector.in(),
+                  multiplier: 2,
+                  scaling: 2 ),
+
+      new ScaledToLabel ( inChannel: fromScaled.in(),
+                          normalOutChannel: originalValueChannel.out(),
+                          scaledOutChannel: scaledValueChannel.out() ),
 
     ]
 
@@ -39,7 +56,9 @@ class UserInterface implements CSProcess {
     mainFrame.add (getBaseContainer())
     mainFrame.pack()
     mainFrame.setVisible (true)
-    def interfaceNetwork = [ root, getOriginalValueLabel() ]
+    def interfaceNetwork = [ root,
+                             getOriginalValueLabel(),
+                             getScaledValueLabel() ]
     new PAR (interfaceNetwork + network).run()
   }
 
@@ -82,8 +101,7 @@ class UserInterface implements CSProcess {
 
   ActiveLabel getScaledValueLabel() {
     if (scaledValueLabel == null) {
-      scaledValueLabel = new ActiveLabel()
-      scaledValueLabel.setText("0")
+      scaledValueLabel = new ActiveLabel(scaledValueChannel.in(), "0")
     }
     return scaledValueLabel
   }
