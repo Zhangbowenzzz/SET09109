@@ -26,7 +26,7 @@ class UserInterface implements CSProcess {
   def oldScale = Channel.one2one()
   def suspend = Channel.one2one()
   def injector = Channel.one2one()
-  def a = Channel.one2one()
+  def textFieldSubmitChannel = Channel.one2one()
 
   def originalValueChannel = Channel.one2one()
   def scaledValueChannel = Channel.one2one()
@@ -64,12 +64,12 @@ class UserInterface implements CSProcess {
 
       new TextFieldToIntegerSafe( inChannel: resetTextFieldChannel.in(),
                                    outChannel: injector.out(),
-                                   submitChannel: a.in(),
+                                   submitChannel: textFieldSubmitChannel.in(),
                                    pauseButtonEnableOut: pauseButtonEnableChannel.out(),
                                    injectTextViewEnableOut: resetTextFieldEnableChannel.out() ),
 
       new KeyEventFilter ( inChannel: resetTextFieldKeyEventChannel.in(),
-                           outChannel: a.out(),
+                           outChannel: textFieldSubmitChannel.out(),
                            allowedChars: [KeyEvent.VK_ENTER] ),
 
     ]
