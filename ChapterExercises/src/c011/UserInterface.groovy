@@ -1,6 +1,7 @@
 package c011
 
 import java.awt.*
+import java.awt.event.KeyEvent
 
 import org.jcsp.awt.*
 import org.jcsp.groovy.*
@@ -25,10 +26,13 @@ class UserInterface implements CSProcess {
   def oldScale = Channel.one2one()
   def suspend = Channel.one2one()
   def injector = Channel.one2one()
+  def a = Channel.one2one()
 
   def originalValueChannel = Channel.one2one()
   def scaledValueChannel = Channel.one2one()
   def pauseButtonChannel = Channel.one2one()
+  def resetTextFieldChannel = Channel.one2one()
+  def resetTextFieldKeyEventChannel = Channel.one2one()
 
   def network = [
       new GNumbers ( outChannel: fromNumbers.out() ),
@@ -51,7 +55,15 @@ class UserInterface implements CSProcess {
 
       new SuspendManager ( pauseIn: pauseButtonChannel.in(),
                            pauseOut: suspend.out(),
-                           previousScale: oldScale.in() )
+                           previousScale: oldScale.in() ),
+
+      new TextFieldToIntegerSafe( inChannel: resetTextFieldChannel.in(),
+                                   outChannel: injector.out(),
+                                   submitChannel: a.in() ),
+
+      new KeyEventFilter ( inChannel: resetTextFieldKeyEventChannel.in(),
+                           outChannel: a.out(),
+                           allowedChars: [KeyEvent.VK_ENTER] ),
 
     ]
 
@@ -120,7 +132,8 @@ class UserInterface implements CSProcess {
 
   ActiveTextField getResetTextBox() {
     if (resetTextField == null) {
-      resetTextField = new ActiveTextField()
+      resetTextField = new ActiveTextField(null, resetTextFieldChannel.out())
+      resetTextField.addKeyEventChannel(resetTextFieldKeyEventChannel.out())
     }
     return resetTextField
   }
