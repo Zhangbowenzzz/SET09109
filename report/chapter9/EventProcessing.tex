@@ -40,3 +40,11 @@ EventProcessing.maxTime = 400
 	\includegraphics[width=\textwidth/2]{img/screenshots/9-3-3-2.png} \\
 
 \end{tabular}
+
+\subsubsection*{Conclusion}
+
+\paragraph{Test 1} shows that each source is read from in order.  This however has the effect of causing the earlier resources to have a greater quantity of missed data as can be seen by source 1 finishing before source 2 and source 2 finishing before source 3.
+
+\paragraph{Test 2} shows that source one is ready from until there is no data left to be read, then source two and finally source three.  This results in source 1 having very little missed data, however source two and three miss 75 and 77 data elements respectively after the first element of each is read.  Source one is always read as it is queued in the EventPrompter.
+
+\paragraph{Test 3} shows a very similar result to test 1 however test one waits for each source to begin generating events before reading the second data element form source 1.  This means that in a system where events were not generated equally test 3 would significantly outperform test 1.
