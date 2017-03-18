@@ -99,3 +99,11 @@ EventProcessing.minTime = 100
 EventProcessing.maxTime = 101
 
 \includegraphics[width=\textwidth/2]{img/screenshots/9-2-7.png}
+
+\subsubsection*{Conclusion}
+
+Based on tests 2-5 we can see that if the event source is slower than the event processor all the events are processed without skipping any.
+
+If the event source is significantly faster than the event processor then many events may be missed, the first event however will always be processed.
+
+Based on tests 6-7 we can see that if the event source and event processor and working at the same speed then the number of missed events is proportional to the number of event sources.
