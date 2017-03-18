@@ -4,10 +4,9 @@ package c08
 // Let's Do It In Parallel
 import org.jcsp.groovy.*
 import org.jcsp.lang.*
+
 import phw.util.Ask
 
-
-import c07.Client
 def clients = Ask.Int ("Number of clients per server; 1 to 9 ? ", 1, 9)
 def servers = 2
 
