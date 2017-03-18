@@ -2,7 +2,7 @@
 
 \subsubsection*{Results}
 
-\textbf{Test 1}
+\textbf{Test 1 - Initial values}
 
 Event sources = 2
 
@@ -16,7 +16,7 @@ EventProcessing.maxTime = 400
 
 \includegraphics[width=\textwidth/2]{img/screenshots/9-2-1.png}
 
-\textbf{Test 2}
+\textbf{Test 2 - Instant source, delayed processing, two sources}
 
 Event sources = 2
 
@@ -30,7 +30,7 @@ EventProcessing.maxTime = 400
 
 \includegraphics[width=\textwidth/2]{img/screenshots/9-2-2.png}
 
-\textbf{Test 3}
+\textbf{Test 3 - Delayed source, instant processing, two sources}
 
 Event sources = 2
 
@@ -44,7 +44,7 @@ EventProcessing.maxTime = 1
 
 \includegraphics[width=\textwidth/2]{img/screenshots/9-2-3.png}
 
-\textbf{Test 4}
+\textbf{Test 4 - Instant source, delayed processing, nine sources}
 
 Event sources = 9
 
@@ -56,23 +56,9 @@ EventProcessing.minTime = 399
 
 EventProcessing.maxTime = 400
 
-\includegraphics[width=\textwidth/2]{img/screenshots/9-2-3.png}
-
-\textbf{Test 5}
-
-Event sources = 9
-
-EventSource.minTimes = [ 399, 399, 399, 399, 399, 399, 399, 399, 399 ]
-
-EventSource.maxTimes = [ 400, 400, 400, 400, 400, 400, 400, 400, 400 ]
-
-EventProcessing.minTime = 0
-
-EventProcessing.maxTime = 1
-
 \includegraphics[width=\textwidth/2]{img/screenshots/9-2-4.png}
 
-\textbf{Test 5}
+\textbf{Test 5 - Delayed source, instant processing, nine sources}
 
 Event sources = 9
 
@@ -86,7 +72,7 @@ EventProcessing.maxTime = 1
 
 \includegraphics[width=\textwidth/2]{img/screenshots/9-2-5.png}
 
-\textbf{Test 6}
+\textbf{Test 6 - Identical source and processing, two sources}
 
 Event sources = 2
 
@@ -100,9 +86,9 @@ EventProcessing.maxTime = 101
 
 \includegraphics[width=\textwidth/2]{img/screenshots/9-2-6.png}
 
-\textbf{Test 7}
+\textbf{Test 7 - Identical source and processing, nine sources}
 
-Event sources = 2
+Event sources = 9
 
 EventSource.minTimes = [ 100, 100, 100, 100, 100, 100, 100, 100, 100 ]
 
